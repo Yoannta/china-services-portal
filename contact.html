@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Premium - ABRSON Conciergerie</title>
+    <meta name="description"
+        content="Contactez la conciergerie ABRSON. Prise en charge premium pour vos projets en Chine.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Inertia Scroling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="premium-site">
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle"><i data-lucide="menu"></i></button>
+        </div>
+    </header>
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+    <div class="data-stream-container" aria-hidden="true"></div>
+
+    <main class="contact-page concierge-mode">
+        <!-- Hero Section: Concierge Desk -->
+        <div class="liquid-layer" data-viscosity="0.6">
+            <section class="hero contact-hero" style="min-height: 50vh;">
+                <div class="hero-slider">
+                    <div class="hero-slide active" style="background-image: url('assets/hero_bg_1.png');"></div>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="container hero-content text-center">
+                    <div class="concierge-status">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Bureau de Liaison : <strong>OUVERT</strong> (Réponse < 1h)</span>
+                    </div>
+                    <h1 class="hero-title fade-in-up">Conciergerie <span class="text-silver">Premium</span></h1>
+                    <p class="hero-subtitle fade-in-up delay-1">Votre accès privilégié aux ressources et réseaux de
+                        l'Empire du Milieu.</p>
+                </div>
+            </section>
+        </div>
+
+        <div class="liquid-layer" data-viscosity="0.4">
+            <section class="section concierge-intake">
+                <div class="container">
+                    <div class="intake-grid">
+                        <!-- Left: Service Lanes -->
+                        <div class="service-lanes">
+                            <div class="lane-card beacon-ready" data-type="whatsapp">
+                                <div class="lane-icon"><i data-lucide="phone"></i></div>
+                                <div class="lane-info">
+                                    <h3>WhatsApp Business</h3>
+                                    <p>Canal prioritaire pour urgences</p>
+                                    <strong>+86 1XX XXXX XXXX</strong>
+                                </div>
+                                <div class="pulse-beacon"></div>
+                            </div>
+                            <div class="lane-card" data-type="wechat">
+                                <div class="lane-icon"><i data-lucide="message-circle"></i></div>
+                                <div class="lane-info">
+                                    <h3>WeChat Executive</h3>
+                                    <p>Liaison technique & contrats</p>
+                                    <strong>ChineAccesPro</strong>
+                                </div>
+                            </div>
+                            <div class="lane-card" data-type="email">
+                                <div class="lane-icon"><i data-lucide="mail"></i></div>
+                                <div class="lane-info">
+                                    <h3>Email Securise</h3>
+                                    <p>Appels d'offres & documents</p>
+                                    <strong>contact@abrson.com</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Private Intake Card -->
+                        <div class="intake-card-wrapper">
+                            <form class="concierge-form">
+                                <div class="form-header">
+                                    <h3>Projet & Prise en Charge</h3>
+                                    <p>Décrivez votre besoin pour une allocation immédiate de ressources.</p>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Identité</label>
+                                        <input type="text" placeholder="Nom ou Société" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Domaine</label>
+                                        <select>
+                                            <option>Sourcing & Production</option>
+                                            <option>Études & Bourses</option>
+                                            <option>Solutions Financières</option>
+                                            <option>Accompagnement Business</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label>Brief Projet</label>
+                                        <textarea rows="4"
+                                            placeholder="Objectifs, échéances, contraintes..."></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block pulse-btn">
+                                    <span>Lancer la demande</span>
+                                    <div class="btn-glimmer"></div>
+                                </button>
+                                <div class="trust-ring">
+                                    <div class="ring-item"><i data-lucide="shield-check"></i> Confidentialité 100%</div>
+                                    <div class="ring-item"><i data-lucide="clock"></i> SLA: < 24h</div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo"><img src="assets/logo.png" alt="ABRSON"></a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Études & Bourses en Chine - ABRSON</title>
+    <meta name="description"
+        content="Découvrez nos programmes d'études en Chine, bourses garanties et accompagnement complet pour les étudiants.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Inertia Scroling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="premium-site">
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active">Accueil</a></li>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+    <div class="data-stream-container" aria-hidden="true"></div>
+
+    <main class="studies-page golden-path-mode">
+        <!-- Hero Section for Studies -->
+        <div class="liquid-layer" data-viscosity="0.6">
+            <section class="hero studies-hero" style="height: 65vh; min-height: 450px;">
+                <div class="hero-slider">
+                    <div class="hero-slide active" style="background-image: url('assets/hero_bg_3.png');"></div>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="container hero-content text-center">
+                    <div class="hero-badges">
+                        <span class="badge badge-premium"><i data-lucide="award"></i> Bourses CSC Garantes</span>
+                        <span class="badge badge-joy"><i data-lucide="graduation-cap"></i> Success Story</span>
+                    </div>
+                    <h1 class="hero-title fade-in-up">Votre Excellence en <span class="text-gradient-gold">Chine</span>
+                    </h1>
+                    <p class="hero-subtitle fade-in-up delay-1">Rejoignez l'élite académique mondiale. Nous sécurisons
+                        votre admission et votre financement.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Detailed Studies Content (Moved from Index) -->
+        <div class="liquid-layer" data-viscosity="0.4">
+            <section id="studies-detail" class="section studies-detail-section">
+                <!-- SVG Path Line (Background) -->
+                <div class="golden-path-drawing" aria-hidden="true">
+                    <svg width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
+                        <path id="master-path" d="M 50 0 Q 80 200 20 400 Q 80 600 50 800" fill="none"
+                            stroke="url(#gold-gradient)" stroke-width="2" />
+                        <defs>
+                            <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#C5A059" stop-opacity="0" />
+                                <stop offset="50%" stop-color="#E6C58A" stop-opacity="1" />
+                                <stop offset="100%" stop-color="#C5A059" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="badge badge-accent">Prestige Universitaire</span>
+                        <h2 class="section-title">La Voie vers l'Excellence</h2>
+                        <p class="section-desc">Un accompagnement sur-mesure pour integrer les fleurons de l'education
+                            chinoise.</p>
+                    </div>
+
+                    <!-- University Medallions -->
+                    <div class="university-medallions">
+                        <div class="medallion" data-name="Tsinghua">
+                            <div class="medallion-inner"><span>THU</span></div>
+                            <h4>Tsinghua University</h4>
+                        </div>
+                        <div class="medallion" data-name="Peking">
+                            <div class="medallion-inner"><span>PKU</span></div>
+                            <h4>Peking University</h4>
+                        </div>
+                        <div class="medallion" data-name="Fudan">
+                            <div class="medallion-inner"><span>FUD</span></div>
+                            <h4>Fudan University</h4>
+                        </div>
+                    </div>
+
+                    <!-- Process Steps (Attached to Path) -->
+                    <div class="path-steps">
+                        <div class="path-step" data-step="1">
+                            <div class="step-blob">01</div>
+                            <div class="step-text">
+                                <h3>Dossier de Prestige</h3>
+                                <p>Optimisation de votre CV et lettre de motivation selon les standards chinois.</p>
+                            </div>
+                        </div>
+                        <div class="path-step" data-step="2">
+                            <div class="step-blob">02</div>
+                            <div class="step-text">
+                                <h3>Bourse CSC Garante</h3>
+                                <p>Scurisation du financement complet : scolarite, logement et allocation mensuelle.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Eligibility Simulator -->
+                    <div class="simulator-container">
+                        <div class="simulator-card prestige-form">
+                            <div class="simulator-header">
+                                <h3>Test d'Eligibilite Bourse</h3>
+                                <p>Evaluez vos chances d'obtenir une bourse complete en 60 secondes.</p>
+                            </div>
+                            <form id="eligibility-form" class="simulator-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Niveau actuel</label>
+                                        <select id="study-level">
+                                            <option value="bac">Baccalaureat</option>
+                                            <option value="license">Licence / Bachelor</option>
+                                            <option value="master">Master</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Anglais (IELTS/TOEFL)</label>
+                                        <select id="english-level">
+                                            <option value="intermediate">Intermediaire</option>
+                                            <option value="advanced">Avance</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Lancer l'audit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container footer-content">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+                    </a>
+                    <p>Votre partenaire de confiance pour naviguer les opportunités d'affaires et d'études en Chine.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="index.html#business">Business Travel</a></li>
+                        <li><a href="index.html#sourcing">Sourcing Produit</a></li>
+                        <li><a href="etudes.html">Études en Chine</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="contact-list">
+                        <li><i data-lucide="message-circle"></i> WeChat: ChineAccesPro</li>
+                        <li><i data-lucide="phone"></i> WhatsApp: +86 1XX XXXX XXXX</li>
+                        <li><i data-lucide="mail"></i> contact@chineaccess.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2026 ABRSON. Tous droits réservés.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

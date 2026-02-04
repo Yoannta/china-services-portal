@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sourcing & Achat Chine - ABRSON</title>
+    <meta name="description"
+        content="Sécurisez vos achats en Chine. Notre bureau de sourcing gère la recherche fournisseur, le contrôle qualité et la logistique jusqu'à votre entrepôt.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Inertia Scroling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="premium-site">
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html" class="active">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle"><i data-lucide="menu"></i></button>
+        </div>
+    </header>
+
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+    <div class="data-stream-container" aria-hidden="true"></div>
+
+    <main class="sourcing-page marketplace blueprint-mode">
+        <div class="liquid-layer" data-viscosity="0.6">
+            <section class="hero sourcing-hero marketplace-hero" style="min-height: 60vh;">
+                <div class="hero-slider">
+                    <div class="hero-slide active" style="background-image: url('assets/hero_bg_2.png');"></div>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="container hero-content">
+                    <div class="hero-badges">
+                        <span class="badge badge-secure"><i data-lucide="shield-check"></i> Paiements securises</span>
+                        <span class="badge badge-joy"><i data-lucide="sparkles"></i> Catalogue verifie</span>
+                    </div>
+                    <h1 class="hero-title fade-in-up">Marketplace Sourcing Chine</h1>
+                    <p class="hero-subtitle fade-in-up delay-1">Commandez directement des produits verifies, avec
+                        controle qualite et logistique geree.</p>
+
+                    <div class="market-search">
+                        <div class="search-field">
+                            <i data-lucide="search"></i>
+                            <input id="product-search" type="text"
+                                placeholder="Rechercher un produit, une categorie, un materiau..." />
+                        </div>
+                        <button class="btn btn-primary" id="search-btn">Rechercher</button>
+                    </div>
+
+                    <div class="hero-metrics">
+                        <div class="metric"><strong>2,400+</strong><span>Produits actifs</span></div>
+                        <div class="metric"><strong>4.8/5</strong><span>Notes fournisseurs</span></div>
+                        <div class="metric"><strong>48h</strong><span>Validation commande</span></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="section marketplace-toolbar">
+            <div class="container toolbar-grid">
+                <div class="filter-group">
+                    <button class="chip active" data-filter="all">Tout</button>
+                    <button class="chip" data-filter="electronics">Electronique</button>
+                    <button class="chip" data-filter="fashion">Textile</button>
+                    <button class="chip" data-filter="home">Maison</button>
+                    <button class="chip" data-filter="industrial">Industriel</button>
+                </div>
+                <div class="sort-group">
+                    <label for="sort">Tri</label>
+                    <select id="sort">
+                        <option value="popular">Populaire</option>
+                        <option value="price-asc">Prix croissant</option>
+                        <option value="price-desc">Prix decroissant</option>
+                        <option value="moq">MOQ faible</option>
+                    </select>
+                </div>
+                <div class="cart-indicator">
+                    <i data-lucide="shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                    <span class="cart-label">Votre commande</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="liquid-layer" data-viscosity="0.4">
+            <section class="section marketplace-grid">
+                <div class="container">
+                    <div class="product-grid" id="product-grid">
+                        <article class="product-card xray-card" data-category="electronics" data-price="18"
+                            data-moq="200">
+                            <div class="product-media"></div>
+                            <h3>Ecouteurs Bluetooth TWS</h3>
+                            <p class="product-meta">MOQ 200 | Shenzhen</p>
+                            <div class="product-footer">
+                                <span class="price">$18 / lot</span>
+                                <button class="btn btn-outline add-to-cart">Ajouter</button>
+                            </div>
+                        </article>
+                        <article class="product-card xray-card" data-category="fashion" data-price="9" data-moq="300">
+                            <div class="product-media"></div>
+                            <h3>Veste softshell premium</h3>
+                            <p class="product-meta">MOQ 300 | Guangzhou</p>
+                            <div class="product-footer">
+                                <span class="price">$9 / piece</span>
+                                <button class="btn btn-outline add-to-cart">Ajouter</button>
+                            </div>
+                        </article>
+                        <article class="product-card xray-card" data-category="home" data-price="4" data-moq="500">
+                            <div class="product-media"></div>
+                            <h3>Set vaisselle ceramique</h3>
+                            <p class="product-meta">MOQ 500 | Jingdezhen</p>
+                            <div class="product-footer">
+                                <span class="price">$4 / piece</span>
+                                <button class="btn btn-outline add-to-cart">Ajouter</button>
+                            </div>
+                        </article>
+                        <article class="product-card xray-card" data-category="industrial" data-price="120"
+                            data-moq="50">
+                            <div class="product-media"></div>
+                            <h3>Kit panneaux solaires 500W</h3>
+                            <p class="product-meta">MOQ 50 | Ningbo</p>
+                            <div class="product-footer">
+                                <span class="price">$120 / lot</span>
+                                <button class="btn btn-outline add-to-cart">Ajouter</button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="section marketplace-cart">
+            <div class="container cart-panel">
+                <div class="cart-header">
+                    <h2 class="section-title">Votre Commande</h2>
+                    <p class="section-desc">Recapitulatif des produits selectionnes. Un conseiller valide avant
+                        paiement.</p>
+                </div>
+                <div id="cart-list" class="cart-list">
+                    <p class="empty-cart">Aucun produit ajoute.</p>
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-total"><span>Total estimatif</span><strong id="cart-total">$0</strong></div>
+                    <a href="contact.html" class="btn btn-primary">Demarrer la commande</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo"><img src="assets/logo.png" alt="ABRSON"></a>
+                <p>Expert Chine.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

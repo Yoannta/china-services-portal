@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfert d'Argent & Paiements Chine - ABRSON</title>
+    <meta name="description"
+        content="Envoyez de l'argent vers la Chine en toute simplicité. Paiements fournisseurs, recharges WeChat/Alipay et taux de change compétitifs.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Inertia Scroling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="premium-site transfer-page">
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="transfert.html" class="active">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle"><i data-lucide="menu"></i></button>
+        </div>
+    </header>
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+    <main>
+        <div class="liquid-layer" data-viscosity="0.6">
+            <section class="hero transfer-hero" style="min-height: 55vh;">
+                <div class="hero-slider">
+                    <div class="hero-slide active parallax-layer"
+                        style="background-image: url('assets/transfer_bg.png');">
+                    </div>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="container hero-content">
+                    <h1 class="hero-title fade-in-up">Transfert d'Argent & Paiements</h1>
+                    <p class="hero-subtitle fade-in-up delay-1">Envoyez des fonds vers la Chine en toute sécurité et à
+                        moindre coût.</p>
+                </div>
+            </section>
+        </div>
+
+        <section class="transfer-trust">
+            <div class="container trust-grid">
+                <div class="trust-chip"><i data-lucide="badge-check"></i> Frais affiches avant validation</div>
+                <div class="trust-chip"><i data-lucide="bar-chart-3"></i> Taux de reference quotidien (ECB, info)</div>
+                <div class="trust-chip"><i data-lucide="message-circle"></i> Support humain jusqu'a finalisation</div>
+            </div>
+        </section>
+
+
+        <section class="section transfer-steps">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Comment ca marche</h2>
+                    <p class="section-desc">Un parcours clair, rapide, et 100% accompagne.</p>
+                </div>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-num">01</div>
+                        <h3>Simulation</h3>
+                        <p>Calculez votre montant en RMB et visualisez les frais.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">02</div>
+                        <h3>Confirmation</h3>
+                        <p>Confirmez le transfert avec un conseiller via WhatsApp.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-num">03</div>
+                        <h3>Execution</h3>
+                        <p>Nous executons le paiement et vous suivez l'etat en direct.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="liquid-layer" data-viscosity="0.4">
+            <section class="section transfer-calculator">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2 class="section-title">Simulateur de Transfert (RMB)</h2>
+                        <p class="section-desc">Conversion en RMB selon le taux du jour, avec frais de transfert inclus.
+                        </p>
+                    </div>
+
+                    <div class="transfer-grid">
+                        <form id="transfer-form" class="transfer-card">
+                            <div class="form-group">
+                                <label for="amount">Montant d'origine</label>
+                                <input id="amount" name="amount" type="number" min="0" step="0.01"
+                                    placeholder="Ex: 1000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="currency-from">Devise d'origine</label>
+                                <select id="currency-from" name="currency-from"></select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Convertir</button>
+                            <p id="rate-note" class="rate-note"></p>
+                        </form>
+
+                        <div class="transfer-card transfer-results">
+                            <div class="transfer-flow" aria-hidden="true">
+                                <span class="flow-node">Devise</span>
+                                <span class="flow-line"></span>
+                                <span class="flow-node">Conversion</span>
+                                <span class="flow-line"></span>
+                                <span class="flow-node">RMB</span>
+                            </div>
+                            <div class="result-row">
+                                <span>Montant converti</span>
+                                <strong id="converted-amount">?</strong>
+                            </div>
+                            <div class="result-row subtle">
+                                <span>Frais de transfert (8%)</span>
+                                <strong id="fee-amount">?</strong>
+                            </div>
+                            <div class="result-row total">
+                                <span>Montant final en RMB</span>
+                                <strong id="net-amount">?</strong>
+                            </div>
+                            <p class="fee-note">Frais appliques automatiquement et affiches avant validation.</p>
+                            <a id="whatsapp-btn" class="btn btn-primary btn-whatsapp hidden" href="#" target="_blank"
+                                rel="noopener">Continuer sur WhatsApp</a>
+                            <p class="discreet-note">Taux indicatif base ECB (mise a jour quotidienne).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Solutions Financières</h2>
+                    <p class="section-desc">Des moyens de paiement fiables pour vos échanges avec la Chine.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="card-icon"><i data-lucide="arrow-right-left"></i></div>
+                        <h3>Transfert International</h3>
+                        <p>Envoi de fonds vers la Chine depuis n'importe quel pays avec des frais réduits.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-icon"><i data-lucide="smartphone"></i></div>
+                        <h3>WeChat & Alipay</h3>
+                        <p>Recharge de portefeuilles électroniques et paiements directs fournisseurs.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="card-icon"><i data-lucide="shield-check"></i></div>
+                        <h3>Paiement Fournisseur</h3>
+                        <p>Règlement sécurisé de vos commandes business en RMB ou USD.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section transfer-faq">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Questions frequentes</h2>
+                    <p class="section-desc">Transparence, taux et frais. Tout est clair avant validation.</p>
+                </div>
+                <div class="faq-grid">
+                    <details class="faq-item">
+                        <summary>Le taux est-il en temps reel ?</summary>
+                        <p>Nous affichons un taux de reference quotidien a titre indicatif. Pour les conversions, le
+                            taux final depend de la validation et du canal de paiement.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Comment sont calcules les frais ?</summary>
+                        <p>Les frais de transfert sont fixes a 8% et affiches directement dans le simulateur.</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Que se passe-t-il apres la simulation ?</summary>
+                        <p>Vous cliquez sur WhatsApp, un conseiller confirme les details et vous accompagne jusqu'a la
+                            finalisation.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="section transfer-joy-strip">
+            <div class="container joy-grid">
+                <div class="joy-card">
+                    <h3>+600 clients</h3>
+                    <p>Transferts reussis entre l'Afrique, l'Europe et la Chine.</p>
+                </div>
+                <div class="joy-card">
+                    <h3>24h-48h</h3>
+                    <p>Delais moyens de confirmation selon pays et banque.</p>
+                </div>
+                <div class="joy-card">
+                    <h3>Support humain</h3>
+                    <p>Un conseiller vous accompagne jusqu'a la finalisation.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo"><img src="assets/logo.png" alt="ABRSON"></a>
+                <p>Expert Chine.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="transfert.html">Transfert d'Argent</a></li>
+                    <li><a href="sourcing.html">Sourcing & Achat</a></li>
+                    <li><a href="etudes.html">Études & Bourses</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+
+    <script>
+        (function () {
+            const apiBase = "https://api.frankfurter.dev/v1";
+            const currencySelect = document.getElementById('currency-from');
+            const amountInput = document.getElementById('amount');
+            const form = document.getElementById('transfer-form');
+            const convertedEl = document.getElementById('converted-amount');
+            const feeEl = document.getElementById('fee-amount');
+            const netEl = document.getElementById('net-amount');
+            const rateNote = document.getElementById('rate-note');
+            const whatsappBtn = document.getElementById('whatsapp-btn');
+
+            const whatsappNumber = "+1234567890"; // Remplacer par votre numero
+
+            const fmt = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const fmtRate = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 4, maximumFractionDigits: 6 });
+
+            function setResult(converted, fee, net, rate, from, date) {
+                convertedEl.textContent = fmt.format(converted) + " CNY";
+                feeEl.textContent = "-" + fmt.format(fee) + " CNY";
+                netEl.textContent = fmt.format(net) + " CNY";
+                rateNote.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY (date: ${date})`;
+            }
+
+            async function loadCurrencies() {
+                try {
+                    const res = await fetch(`${apiBase}/currencies`);
+                    const data = await res.json();
+                    const codes = Object.keys(data).sort();
+                    currencySelect.innerHTML = codes.map(c => `<option value="${c}">${c} - ${data[c]}</option>`).join('');
+                    if (codes.includes('EUR')) currencySelect.value = 'EUR';
+                } catch (e) {
+                    currencySelect.innerHTML = '<option value="EUR">EUR</option>';
+                }
+            }
+
+            async function convert(e) {
+                e.preventDefault();
+                const amount = parseFloat(amountInput.value || '0');
+                const from = (currencySelect.value || 'EUR').toUpperCase();
+                if (!amount || amount <= 0) return;
+
+                try {
+                    const res = await fetch(`${apiBase}/latest?amount=${amount}&base=${from}&symbols=CNY`);
+                    const data = await res.json();
+                    const converted = data.rates.CNY;
+                    const rate = converted / amount;
+                    const fee = converted * 0.08;
+                    const net = converted - fee;
+
+                    setResult(converted, fee, net, rate, from, data.date);
+
+                    const message = `Bonjour, je souhaite transferer ${amount} ${from} vers la Chine. Montant converti: ${converted.toFixed(2)} CNY. Frais (8%): ${fee.toFixed(2)} CNY. Montant final: ${net.toFixed(2)} CNY. Taux: 1 ${from} = ${rate.toFixed(6)} CNY (date: ${data.date}).`;
+                    const waUrl = `https://wa.me/${encodeURIComponent(whatsappNumber)}?text=${encodeURIComponent(message)}`;
+                    whatsappBtn.href = waUrl;
+                    whatsappBtn.classList.remove('hidden');
+                } catch (err) {
+                    rateNote.textContent = "Impossible de recuperer le taux. Reessayez dans quelques instants.";
+                }
+            }
+
+            loadCurrencies();
+            form.addEventListener('submit', convert);
+        })();
+    </script>
+</body>
+
+</html>

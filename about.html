@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos - ABRSON Bridge of Trust</title>
+    <meta name="description" content="Découvrez ABRSON, le pont de confiance entre l'Afrique, l'Europe et la Chine.">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Inertia Scroling -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="premium-site">
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle"><i data-lucide="menu"></i></button>
+        </div>
+    </header>
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+    <div class="data-stream-container" aria-hidden="true"></div>
+
+    <main class="about-page bridge-mode">
+        <!-- 1) Hero Section -->
+        <div class="liquid-layer" data-viscosity="0.6">
+            <section class="hero about-hero">
+                <div class="hero-slider">
+                    <div class="hero-slide active" style="background-image: url('assets/hero_bg_3.png');"></div>
+                </div>
+                <div class="hero-overlay"></div>
+                <div class="container hero-content text-center">
+                    <h1 class="hero-title fade-in-up">The <span class="text-bridge">Bridge</span> of Trust</h1>
+                    <p class="hero-subtitle bridge-tagline fade-in-up delay-1">Relier vos ambitions internationales à la
+                        réalité du terrain chinois.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- 2) Bridge Section (Timeline) -->
+        <div class="liquid-layer" data-viscosity="0.4">
+            <section class="section bridge-section">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <span class="badge badge-silver">Notre Méthode</span>
+                        <h2 class="section-title">Une connexion ininterrompue</h2>
+                    </div>
+
+                    <div class="bridge-container">
+                        <!-- SVG Bridge Path -->
+                        <div class="bridge-visual">
+                            <svg width="100%" height="100%" viewBox="0 0 200 1000" preserveAspectRatio="none">
+                                <path id="bridge-path" d="M 100 0 L 100 1000" fill="none" stroke="rgba(0,0,0,0.05)"
+                                    stroke-width="4" />
+                                <path id="bridge-glow" d="M 100 0 L 100 1000" fill="none" stroke="url(#bridge-gradient)"
+                                    stroke-width="4" />
+                                <defs>
+                                    <linearGradient id="bridge-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stop-color="#333" />
+                                        <stop offset="100%" stop-color="#707070" />
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="bridge-nodes">
+                            <div class="bridge-node" data-step="1">
+                                <div class="node-bullet"></div>
+                                <div class="node-content">
+                                    <h3>Validation Terrain</h3>
+                                    <p>Présence physique immédiate partout en Chine.</p>
+                                </div>
+                            </div>
+                            <div class="bridge-node" data-step="2">
+                                <div class="node-bullet"></div>
+                                <div class="node-content">
+                                    <h3>Due Diligence Fournisseur</h3>
+                                    <p>Audit complet des capacités et de la conformité.</p>
+                                </div>
+                            </div>
+                            <div class="bridge-node" data-step="3">
+                                <div class="node-bullet"></div>
+                                <div class="node-content">
+                                    <h3>Controle Qualité</h3>
+                                    <p>Inspection rigoureuse avant chaque expédition.</p>
+                                </div>
+                            </div>
+                            <div class="bridge-node" data-step="4">
+                                <div class="node-bullet"></div>
+                                <div class="node-content">
+                                    <h3>Exécution Logistique</h3>
+                                    <p>Transfert et acheminement sécurisés.</p>
+                                </div>
+                            </div>
+                            <div class="bridge-node" data-step="5">
+                                <div class="node-bullet"></div>
+                                <div class="node-content">
+                                    <h3>Support Continu</h3>
+                                    <p>Accompagnement après livraison et SAV.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 3) Team Capsule -->
+        <div class="liquid-layer" data-viscosity="0.3">
+            <section class="section about-team">
+                <div class="container">
+                    <div class="section-header text-center">
+                        <h2 class="section-title">L'Équipe de Liaison</h2>
+                    </div>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-img" style="background-image: url('assets/student_grad.png');"></div>
+                            <h3>Executive Board</h3>
+                            <p>Coordination Chine-France</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-img" style="background-image: url('assets/student_group.png');"></div>
+                            <h3>Operations Room</h3>
+                            <p>Suivi terrain & Logistique</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 4) Proof / Impact -->
+        <div class="liquid-layer" data-viscosity="0.2">
+            <section class="section about-proof bg-light">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-item"><strong>10+</strong><span>Années d'expertise</span></div>
+                        <div class="stat-item"><strong>500+</strong><span>Projets sécurisés</span></div>
+                        <div class="stat-item"><strong>100%</strong><span>Confidentialité</span></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 5) CTA -->
+        <div class="liquid-layer" data-viscosity="0.5">
+            <section class="section about-cta text-center">
+                <div class="container">
+                    <h2 class="section-title">Prêt à traverser le pont ?</h2>
+                    <a href="contact.html" class="btn btn-primary btn-lg">Démarrer votre projet</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo"><img src="assets/logo.png" alt="ABRSON"></a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="js/main.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

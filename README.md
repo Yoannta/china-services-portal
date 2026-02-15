@@ -195,3 +195,7 @@ Ce fichier trace l'historique des modifications apportées au projet pour assure
 - **[Antigravity] 2026-02-04 19:35** :
   - **Désactivation du Mode Collaboration** : Retour à l'interaction directe exclusive avec l'utilisateur.
   - **Statut** : Fin du projet "Signatures Visuelles" multi-agent. Poursuite du développement en pair-programming direct avec l'utilisateur.
+
+- **[Antigravity] 2026-02-12 01:57** :
+  - **Simplification de l'Accueil** : Suppression des sections 'Prestige', 'Processus' et 'CTA Final' pour �purer le parcours utilisateur sur index.html.
+

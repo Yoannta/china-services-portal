@@ -4,198 +4,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Études & Bourses en Chine - ABRSON</title>
+    <title>Étudier en Chine — Accompagnement Académique | ABRSON</title>
     <meta name="description"
-        content="Découvrez nos programmes d'études en Chine, bourses garanties et accompagnement complet pour les étudiants.">
+        content="Construisez votre avenir académique en Chine. Orientation, admission, visa et installation à Guangzhou. Accompagnement complet par ABRSON.">
     <link rel="stylesheet" href="css/style.css">
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <!-- Lenis for Smooth Inertia Scroling -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <link rel="stylesheet" href="css/etudes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/lenis.min.js"></script>
+    <script src="js/vendor/lucide.min.js"></script>
 </head>
 
-<body class="premium-site">
-    <header id="site-header">
-        <div class="container header-content">
-            <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+<body class="etudes-page">
+
+    <!-- ===================== HEADER ===================== -->
+    <header id="site-header" class="et-header">
+        <div class="et-header__inner">
+            <a href="index.html" class="et-header__logo">
+                <img src="assets/logo.png" alt="ABRSON Logo">
             </a>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="index.html" class="active">Accueil</a></li>
-                    <li><a href="transfert.html">Transfert</a></li>
-                    <li><a href="sourcing.html">Sourcing</a></li>
-                    <li><a href="etudes.html">Études</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+            <nav class="et-header__nav">
+                <a href="index.html">Accueil</a>
+                <a href="transfert.html">Transfert</a>
+                <a href="sourcing.html">Sourcing</a>
+                <a href="etudes.html" class="is-active">Études</a>
+                <a href="about.html">À propos</a>
+                <a href="contact.html">Contact</a>
             </nav>
-            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
-            <button class="mobile-menu-toggle" aria-label="Menu">
+            <a href="contact.html" class="et-btn et-btn--red">Devis Gratuit</a>
+            <button class="et-header__burger mobile-menu-toggle" aria-label="Menu">
                 <i data-lucide="menu"></i>
             </button>
         </div>
     </header>
 
-    <div class="vignette-layer" aria-hidden="true"></div>
-    <div class="data-stream-container" aria-hidden="true"></div>
-
-    <main class="studies-page golden-path-mode">
-        <!-- Hero Section for Studies -->
-        <div class="liquid-layer" data-viscosity="0.6">
-            <section class="hero studies-hero" style="height: 65vh; min-height: 450px;">
-                <div class="hero-slider">
-                    <div class="hero-slide active" style="background-image: url('assets/hero_bg_3.png');"></div>
-                </div>
-                <div class="hero-overlay"></div>
-                <div class="container hero-content text-center">
-                    <div class="hero-badges">
-                        <span class="badge badge-premium"><i data-lucide="award"></i> Bourses CSC Garantes</span>
-                        <span class="badge badge-joy"><i data-lucide="graduation-cap"></i> Success Story</span>
-                    </div>
-                    <h1 class="hero-title fade-in-up">Votre Excellence en <span class="text-gradient-gold">Chine</span>
-                    </h1>
-                    <p class="hero-subtitle fade-in-up delay-1">Rejoignez l'élite académique mondiale. Nous sécurisons
-                        votre admission et votre financement.</p>
-                </div>
-            </section>
+    <!-- ===================== SECTION 1 — HERO ===================== -->
+    <section class="et-hero" id="et-hero">
+        <div class="et-hero__media">
+            <img src="assets/etudes_hero.png" alt="Campus universitaire en Chine" class="et-hero__bg">
+            <div class="et-hero__overlay"></div>
         </div>
 
-        <!-- Detailed Studies Content (Moved from Index) -->
-        <div class="liquid-layer" data-viscosity="0.4">
-            <section id="studies-detail" class="section studies-detail-section">
-                <!-- SVG Path Line (Background) -->
-                <div class="golden-path-drawing" aria-hidden="true">
-                    <svg width="100%" height="100%" viewBox="0 0 100 800" preserveAspectRatio="none">
-                        <path id="master-path" d="M 50 0 Q 80 200 20 400 Q 80 600 50 800" fill="none"
-                            stroke="url(#gold-gradient)" stroke-width="2" />
-                        <defs>
-                            <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="#C5A059" stop-opacity="0" />
-                                <stop offset="50%" stop-color="#E6C58A" stop-opacity="1" />
-                                <stop offset="100%" stop-color="#C5A059" stop-opacity="0" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
+        <div class="et-hero__content">
+            <div class="et-badge et-badge--gold et-anim" data-delay="0">
+                <i data-lucide="graduation-cap"></i>
+                Accompagnement Académique Premium
+            </div>
 
-                <div class="container">
-                    <div class="section-header text-center">
-                        <span class="badge badge-accent">Prestige Universitaire</span>
-                        <h2 class="section-title">La Voie vers l'Excellence</h2>
-                        <p class="section-desc">Un accompagnement sur-mesure pour integrer les fleurons de l'education
-                            chinoise.</p>
-                    </div>
+            <h1 class="et-hero__title et-anim" data-delay="200">
+                <span class="et-title-line">Construisez votre</span>
+                <span class="et-title-line et-title-line--gold">avenir académique</span>
+                <span class="et-title-line">en Chine</span>
+            </h1>
 
-                    <!-- University Medallions -->
-                    <div class="university-medallions">
-                        <div class="medallion" data-name="Tsinghua">
-                            <div class="medallion-inner"><span>THU</span></div>
-                            <h4>Tsinghua University</h4>
-                        </div>
-                        <div class="medallion" data-name="Peking">
-                            <div class="medallion-inner"><span>PKU</span></div>
-                            <h4>Peking University</h4>
-                        </div>
-                        <div class="medallion" data-name="Fudan">
-                            <div class="medallion-inner"><span>FUD</span></div>
-                            <h4>Fudan University</h4>
-                        </div>
-                    </div>
+            <p class="et-hero__sub et-anim" data-delay="500">
+                La Chine figure parmi les principales destinations mondiales pour
+                l'enseignement supérieur — ingénierie, sciences, commerce et médecine.
+            </p>
 
-                    <!-- Process Steps (Attached to Path) -->
-                    <div class="path-steps">
-                        <div class="path-step" data-step="1">
-                            <div class="step-blob">01</div>
-                            <div class="step-text">
-                                <h3>Dossier de Prestige</h3>
-                                <p>Optimisation de votre CV et lettre de motivation selon les standards chinois.</p>
-                            </div>
-                        </div>
-                        <div class="path-step" data-step="2">
-                            <div class="step-blob">02</div>
-                            <div class="step-text">
-                                <h3>Bourse CSC Garante</h3>
-                                <p>Scurisation du financement complet : scolarite, logement et allocation mensuelle.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Eligibility Simulator -->
-                    <div class="simulator-container">
-                        <div class="simulator-card prestige-form">
-                            <div class="simulator-header">
-                                <h3>Test d'Eligibilite Bourse</h3>
-                                <p>Evaluez vos chances d'obtenir une bourse complete en 60 secondes.</p>
-                            </div>
-                            <form id="eligibility-form" class="simulator-form">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label>Niveau actuel</label>
-                                        <select id="study-level">
-                                            <option value="bac">Baccalaureat</option>
-                                            <option value="license">Licence / Bachelor</option>
-                                            <option value="master">Master</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Anglais (IELTS/TOEFL)</label>
-                                        <select id="english-level">
-                                            <option value="intermediate">Intermediaire</option>
-                                            <option value="advanced">Avance</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-block">Lancer l'audit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div class="et-hero__actions et-anim" data-delay="700">
+                <a href="#et-cta" class="et-btn et-btn--red et-btn--glow">
+                    <i data-lucide="send"></i>
+                    Commencer ma candidature
+                </a>
+                <a href="#et-services" class="et-btn et-btn--ghost">
+                    Voir nos services
+                    <i data-lucide="arrow-down"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- Footer -->
-        <footer class="site-footer">
-            <div class="container footer-content">
-                <div class="footer-col brand-col">
-                    <a href="index.html" class="logo footer-logo">
-                        <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+        <!-- Trust bar -->
+        <div class="et-hero__trust et-anim" data-delay="900">
+            <div class="et-trust-item">
+                <span class="et-trust-num">99%</span>
+                <span class="et-trust-label">Taux d'Admission</span>
+            </div>
+            <div class="et-trust-sep"></div>
+            <div class="et-trust-item">
+                <span class="et-trust-num">+200</span>
+                <span class="et-trust-label">Dossiers Gagnants</span>
+            </div>
+            <div class="et-trust-sep"></div>
+            <div class="et-trust-item">
+                <span class="et-trust-num">Elite</span>
+                <span class="et-trust-label">Accompagnement 360°</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 2 — SERVICES ===================== -->
+    <section class="et-section et-services" id="et-services">
+        <div class="et-container">
+            <div class="et-section__header">
+                <div class="et-badge et-badge--red">Support Premium</div>
+                <h2 class="et-section__title">Nos Services<br><em>d'Accompagnement</em></h2>
+                <p class="et-section__desc">De la sélection universitaire à votre installation complète à Guangzhou —
+                    nous orchestrons chaque étape avec vous.</p>
+            </div>
+
+            <div class="et-services-grid">
+                <!-- Card 1: Orientation -->
+                <div class="et-service-mini-card et-scroll-reveal">
+                    <div class="et-mini-icon">
+                        <i data-lucide="compass"></i>
+                    </div>
+                    <h4>Orientation<br>Universitaire</h4>
+                    <p>Analyse de profil et sélection d'établissements stratégiques.</p>
+                    <div class="et-mini-foot">
+                        Support Premium
+                    </div>
+                </div>
+
+                <!-- Card 2: Admission -->
+                <div class="et-service-mini-card et-scroll-reveal">
+                    <div class="et-mini-icon">
+                        <i data-lucide="file-check-2"></i>
+                    </div>
+                    <h4>Inscription &<br>Admissions</h4>
+                    <p>Gestion administrative complète et dépôt de candidature.</p>
+                    <div class="et-mini-foot">
+                        Admission Directe
+                    </div>
+                </div>
+
+                <!-- Card 3: Logement -->
+                <div class="et-service-mini-card et-scroll-reveal">
+                    <div class="et-mini-icon">
+                        <i data-lucide="home"></i>
+                    </div>
+                    <h4>Logement &<br>Installation</h4>
+                    <p>Sécurisez votre logement avant même votre départ.</p>
+                    <div class="et-mini-foot">
+                        Logement Prêt
+                    </div>
+                </div>
+
+                <!-- Card 4: Visa -->
+                <div class="et-service-mini-card et-scroll-reveal">
+                    <div class="et-mini-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h4>Visa &<br>Accueil VIP</h4>
+                    <p>JW202, Visa X1/X2 et transfert dédié aéroport.</p>
+                    <div class="et-mini-foot">
+                        Zéro Stress
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 3 — DOMAINES ===================== -->
+    <section class="et-section et-domains" id="et-domains">
+        <div class="et-container">
+            <div class="et-section__header et-section__header--center">
+                <div class="et-badge et-badge--gold">Expertise Académique</div>
+                <h2 class="et-section__title">Domaines d'Études<br><em>Disponibles</em></h2>
+                <p class="et-section__desc">Des filières d'excellence dans les universités chinoises les plus reconnues.
+                </p>
+            </div>
+
+            <div class="et-domains-directory">
+                <!-- Category 1: Ingénierie -->
+                <div class="et-domain-card et-scroll-reveal">
+                    <div class="et-domain-card__header">
+                        <div class="et-domain-card__icon">
+                            <i data-lucide="cpu"></i>
+                        </div>
+                        <h4>Ingénierie &<br>Technologie</h4>
+                    </div>
+                    <ul class="et-domain-card__list">
+                        <li>Informatique & IA</li>
+                        <li>Génie Civil</li>
+                        <li>Génie Minier</li>
+                        <li>Ingénierie Industrielle</li>
+                    </ul>
+                </div>
+
+                <!-- Category 2: Business -->
+                <div class="et-domain-card et-scroll-reveal">
+                    <div class="et-domain-card__header">
+                        <div class="et-domain-card__icon">
+                            <i data-lucide="globe"></i>
+                        </div>
+                        <h4>Business &<br>Économie</h4>
+                    </div>
+                    <ul class="et-domain-card__list">
+                        <li>Commerce International</li>
+                        <li>Gestion & Finance</li>
+                        <li>Logistique</li>
+                        <li>E-commerce</li>
+                    </ul>
+                </div>
+
+                <!-- Category 3: Santé -->
+                <div class="et-domain-card et-scroll-reveal">
+                    <div class="et-domain-card__header">
+                        <div class="et-domain-card__icon">
+                            <i data-lucide="stethoscope"></i>
+                        </div>
+                        <h4>Médecine &<br>Santé</h4>
+                    </div>
+                    <ul class="et-domain-card__list">
+                        <li>Médecine Générale</li>
+                        <li>Pharmacie</li>
+                        <li>Santé Publique</li>
+                        <li>Soins Infirmiers</li>
+                    </ul>
+                </div>
+
+                <!-- Category 4: Culture -->
+                <div class="et-domain-card et-scroll-reveal">
+                    <div class="et-domain-card__header">
+                        <div class="et-domain-card__icon">
+                            <i data-lucide="languages"></i>
+                        </div>
+                        <h4>Langue &<br>Culture</h4>
+                    </div>
+                    <ul class="et-domain-card__list">
+                        <li>Langue Chinoise</li>
+                        <li>Littérature</li>
+                        <li>Relations Internationales</li>
+                        <li>Histoire & Art</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Visual accent -->
+            <div class="et-domains__visual et-scroll-reveal">
+                <img src="assets/scenes/scene_3_university.png" alt="Université chinoise" loading="lazy">
+                <div class="et-domains__visual-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 4 — BOURSES ===================== -->
+    <section class="et-section et-scholarships" id="et-scholarships">
+        <div class="et-container">
+            <div class="et-window">
+                <!-- Window chrome -->
+                <div class="et-window__chrome">
+                    <div class="et-window__dots">
+                        <span class="dot dot--red"></span>
+                        <span class="dot dot--yellow"></span>
+                        <span class="dot dot--green"></span>
+                    </div>
+                    <span class="et-window__url">abrson.com / financement-académique</span>
+                </div>
+
+                <!-- Window content -->
+                <div class="et-window__body">
+                    <div class="et-scholarships__text">
+                        <div class="et-badge et-badge--gold">Financement</div>
+                        <h2 class="et-section__title">Bourses &amp;<br><em>Financements</em></h2>
+                        <p>Nous fournissons des informations détaillées et un accompagnement stratégique pour
+                            l'obtention des financements les plus prestigieux.</p>
+                    </div>
+
+                    <div class="et-scholarships__list">
+                        <div class="et-scholar-row et-scroll-reveal">
+                            <div class="et-scholar-tag">CSC</div>
+                            <div class="et-scholar-info">
+                                <h4>Bourses Gouvernementales (CSC)</h4>
+                                <p>Excellence académique — couverture totale (frais de scolarité, logement, assurance,
+                                    allocations mensuelles).</p>
+                            </div>
+                            <div class="et-scholar-badge">Excellence</div>
+                        </div>
+
+                        <div class="et-scholar-row et-scroll-reveal">
+                            <div class="et-scholar-tag">PRV</div>
+                            <div class="et-scholar-info">
+                                <h4>Bourses Provinciales</h4>
+                                <p>Soutien régional pour les talents internationaux — conditions avantageuses selon les
+                                    provinces.</p>
+                            </div>
+                            <div class="et-scholar-badge">Régional</div>
+                        </div>
+
+                        <div class="et-scholar-row et-scroll-reveal">
+                            <div class="et-scholar-tag">UNI</div>
+                            <div class="et-scholar-info">
+                                <h4>Bourses Universitaires</h4>
+                                <p>Financement direct par les établissements partenaires — idéal pour les profils
+                                    spécialisés.</p>
+                            </div>
+                            <div class="et-scholar-badge">Partenaire</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SECTION 5 — CTA ===================== -->
+    <section class="et-section et-cta" id="et-cta">
+        <div class="et-container">
+            <div class="et-cta__inner et-scroll-reveal">
+                <div class="et-cta__glow"></div>
+                <div class="et-badge et-badge--white">Prêt à commencer ?</div>
+                <h2 class="et-cta__title">
+                    Démarrez votre parcours académique<br>
+                    en Chine avec un encadrement<br>
+                    <em>professionnel.</em>
+                </h2>
+                <p class="et-cta__desc">Notre équipe à Guangzhou est disponible pour répondre à toutes vos questions et
+                    préparer votre dossier.</p>
+                <a href="contact.html" class="et-btn et-btn--red et-btn--glow et-btn--xl">
+                    <i data-lucide="send"></i>
+                    Commencer ma candidature
+                </a>
+                <div class="et-cta__footnote">
+                    <i data-lucide="lock"></i> Consultation gratuite — Sans engagement
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="et-footer">
+        <div class="et-container">
+            <div class="et-footer__grid">
+                <div class="et-footer__brand">
+                    <a href="index.html">
+                        <img src="assets/logo.png" alt="ABRSON Logo" class="et-footer__logo">
                     </a>
-                    <p>Votre partenaire de confiance pour naviguer les opportunités d'affaires et d'études en Chine.</p>
+                    <p>MabrsonTrading — Votre pont de confiance vers l'excellence académique et commerciale en Chine.
+                    </p>
                 </div>
-                <div class="footer-col">
+                <div class="et-footer__col">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="index.html#business">Business Travel</a></li>
-                        <li><a href="index.html#sourcing">Sourcing Produit</a></li>
+                        <li><a href="transfert.html">Transfert d'argent</a></li>
+                        <li><a href="sourcing.html">Sourcing produit</a></li>
                         <li><a href="etudes.html">Études en Chine</a></li>
+                        <li><a href="business.html">Business Setup</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="et-footer__col">
                     <h4>Contact</h4>
-                    <ul class="contact-list">
-                        <li><i data-lucide="message-circle"></i> WeChat: ChineAccesPro</li>
-                        <li><i data-lucide="phone"></i> WhatsApp: +86 1XX XXXX XXXX</li>
-                        <li><i data-lucide="mail"></i> contact@chineaccess.com</li>
+                    <ul>
+                        <li><i data-lucide="message-circle"></i> WeChat: ABRSON_PRO</li>
+                        <li><i data-lucide="phone"></i> WhatsApp: +221 77 000 00 00</li>
+                        <li><i data-lucide="mail"></i> contact@abrson.com</li>
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom text-center">
+            <div class="et-footer__bottom">
                 <p>&copy; 2026 ABRSON. Tous droits réservés.</p>
+                <div class="et-footer__links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
             </div>
-        </footer>
-    </main>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
+    <script src="js/etudes.js"></script>
 </body>
 
 </html>

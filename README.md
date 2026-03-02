@@ -1,201 +1,191 @@
-# 📝 Project Changelog - China Services Portal
+# ABRSON — China Services Portal
 
-Ce fichier trace l'historique des modifications apportées au projet pour assurer la synchronisation entre les différentes IAs et développeurs.
-
-## 🕒 Historique des Mises à Jour
-
-- **[Antigravity] 2026-02-03 20:38** :
-  - **Initialisation du Changelog** : Création de ce fichier.
-  - **Phases 1-15 Complétées** :
-    - Mise en place complète de la structure HTML5/CSS3/GSAP.
-    - Intégration du ScrollTelling (Scènes, Parallax).
-    - Design "Cinematic" avec Lenis Scroll (Fluidité/Inertie).
-    - Navigation "Luminescent Dock" (Barre unique + Glow).
-    - Services "Zig-Zag Story" (Alternance G/D + Bulles).
-    - Animation "Scrubbing" (Contrôle du film au scroll).
-    - **Nouveau Service** : Remplacement de "Business Travel" par "Transfert d'Argent" (+ page `transfert.html`).
-
-- **[ChatGPT] 2026-02-03 20:51** :
-  - **Premium UI (Accueil + Global)** :
-    - Mise a jour typographies (Fraunces + Manrope) sur toutes les pages.
-    - Refonte palette premium (obsidienne/or chaud/ivoire) et boutons premium.
-    - Ajout d'une section Prestige sur la page d'accueil (badge, logos, stats, citation).
-    - Harmonisation visuelle des pages internes via la classe `premium-site`.
-  - **Fichiers touches** :
-    - `index.html`, `about.html`, `business.html`, `sourcing.html`, `etudes.html`, `contact.html`, `css/style.css`.
-
-- **[Antigravity] Modification du 03/02/2026 à 21h58 :**
-  - **Finalisation Remplacement Service** :
-    - Remplacement définitif de "Business Travel" par "Transfert d'Argent" dans tous les menus et l'accueil.
-    - Création de la page `transfert.html` avec contenu financier attractif (Alipay/WeChat/Virement).
-    - Suppression sécurisée de `business.html`.
-    - Mise à jour de tous les liens de navigation dans `about.html`, `sourcing.html`, `etudes.html` et `contact.html`.
-  - **Statut** : Phase 16 validée et site déployable.
-
-- **[ChatGPT] 2026-02-03 22:15** :
-  - **Objectif** : Ajouter un simulateur de transfert vers la Chine (conversion en RMB) avec taux Frankfurter, frais 8% et bouton WhatsApp.
-  - **Changements** :
-    - Ajout d'un bloc simulateur (montant, devise, conversion, frais, net).
-    - Chargement dynamique des devises via API Frankfurter + calcul en CNY.
-    - Bouton WhatsApp pre-rempli apres conversion (numero fictif a remplacer).
-    - Styles premium pour la grille et les resultats.
-  - **Fichiers** :
-    - `transfert.html`, `css/style.css`.
-
-- **[ChatGPT] 2026-02-03 22:30** :
-  - **Objectif** : Donner a la page Transfert un theme ultra premium (argent, securite, joie).
-  - **Changements** :
-    - Hero enrichi (halo dore, badges securite/experience fluide).
-    - Bande "joie & confiance" avec stats et promesses.
-    - Styles premium dedies (glass + or chaud, ombres plus profondes, boutons premium).
-  - **Fichiers** :
-    - `transfert.html`, `css/style.css`.
-
-- **[Antigravity] Modification du 03/02/2026 à 23h45 :**
-  - **Exécution des Instructions ChatGPT** :
-    - Génération d'une image de fond premium (`transfer_bg.png`) avec le thème finance/sécurité/lumières dorées.
-    - Application de l'image au hero de `transfert.html`.
-    - Ajout d'une texture "vibre de carbone" subtile en overlay via CSS pour renforcer l'aspect technique/sécurité.
-  - **Fichiers touches** :
-    - `transfert.html`, `css/style.css`, `assets/transfer_bg.png`.
-
-- **[Antigravity] Modification du 04/02/2026 à 00h00 :**
-  - **Ajustement UI (Transfert)** : Retrait des boutons "En savoir plus/Simuler" dans la grille des solutions financières pour épurer le design. Les informations restent présentes mais sans redirection forcée.
-
-- **[ChatGPT] 2026-02-04 00:15** :
-  - **Objectif** : Transformer la zone "Services a la carte" en fenetre de competences type jeu video, horizontale et premium.
-  - **Changements** :
-    - Remplacement de la grille verticale par un carousel horizontal (scroll).
-    - Ajout d'une UI type HUD: chips, barres de niveau, cartes compactes.
-    - Reduction de la hauteur globale pour une section plus dense et elegante.
-  - **Fichiers** :
-    - `index.html`, `css/style.css`.
-
-- **[ChatGPT] 2026-02-04 00:25** :
-  - **Objectif** : Ajouter l'animation de scrubbing (controle au scroll) a la section "Services a la carte".
-  - **Changements** :
-    - Animation GSAP qui fait defiler horizontalement les cartes selon le scroll.
-    - Ajout de fades lateraux pour un rendu premium et guider le regard.
-    - Scroll manuel conserve sur mobile.
-  - **Fichiers** :
-    - `js/main.js`, `css/style.css`.
-
-- **[Antigravity] Modification du 04/02/2026 à 00h35 :**
-  - **Correction FINALE Animation "Services à la carte"** :
-    - Diagnostic complémentaire : ChatGPT avait aussi ajouté du CSS mais avec le préfixe `.cinematic-home` qui n'existe pas dans le HTML.
-    - Suppression des règles CSS cassées avec préfixe incorrect.
-    - Le CSS correct (sans préfixe) est maintenant actif.
-    - **Animation opérationnelle** : le carousel horizontal défile au scroll vertical.
-  - **Fichiers touches** :
-    - `css/style.css`.
-
-- **[Antigravity] Modification du 04/02/2026 à 01h04 :**
-  - **Ajustement Espacement** : Ajout de 100px de marge au-dessus de la section "Services à la carte" pour améliorer la séparation visuelle avec "Sourcing & Achat".
-  - **Fichiers touches** :
-    - `css/style.css`.
-
-- **[ChatGPT] 2026-02-04 01:15** :
-  - **Objectif** : Ajouter des animations de survol sur la section "Services a la carte" (illumination + remplissage des barres).
-  - **Changements** :
-    - Effet glow/relief au hover sur chaque carte de competence.
-    - Remplissage anime des barres de niveau au survol.
-  - **Fichiers** :
-    - `css/style.css`.
-
-- **[ChatGPT] 2026-02-04 01:36** :
-  - **Objectif** : Aligner la page Transfert sur les meilleures pratiques (transparence, parcours clair, confiance).
-  - **Changements** :
-    - Ajout d'un ruban confiance (frais affiches, taux de reference quotidien, support humain).
-    - Ajout d'une section "Comment ca marche" en 3 etapes premium.
-    - Ajout d'une FAQ pour clarifier taux/frais/parcours.
-    - Message de transparence renforce dans le simulateur.
-  - **Fichiers** :
-    - `transfert.html`, `css/style.css`.
-
-- **[ChatGPT] 2026-02-04 01:42** :
-  - **Objectif** : Aligner le discours Transfert sur la transparence des frais et des taux (inspire des standards du secteur).
-  - **Changements** :
-    - Clarification de la mention du taux de reference ECB (indicatif).
-    - Ajustement du texte FAQ et du note de taux pour plus de transparence.
-  - **Fichiers** :
-    - `transfert.html`.
-
-- **[ChatGPT] 2026-02-04 01:50** :
-  - **Objectif** : Reproduire un parallax scrubbing premium a la Squarespace (Marquee) sur la page Transfert.
-  - **Changements** :
-    - Ajout des scripts GSAP/ScrollTrigger/Lenis sur `transfert.html` pour activer le scrubbing.
-    - Parallax multi-couches: image hero (lent), contenu hero (plus rapide), sections trust/calculateur (leger).
-    - Styles garantissant un rendu fluide (layers positionnes + will-change).
-  - **Fichiers** :
-    - `transfert.html`, `css/style.css`, `js/main.js`.
-
-- **[ChatGPT] 2026-02-04 02:05** :
-  - **Objectif** : Approfondir le parallax scrubbing (style Squarespace) et l'appliquer a la page Transfert + Accueil.
-  - **Changements** :
-    - Parallax 3 couches sur le hero Transfert (back/mid/front) avec vitesses differentes.
-    - Parallax applique aux cartes Solutions Financi?res sur la page Transfert.
-    - Parallax doux sur le hero Accueil (layers + contenu) et sur les cartes Solutions.
-    - Vitesse de scrubbing ajustee pour un effet plus "luxury".
-  - **Fichiers** :
-    - `transfert.html`, `css/style.css`, `js/main.js`.
-
-- **[ChatGPT] 2026-02-04 02:03** :
-  - **Objectif** : Ajouter profondeur visuelle premium (depth blur + vignette respirante) sur Accueil et Transfert.
-  - **Changements** :
-    - Vignette cinema "breathing" via layer fixe.
-    - Effet depth blur subtil sur les cartes cle (accueil + transfert) au scroll.
-  - **Fichiers** :
-    - `index.html`, `transfert.html`, `css/style.css`, `js/main.js`.
+Plateforme premium de services B2B et étudiants pour la Chine : transferts d'argent, sourcing produit, accompagnement académique et business setup.
 
 ---
 
-## 📊 Récapitulatif Antigravity (04/02/2026)
+## 🗂 Structure du projet
 
-**Travaux effectués aujourd'hui** :
-1. **Phase 16** : Remplacement complet du service "Business Travel" par "Transfert d'Argent" (page + navigation).
-2. **Phase 17** : Nettoyage UI de la page Transfert (retrait des boutons CTA superflus).
-3. **Phase 18** : **Correction critique** de l'animation "Services à la carte" :
-   - Diagnostic : ChatGPT avait implémenté HTML + JS mais oublié le CSS.
-   - Ajout du CSS complet pour le carousel horizontal avec scrubbing.
-   - Suppression des règles CSS cassées (préfixe `.cinematic-home` incorrect).
-4. **Phase 19** : Ajustement espacement (100px) entre sections Sourcing et Services à la carte.
-5. **Exécution instructions ChatGPT** : Génération et intégration de l'image de fond premium pour `transfert.html`.
+```text
+china-services-portal/
+├── index.html              ← Accueil (cinematic multi-scene)
+├── etudes.html             ← Études en Chine (refonte complète)
+├── transfert.html          ← Transfert d'argent
+├── sourcing.html           ← Sourcing produit
+├── business.html           ← Business Setup
+├── about.html              ← À propos
+├── contact.html            ← Contact (Conciergerie Premium)
+│
+├── css/
+│   ├── style.css           ← Styles globaux (cinematic system)
+│   └── etudes.css          ← Styles exclusifs page Études (namespace 'et-')
+│
+├── js/
+│   ├── main.js             ← Logique globale (GSAP, Lenis, Lucide, guards)
+│   ├── etudes.js           ← Animations exclusives page Études
+│   └── vendor/
+│       ├── gsap.min.js
+│       ├── ScrollTrigger.min.js
+│       ├── lenis.min.js
+│       └── lucide.min.js
+│
+└── assets/
+    ├── logo.png
+    ├── etudes_hero.png     ← Image hero générée par IA (campus universitaire)
+    ├── hero_bg_*.png
+    ├── student_group.png
+    ├── student_grad.png
+    └── scenes/
+        ├── scene_1.png
+        ├── scene_3_university.png
+        └── ...
+```
 
-**Statut** : Toutes les animations scrubbing sont opérationnelles. Le site est prêt pour déploiement.
+---
 
-**Note pour ChatGPT** : Le carousel "Services à la carte" fonctionne maintenant correctement avec l'animation de scrubbing horizontal. Les styles ont été corrigés et le préfixe `.cinematic-home` a été supprimé.
+## 🎨 Système de design
 
-- **[Antigravity] Modification du 04/02/2026 à 02h21 :**
-  - **Réorganisation Page Transfert** : Déplacement de la section "Solutions Financières" pour qu'elle apparaisse après le simulateur de transfert et juste avant la FAQ. Cela améliore le parcours utilisateur : simuler d'abord, puis découvrir les options de paiement.
-  - **Fichiers touches** :
-    - `transfert.html`.
+### Palette de couleurs
 
-- **[Antigravity] Modification du 04/02/2026 à 06:43 :**
-  - **Prototype Signature Visuelle** : Implémentation du concept "Liquid Depth Layers" (Phase 21).
-    - Ajout de wrappers `.liquid-layer` sur les sections Hero et Solutions (index + transfert).
-    - Logique JS basée sur `lenis.velocity` pour appliquer des déformations `skewY` fluides (max ±1.5deg).
-    - Respect des préférences de mouvement (prefers-reduced-motion) et optimisation GPU (`will-change`).
-  - **Fichiers touches** :
-    - `index.html`, `transfert.html`, `css/style.css`, `js/main.js`.
+| Rôle | Couleur | Hex |
+| :--- | :--- | :--- |
+| Fond principal | Midnight | `#0D1117` |
+| Fond secondaire | Midnight Sec | `#161B27` |
+| Accent principal | China Red | `#C41E3A` |
+| Accent luxe | Liquid Gold | `#D4AF37` |
+| Texte principal | White | `#FFFFFF` |
+| Texte secondaire | Silver | `#94A3B8` |
 
-- **[ChatGPT] 2026-02-04 06:55** :
-  - **Objectif** : Refonte structure + design de la page Sourcing (achat produit Chine) avec direction premium.
-  - **Changements** :
-    - Nouveau hero avec badges et metriques.
-    - Sections: Control Room, Supplier Radar, Quality Gate, Flux Logistique, Cost Clarity.
-    - Style premium coherent (cards, chips, flow track).
-  - **Fichiers** :
-    - `sourcing.html`, `css/style.css`.
+### Typographie
 
+- **Display / Titres** : Fraunces (serif italique) — `font-family: 'Fraunces'`
+- **Corps / Interface** : Manrope (sans-serif) — `font-family: 'Manrope'`
 
-- **[Antigravity & ChatGPT] 2026-02-04 07:58** :
-  - **Finalisation Collective de la Page À Propos** : Implémentation du concept **Bridge of Trust** (Pont lumineux connectant les valeurs piliers au scroll).
-  - **Cloture de l'Ecosysteme de Signatures** : Chaque pilier du site possède désormais une identité visuelle premium unique, co-créée par les deux agents.
+### Dépendances JS (locales — pas CDN)
 
-- **[Antigravity] 2026-02-04 19:35** :
-  - **Désactivation du Mode Collaboration** : Retour à l'interaction directe exclusive avec l'utilisateur.
-  - **Statut** : Fin du projet "Signatures Visuelles" multi-agent. Poursuite du développement en pair-programming direct avec l'utilisateur.
+- GSAP v3.12.5
+- ScrollTrigger v3.12.5
+- Lenis v1.0.42
+- Lucide Icons
 
-- **[Antigravity] 2026-02-12 01:57** :
-  - **Simplification de l'Accueil** : Suppression des sections 'Prestige', 'Processus' et 'CTA Final' pour �purer le parcours utilisateur sur index.html.
+---
 
+## 🛡️ Audit Qualité & Vérification (02/03/2026)
+
+Suite à la revue de direction et aux optimisations de mise en page, les métriques suivantes ont été établies pour garantir une densité business maximale.
+
+### 📐 Métriques de Densité (Études - Version Finale)
+
+| Élément | Valeur V2 (Zig-Zag) | Valeur Finale (Grid) | Impact |
+| :--- | :--- | :--- | :--- |
+| Hauteur Hero | `90vh` | `100vh` (Restaurée) | Pleine immersion visuelle |
+| Position Texte Hero | `Padd: 2rem` | `Margin: -8vh` | Texte haut, impact immédiat |
+| Style Services | Zig-Zag (Story) | Grille Horizontale | Style "À la carte" ultra-compact |
+| Espacement Section | `5rem` | `3.5rem` | Densité maximale sans scroll inutile |
+
+### 👁️ Visibilité des Arrière-plans
+
+| Couche | Opacité Max Précédente | Opacité Max Nouvelle | Résultat |
+| :--- | :--- | :--- | :--- |
+| Overlay Hero | `0.95` | `0.82` | Image plus vibrante, profondeur retrouvée |
+| Overlay Domaines | `0.90` | `0.72` | Visuel universitaire plus présent |
+
+### ⚡ Stabilité JavaScript
+
+- **Initialisation Unique** : Ajout d'une condition dans `main.js` pour neutraliser l'instance Lenis globale si la classe `.etudes-page` est détectée. L'instance de `etudes.js` prend le relais exclusif.
+- **Menu Mobile Universel** : Refonte du sélecteur burger pour cibler dynamiquement `.main-nav` (Home) ou `.et-header__nav` (Études).
+- **Zéro Console Throws** : Tests effectués sur Desktop et Mobile (Chrome DevTools).
+
+---
+
+## 📋 Historique des modifications
+
+### ✅ Session Animation Slider — (02/03/2026)
+
+- **UI/UX** : Implémentation d'une animation "Page-Turn" (tourne-page) sur le slider de la Scène 2 (`index.html`).
+  - Ajout de perspective 3D (`perspective: 2000px`) et `transform-style: preserve-3d`.
+  - Animation GSAP `rotateY: -110deg` pour simuler le basculement d'une page.
+  - Correction du clipping via `overflow: visible` sur le conteneur du slider.
+
+### ✅ Session Manager Audit — Corrections (02/03/2026)
+
+- **JS** : Neutralisation Lenis doublon sur Études + Correction sélecteur menu mobile.
+- **CSS** : Réduction des paddings de sections et headers (-20%).
+- **UI** : Adoucissement des gradients d'overlay pour valoriser les visuels premium.
+
+### ✅ Session Refonte Études — Version initial (02/03/2026)
+
+... (Suite des modifications précédentes) ...
+
+#### 🔴 Corrections JavaScript globales (`js/main.js`)
+
+- **Ajout de guards DOM** sur tous les sélecteurs GSAP/ScrollTrigger critiques :
+  - `#scene-2`, `.modern-slider-container`, `.step-item`, `#scene-4`, `.reveal-final`, `#scene-5`
+  - Correction de `.scroll-progress` (guard ajouté)
+  - Guard sur `.sourcing-gate` et `.sourcing-flow .flow-line`
+- **Consolidation** des `DOMContentLoaded` en un seul listener consolidé
+- **Suppression des doublons** de la fonction `initStudiesSignature` (ancienne version)
+- Toutes les fonctions page-spécifiques (`initStudiesSignature`, `initConciergeSignature`, `initBridgeSignature`, `initSourcingSignature`) sont maintenant appelées dans un seul listener
+
+#### 🎓 Refonte Complète `etudes.html`
+
+- **Reconstruction totale** depuis zéro (aucune ligne de l'ancienne page conservée)
+- Structure : 5 sections claires (Hero, Services, Domaines, Bourses, CTA)
+- Namespace CSS dédié `et-` pour éviter tout conflit avec `style.css`
+- Correction de la typo Lucide : `stethosocpe` → `stethoscope`
+
+#### 🎨 Création `css/etudes.css` (nouveau fichier)
+
+- Thème **Cinématique Midnight** (#0D1117) — texte toujours lisible
+- Cartes glassmorphic avec hover au **gold** et glow rouge
+- Domain pills interactives avec hover China Red
+- Fenêtre "terminal" pour la section Bourses (dots rouge/jaune/vert)
+- Section CTA avec glow radial animé
+- **Entièrement responsive** (mobile, tablette, desktop)
+
+#### ✨ Création `js/etudes.js` (nouveau fichier)
+
+- Lenis dédié à la page (durée 1.4s, easing exponentiel)
+- Animations d'entrée hero (GSAP timeline staggerée)
+- Parallax sur l'image hero (scrub 1.5)
+- Scroll reveals génériques + stagger sur cards, pills, scholar rows
+- **Compteur animé** sur les stats du trust bar (99%, +200, 4)
+- Glow CTA pulsant (gsap yoyo repeat)
+- Guard `etudes-page` class — ne s'exécute que sur la page études
+
+#### 📸 Asset généré
+
+- `assets/etudes_hero.png` — Image de campus universitaire chinois générée par IA (cinématique, golden hour)
+
+---
+
+## 🚀 Lancer localement
+
+Ouvrir directement les fichiers HTML dans un navigateur, ou utiliser un serveur local :
+
+```bash
+# Option 1: Python
+python -m http.server 8080
+
+# Option 2: Node (http-server)
+npx http-server . -p 8080
+```
+
+Puis naviguer vers : `http://localhost:8080/etudes.html`
+
+---
+
+## 🧩 Pages & Classes CSS Body
+
+| Page | Classe body | Fichier JS dédié |
+| :--- | :--- | :--- |
+| Accueil | `cinematic-home premium-site` | `main.js` |
+| Études | `etudes-page` | `etudes.js` |
+| Transfert | `premium-site transfer-page` | `main.js` |
+| Sourcing | `premium-site sourcing-page` | `main.js` |
+| Contact | `premium-site contact-page` | `main.js` |
+| À propos | `premium-site about-page` | `main.js` |
+
+---
+
+Designed & built by ABRSON Design System — 2026

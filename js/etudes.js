@@ -111,26 +111,42 @@
             }
         });
     }
-    /* ---- Scholar rows stagger ---- */
-    const rows = document.querySelectorAll('.et-scholar-row');
-    rows.forEach((row, i) => {
+
+    /* ---- Roadmap Steps Stagger ---- */
+    const roadmapSteps = document.querySelectorAll('.et-roadmap-step');
+    if (roadmapSteps.length > 0) {
         ScrollTrigger.create({
-            trigger: row,
-            start: 'top 85%',
+            trigger: '.et-roadmap__timeline',
+            start: 'top 80%',
             onEnter: () => {
-                gsap.to(row, {
+                gsap.to(roadmapSteps, {
                     opacity: 1,
                     x: 0,
                     duration: 0.8,
-                    delay: i * 0.15,
-                    ease: 'power3.out',
-                    onComplete: () => row.classList.add('is-visible')
+                    stagger: 0.2,
+                    ease: 'power3.out'
                 });
             }
         });
-    });
+    }
 
-    /* ---- CTA block ---- */
+    /* ---- Scholar rows stagger ---- */
+    const scholarRows = document.querySelectorAll('.et-scholar-row');
+    if (scholarRows.length > 0) {
+        ScrollTrigger.create({
+            trigger: '.et-scholarships__list',
+            start: 'top 85%',
+            onEnter: () => {
+                gsap.to(scholarRows, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: 'power3.out'
+                });
+            }
+        });
+    }
     const ctaInner = document.querySelector('.et-cta__inner');
     if (ctaInner) {
         ScrollTrigger.create({

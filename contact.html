@@ -34,6 +34,8 @@
                     <li><a href="transfert.html">Transfert</a></li>
                     <li><a href="sourcing.html">Sourcing</a></li>
                     <li><a href="etudes.html">Études</a></li>
+                    <li><a href="business.html">Business</a></li>
+                    <li><a href="about.html">À propos</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                 </ul>
             </nav>
@@ -100,7 +102,7 @@
 
                         <!-- Right: Private Intake Card -->
                         <div class="intake-card-wrapper">
-                            <form class="concierge-form">
+                            <form class="concierge-form" id="contact-form">
                                 <div class="form-header">
                                     <h3>Projet & Prise en Charge</h3>
                                     <p>Décrivez votre besoin pour une allocation immédiate de ressources.</p>
@@ -108,11 +110,11 @@
                                 <div class="form-grid">
                                     <div class="form-group">
                                         <label>Identité</label>
-                                        <input type="text" placeholder="Nom ou Société" required>
+                                        <input type="text" name="identity" placeholder="Nom ou Société" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Domaine</label>
-                                        <select>
+                                        <select name="domain" required>
                                             <option>Sourcing & Production</option>
                                             <option>Études & Bourses</option>
                                             <option>Solutions Financières</option>
@@ -121,7 +123,7 @@
                                     </div>
                                     <div class="form-group full-width">
                                         <label>Brief Projet</label>
-                                        <textarea rows="4"
+                                        <textarea rows="4" name="brief"
                                             placeholder="Objectifs, échéances, contraintes..."></textarea>
                                     </div>
                                 </div>
@@ -129,10 +131,11 @@
                                     <span>Lancer la demande</span>
                                     <div class="btn-glimmer"></div>
                                 </button>
+                                <p class="form-status" role="status" aria-live="polite"></p>
                                 <div class="trust-ring">
                                     <div class="ring-item"><i data-lucide="shield-check"></i> Confidentialité 100%</div>
                                     <div class="ring-item"><i data-lucide="clock"></i> SLA: < 24h</div>
-                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>

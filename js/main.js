@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function startSlider() {
             if (!sliderInterval) {
-                sliderInterval = setInterval(nextSlide, 3500); // Reduced display time
+                sliderInterval = setInterval(nextSlide, 2000); // Reduced display time to 2s
             }
         }
 
@@ -432,6 +432,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const cartCount = document.getElementById('cart-count');
         const cartList = document.getElementById('cart-list');
         const cartTotal = document.getElementById('cart-total');
+        const productGrid = document.getElementById('product-grid');
+        const filterButtons = document.querySelectorAll('.chip[data-filter]');
+        const searchInput = document.getElementById('product-search');
+        const searchBtn = document.getElementById('search-btn');
+        const sortSelect = document.getElementById('sort');
+        const originalOrder = new Map(products.map((card, idx) => [card, idx]));
+        let activeFilter = 'all';
+        let searchQuery = '';
         let cart = [];
 
         function renderCart() {
@@ -455,6 +463,67 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
         renderCart();
+
+        function matchesFilter(card) {
+            const category = card.dataset.category || 'all';
+            const text = (card.textContent || '').toLowerCase();
+            const categoryOk = activeFilter === 'all' || category === activeFilter;
+            const searchOk = !searchQuery || text.includes(searchQuery);
+            return categoryOk && searchOk;
+        }
+
+        function compareCards(a, b) {
+            const sortValue = (sortSelect && sortSelect.value) || 'popular';
+            if (sortValue === 'price-asc') return parseFloat(a.dataset.price || '0') - parseFloat(b.dataset.price || '0');
+            if (sortValue === 'price-desc') return parseFloat(b.dataset.price || '0') - parseFloat(a.dataset.price || '0');
+            if (sortValue === 'moq') return parseFloat(a.dataset.moq || '0') - parseFloat(b.dataset.moq || '0');
+            return (originalOrder.get(a) || 0) - (originalOrder.get(b) || 0);
+        }
+
+        function applyFilters() {
+            if (!productGrid) return;
+            const ordered = [...products].sort(compareCards);
+            ordered.forEach(card => {
+                const visible = matchesFilter(card);
+                card.style.display = visible ? '' : 'none';
+                productGrid.appendChild(card);
+            });
+        }
+
+        if (filterButtons.length) {
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeFilter = btn.dataset.filter || 'all';
+                    applyFilters();
+                });
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                searchQuery = searchInput.value.trim().toLowerCase();
+                applyFilters();
+            });
+        }
+
+        if (searchBtn) {
+            searchBtn.addEventListener('click', () => {
+                if (searchInput) {
+                    searchQuery = searchInput.value.trim().toLowerCase();
+                }
+                applyFilters();
+            });
+        }
+
+        if (sortSelect) {
+            sortSelect.addEventListener('change', () => {
+                applyFilters();
+            });
+        }
+
+        applyFilters();
     }
 
     // --- 4. Scroll Progress ---
@@ -524,6 +593,20 @@ function initConciergeSignature() {
         input.addEventListener('focus', () => { gsap.to('.pulse-btn', { scale: 1.02, duration: 0.3, ease: 'power2.out' }); });
         input.addEventListener('blur', () => { gsap.to('.pulse-btn', { scale: 1, duration: 0.3, ease: 'power2.out' }); });
     });
+
+    const form = document.querySelector('.concierge-form');
+    if (form) {
+        const status = form.querySelector('.form-status');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!form.reportValidity()) {
+                if (status) status.textContent = "Veuillez remplir les champs obligatoires.";
+                return;
+            }
+            if (status) status.textContent = "Merci, votre demande a été enregistrée. Un conseiller vous contacte sous 24h.";
+            form.reset();
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

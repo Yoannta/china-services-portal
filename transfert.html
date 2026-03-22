@@ -16,10 +16,176 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
         rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="js/vendor/lucide.min.js"></script>
+    <style>
+        :root {
+            --fintech-gold: #F59E0B;
+            --fintech-gold-light: #FBBF24;
+            --fintech-violet: #8B5CF6;
+            --fintech-slate: #0F172A;
+            --fintech-text: #F8FAFC;
+        }
+
+        .transfer-page {
+            background-color: var(--fintech-slate);
+            color: var(--fintech-text);
+            font-family: 'Manrope', 'Noto Sans SC', sans-serif;
+        }
+
+        .transfer-card {
+            background: rgba(30, 41, 59, 0.7) !important;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .transfer-card:hover {
+            border-color: var(--fintech-gold) !important;
+            transform: translateY(-5px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--fintech-gold), #D97706) !important;
+            border: none !important;
+            color: #000 !important;
+            font-weight: 700 !important;
+            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--fintech-gold-light), var(--fintech-gold)) !important;
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-whatsapp {
+            background: #25D366 !important;
+            color: #fff !important;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .form-group label {
+            color: var(--fintech-gold) !important;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-group input,
+        .form-group select {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
+            border-radius: 10px;
+            padding: 12px 15px;
+            width: 100%;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--fintech-gold) !important;
+        }
+
+        .transfer-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .flow-node {
+            background: var(--fintech-violet);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .flow-line {
+            height: 2px;
+            background: linear-gradient(90deg, var(--fintech-violet), var(--fintech-gold));
+            flex-grow: 1;
+            margin: 0 10px;
+        }
+
+        #converted-amount,
+        #fee-amount,
+        #net-amount {
+            color: var(--fintech-gold);
+            font-size: 1.4rem;
+        }
+
+        .result-row.total strong {
+            font-size: 2rem;
+            text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .trust-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .trust-chip:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--fintech-violet);
+        }
+
+        .trust-chip i {
+            color: var(--fintech-gold);
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            border-color: var(--fintech-violet) !important;
+            background: rgba(139, 92, 246, 0.05) !important;
+        }
+
+        .step-num {
+            color: var(--fintech-violet) !important;
+            font-size: 2.5rem;
+            font-weight: 800;
+            opacity: 0.5;
+            margin-bottom: 10px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #simulator-section {
+            scroll-margin-top: 100px;
+        }
+    </style>
 </head>
 
 <body class="premium-site transfer-page">
@@ -34,6 +200,8 @@
                     <li><a href="transfert.html" class="active">Transfert</a></li>
                     <li><a href="sourcing.html">Sourcing</a></li>
                     <li><a href="etudes.html">Études</a></li>
+                    <li><a href="business.html">Business</a></li>
+                    <li><a href="about.html">À propos</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -54,8 +222,12 @@
                 <div class="hero-overlay"></div>
                 <div class="container hero-content">
                     <h1 class="hero-title fade-in-up">Transfert d'Argent & Paiements</h1>
-                    <p class="hero-subtitle fade-in-up delay-1">Envoyez des fonds vers la Chine en toute sécurité et à
+                    <p class="hero-subtitle fade-in-up delay-1">Envoyez des fonds vers la Chine en toute
+                        sécurité et à
                         moindre coût.</p>
+                    <div class="hero-cta fade-in-up delay-2" style="margin-top: 30px; display: flex; justify-content: center;">
+                        <a href="#simulator-section" class="btn btn-primary btn-cta-pulse">Je veux convertir maintenant</a>
+                    </div>
                 </div>
             </section>
         </div>
@@ -63,8 +235,10 @@
         <section class="transfer-trust">
             <div class="container trust-grid">
                 <div class="trust-chip"><i data-lucide="badge-check"></i> Frais affiches avant validation</div>
-                <div class="trust-chip"><i data-lucide="bar-chart-3"></i> Taux de reference quotidien (ECB, info)</div>
-                <div class="trust-chip"><i data-lucide="message-circle"></i> Support humain jusqu'a finalisation</div>
+                <div class="trust-chip"><i data-lucide="bar-chart-3"></i> Taux de reference quotidien (ECB,
+                    info)</div>
+                <div class="trust-chip"><i data-lucide="message-circle"></i> Support humain jusqu'a finalisation
+                </div>
             </div>
         </section>
 
@@ -96,11 +270,12 @@
         </section>
 
         <div class="liquid-layer" data-viscosity="0.4">
-            <section class="section transfer-calculator">
+            <section id="simulator-section" class="section transfer-calculator">
                 <div class="container">
                     <div class="section-header text-center">
                         <h2 class="section-title">Simulateur de Transfert (RMB)</h2>
-                        <p class="section-desc">Conversion en RMB selon le taux du jour, avec frais de transfert inclus.
+                        <p class="section-desc">Conversion en RMB selon le taux du jour, avec frais de transfert
+                            inclus.
                         </p>
                     </div>
 
@@ -132,14 +307,15 @@
                                 <strong id="converted-amount">?</strong>
                             </div>
                             <div class="result-row subtle">
-                                <span>Frais de transfert (8%)</span>
+                                <span>Frais de transfert (7%)</span>
                                 <strong id="fee-amount">?</strong>
                             </div>
                             <div class="result-row total">
                                 <span>Montant final en RMB</span>
                                 <strong id="net-amount">?</strong>
                             </div>
-                            <p class="fee-note">Frais appliques automatiquement et affiches avant validation.</p>
+                            <p class="fee-note">Frais appliques automatiquement et affiches avant validation.
+                            </p>
                             <a id="whatsapp-btn" class="btn btn-primary btn-whatsapp hidden" href="#" target="_blank"
                                 rel="noopener">Continuer sur WhatsApp</a>
                             <p class="discreet-note">Taux indicatif base ECB (mise a jour quotidienne).</p>
@@ -184,16 +360,19 @@
                 <div class="faq-grid">
                     <details class="faq-item">
                         <summary>Le taux est-il en temps reel ?</summary>
-                        <p>Nous affichons un taux de reference quotidien a titre indicatif. Pour les conversions, le
+                        <p>Nous affichons un taux de reference quotidien a titre indicatif. Pour les
+                            conversions, le
                             taux final depend de la validation et du canal de paiement.</p>
                     </details>
                     <details class="faq-item">
                         <summary>Comment sont calcules les frais ?</summary>
-                        <p>Les frais de transfert sont fixes a 8% et affiches directement dans le simulateur.</p>
+                        <p>Les frais de transfert sont fixes a 7% et affiches directement dans le simulateur.
+                        </p>
                     </details>
                     <details class="faq-item">
                         <summary>Que se passe-t-il apres la simulation ?</summary>
-                        <p>Vous cliquez sur WhatsApp, un conseiller confirme les details et vous accompagne jusqu'a la
+                        <p>Vous cliquez sur WhatsApp, un conseiller confirme les details et vous accompagne
+                            jusqu'a la
                             finalisation.</p>
                     </details>
                 </div>
@@ -239,7 +418,8 @@
 
     <script>
         (function () {
-            const apiBase = "https://api.frankfurter.dev/v1";
+            // New API: ExchangeRate-API (Free tier, no key for simple latest)
+            const apiBase = "https://open.er-api.com/v6/latest";
             const currencySelect = document.getElementById('currency-from');
             const amountInput = document.getElementById('amount');
             const form = document.getElementById('transfer-form');
@@ -249,7 +429,19 @@
             const rateNote = document.getElementById('rate-note');
             const whatsappBtn = document.getElementById('whatsapp-btn');
 
-            const whatsappNumber = "+1234567890"; // Remplacer par votre numero
+            const whatsappNumber = "+8619195495220";
+
+            // Prioritized African Currencies for traders
+            const priorityCurrencies = {
+                'XOF': 'Franc CFA (BCEAO)',
+                'XAF': 'Franc CFA (BEAC)',
+                'NGN': 'Naira nigérien',
+                'KES': 'Shilling kényan',
+                'GHS': 'Cedi ghanéen',
+                'ZAR': 'Rand sud-africain',
+                'EUR': 'Euro',
+                'USD': 'Dollar US'
+            };
 
             const fmt = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             const fmtRate = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 4, maximumFractionDigits: 6 });
@@ -258,43 +450,79 @@
                 convertedEl.textContent = fmt.format(converted) + " CNY";
                 feeEl.textContent = "-" + fmt.format(fee) + " CNY";
                 netEl.textContent = fmt.format(net) + " CNY";
-                rateNote.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY (date: ${date})`;
+                rateNote.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY (MàJ: ${date})`;
             }
 
             async function loadCurrencies() {
                 try {
-                    const res = await fetch(`${apiBase}/currencies`);
+                    // Fetch all available metadata from EUR base
+                    const res = await fetch(`${apiBase}/EUR`);
                     const data = await res.json();
-                    const codes = Object.keys(data).sort();
-                    currencySelect.innerHTML = codes.map(c => `<option value="${c}">${c} - ${data[c]}</option>`).join('');
-                    if (codes.includes('EUR')) currencySelect.value = 'EUR';
+                    if (!data || !data.rates) throw new Error("API Error");
+
+                    const allCodes = Object.keys(data.rates).sort();
+
+                    let html = '<optgroup label="Monnaies Prioritaires (Afrique & Major)">';
+                    for (const code in priorityCurrencies) {
+                        html += `<option value="${code}">${code} - ${priorityCurrencies[code]}</option>`;
+                    }
+                    html += '</optgroup>';
+
+                    html += '<optgroup label="Toutes les Devises">';
+                    allCodes.forEach(code => {
+                        if (!priorityCurrencies[code]) {
+                            html += `<option value="${code}">${code}</option>`;
+                        }
+                    });
+                    html += '</optgroup>';
+
+                    currencySelect.innerHTML = html;
+                    currencySelect.value = 'XOF'; // Default for West Africa
                 } catch (e) {
-                    currencySelect.innerHTML = '<option value="EUR">EUR</option>';
+                    console.error("Currency load error:", e);
+                    currencySelect.innerHTML = '<option value="XOF">XOF - Franc CFA</option><option value="EUR">EUR - Euro</option>';
                 }
             }
 
             async function convert(e) {
                 e.preventDefault();
                 const amount = parseFloat(amountInput.value || '0');
-                const from = (currencySelect.value || 'EUR').toUpperCase();
+                const from = (currencySelect.value || 'XOF').toUpperCase();
                 if (!amount || amount <= 0) return;
 
+                rateNote.textContent = "Récupération du taux...";
+                whatsappBtn.classList.add('hidden');
+
                 try {
-                    const res = await fetch(`${apiBase}/latest?amount=${amount}&base=${from}&symbols=CNY`);
+                    // Fetch rates relative to the selected 'from' currency
+                    const res = await fetch(`${apiBase}/${from}`);
                     const data = await res.json();
-                    const converted = data.rates.CNY;
-                    const rate = converted / amount;
-                    const fee = converted * 0.08;
+
+                    if (!data.rates || !data.rates.CNY) {
+                        throw new Error("CNY rate not found");
+                    }
+
+                    const rate = data.rates.CNY;
+                    const converted = amount * rate;
+                    const fee = converted * 0.07;
                     const net = converted - fee;
 
-                    setResult(converted, fee, net, rate, from, data.date);
+                    const dateStr = new Date(data.time_last_update_unix * 1000).toLocaleDateString('fr-FR');
+                    setResult(converted, fee, net, rate, from, dateStr);
 
-                    const message = `Bonjour, je souhaite transferer ${amount} ${from} vers la Chine. Montant converti: ${converted.toFixed(2)} CNY. Frais (8%): ${fee.toFixed(2)} CNY. Montant final: ${net.toFixed(2)} CNY. Taux: 1 ${from} = ${rate.toFixed(6)} CNY (date: ${data.date}).`;
-                    const waUrl = `https://wa.me/${encodeURIComponent(whatsappNumber)}?text=${encodeURIComponent(message)}`;
+                    const message = `Bonjour ABRSON, je souhaite transférer ${amount} ${from} vers la Chine.\n\n` +
+                        `• Conversion: ${fmt.format(converted)} CNY\n` +
+                        `• Frais (7%): ${fmt.format(fee)} CNY\n` +
+                        `• Net à recevoir: ${fmt.format(net)} CNY\n` +
+                        `• Taux indicatif: 1 ${from} = ${rate.toFixed(6)} CNY\n\n` +
+                        `Merci de me confirmer la procédure.`;
+
+                    const waUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
                     whatsappBtn.href = waUrl;
                     whatsappBtn.classList.remove('hidden');
                 } catch (err) {
-                    rateNote.textContent = "Impossible de recuperer le taux. Reessayez dans quelques instants.";
+                    console.error("Conversion error:", err);
+                    rateNote.textContent = "Erreur de connexion aux taux. Veuillez réessayer.";
                 }
             }
 

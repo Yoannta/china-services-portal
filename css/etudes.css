@@ -779,156 +779,141 @@
 }
 
 /* ===================================================
-   SECTION 4 — BOURSES (WINDOW)
+   SECTION 4 — BOURSES (MODERNIZED)
    =================================================== */
 .et-scholarships {
     background: var(--et-midnight);
-}
-
-.et-window {
-    background: #0A0E17;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        0 50px 100px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
-}
-
-.et-window__chrome {
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.et-window__dots {
-    display: flex;
-    gap: 7px;
-}
-
-.dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-}
-
-.dot--red {
-    background: #FF5F56;
-}
-
-.dot--yellow {
-    background: #FFBD2E;
-}
-
-.dot--green {
-    background: #27C93F;
-}
-
-.et-window__url {
-    font-family: 'Courier New', monospace;
-    font-size: 0.8rem;
-    color: var(--et-muted);
-    padding: 0.3rem 1rem;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 100px;
-    border: 1px solid var(--et-border);
-}
-
-.et-window__body {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2.5rem;
-    padding: 3rem;
-    align-items: start;
-}
-
-.et-scholarships__text p {
-    color: var(--et-silver);
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-top: 1.5rem;
-}
-
-/* Scholar rows */
-.et-scholarships__list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    padding-bottom: 2rem;
 }
 
 .et-scholar-row {
-    display: grid;
-    grid-template-columns: 60px 1fr auto;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--et-border);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
     gap: 2rem;
-    align-items: start;
-    padding: 2.5rem 0;
-    border-bottom: 1px solid var(--et-border);
+    margin-bottom: 1rem;
     transition: var(--et-transition);
-    opacity: 0;
-    transform: translateX(20px);
-}
-
-.et-scholar-row:last-child {
-    border-bottom: none;
 }
 
 .et-scholar-row:hover {
-    opacity: 1 !important;
-    transform: translateX(0) !important;
-}
-
-.et-scholar-row.is-visible {
-    opacity: 1;
-    transform: translateX(0);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--et-gold);
+    transform: translateX(10px);
 }
 
 .et-scholar-tag {
-    font-family: var(--et-font-display);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--et-gold);
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 8px;
-    padding: 0.4rem 0.6rem;
+    background: var(--et-gold);
+    color: var(--et-midnight);
+    font-weight: 800;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    min-width: 60px;
     text-align: center;
-    align-self: start;
-    margin-top: 0.2rem;
 }
 
 .et-scholar-info h4 {
     font-family: var(--et-font-display);
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
     color: var(--et-white);
-    margin-bottom: 0.6rem;
-    line-height: 1.2;
 }
 
 .et-scholar-info p {
+    font-size: 0.9rem;
     color: var(--et-silver);
-    font-size: 0.95rem;
-    line-height: 1.6;
 }
 
 .et-scholar-badge {
-    background: var(--et-glass);
-    border: 1px solid var(--et-border);
-    border-radius: 100px;
-    padding: 0.4rem 1rem;
+    margin-left: auto;
     font-size: 0.75rem;
-    color: var(--et-silver);
-    white-space: nowrap;
-    align-self: start;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--et-gold);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
 }
 
 /* ===================================================
-   SECTION 5 — CTA FINAL
+   SECTION 5 — VIP ROADMAP
+   =================================================== */
+.et-roadmap {
+    background: var(--et-midnight-sec);
+    padding: 6rem 0;
+    position: relative;
+}
+
+.et-roadmap__timeline {
+    max-width: 800px;
+    margin: 4rem auto 0;
+    position: relative;
+}
+
+.et-roadmap__timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--et-gold) 0%, rgba(212, 175, 55, 0.1) 100%);
+}
+
+.et-roadmap-step {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.et-roadmap-step::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--et-midnight);
+    border: 3px solid var(--et-gold);
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 0 15px var(--et-gold);
+}
+
+.et-roadmap-step:last-child {
+    margin-bottom: 0;
+}
+
+.et-roadmap-step__num {
+    font-family: var(--et-font-display);
+    font-size: 0.85rem;
+    color: var(--et-gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.et-roadmap-step h4 {
+    font-family: var(--et-font-display);
+    font-size: 1.35rem;
+    color: var(--et-white);
+    margin-bottom: 0.75rem;
+}
+
+.et-roadmap-step p {
+    color: var(--et-silver);
+    line-height: 1.6;
+}
+
+/* ===================================================
+   SECTION 6 — CTA (ENHANCED)
    =================================================== */
 .et-cta {
     background: var(--et-midnight-sec);

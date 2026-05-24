@@ -4,25 +4,455 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sourcing & Achat Chine - ABRSON</title>
+    <title>Marketplace Sourcing Chine - ABRSON Trading</title>
     <meta name="description"
-        content="Sécurisez vos achats en Chine. Notre bureau de sourcing gère la recherche fournisseur, le contrôle qualité et la logistique jusqu'à votre entrepôt.">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- GSAP & ScrollTrigger -->
-    <script src="js/vendor/gsap.min.js"></script>
-    <script src="js/vendor/ScrollTrigger.min.js"></script>
-    <!-- Lenis for Smooth Inertia Scrolling -->
-    <script src="js/vendor/lenis.min.js"></script>
+        content="Achetez directement des produits vérifiés d'usines chinoises. MOQ bas, qualité garantie.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="js/vendor/lucide.min.js"></script>
+
+    <!-- Theme Core CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons & Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Specific adjustments for Sourcing Marketplace to match Home Theme */
+        .marketplace-hero {
+            position: relative;
+            margin-top: 130px;
+            margin-bottom: 30px;
+            background: rgba(15, 23, 42, 0.5);
+            backdrop-filter: blur(12px);
+            border-radius: var(--radius-lg);
+            padding: 40px 40px 80px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .hero-title-main {
+            font-family: 'Fraunces', serif;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .text-gold {
+            color: var(--color-accent);
+        }
+
+        .hero-subtitle {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .search-bar-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: rgba(30, 41, 59, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar-wrapper:focus-within {
+            border-color: var(--color-accent);
+        }
+
+        .search-icon {
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0 15px;
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            padding: 12px 0;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-btn {
+            background-color: var(--color-accent);
+            color: #000;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.05);
+            background-color: #d97706;
+        }
+
+        /* --- FLOATING STATS --- */
+        .stats-overlap {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: -60px;
+            /* Pull up to overlap */
+            position: relative;
+            z-index: 20;
+        }
+
+        .stat-card {
+            background: rgba(30, 41, 59, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            min-width: 250px;
+            color: #fff;
+        }
+
+        .stat-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-info h4 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .stat-info p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- FILTERS & CONTROLS --- */
+        .filters-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .pill-filters {
+            display: flex;
+            gap: 12px;
+        }
+
+        .filter-pill {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s;
+        }
+
+        .filter-pill:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .filter-pill.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-accent);
+            color: #fff;
+        }
+
+        .controls-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .sort-select {
+            appearance: none;
+            background: rgba(30, 41, 59, 0.8) url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="none" stroke="%2394a3b8" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"></path></svg>') no-repeat right 10px center;
+            background-size: 16px;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 40px 10px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .cart-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.2s;
+        }
+
+        .cart-indicator:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .cart-indicator i {
+            color: var(--color-accent);
+        }
+
+        /* --- PRODUCT GRID --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .product-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: var(--color-accent);
+        }
+
+        .product-image-box {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 8px;
+            height: 220px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Placeholder silhouettes using pure CSS icons */
+        .silhouette {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sil-earbuds {
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .sil-earbuds::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 30px;
+            height: 20px;
+            background: inherit;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .sil-earbuds::after {
+            content: '';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 30px;
+            height: 20px;
+            background: inherit;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .sil-jacket {
+            mask: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C9 2 7 4 7 4L3 8V11L7 9V22H17V9L21 11V8L17 4C17 4 15 2 12 2Z"/></svg>') center/cover;
+            background: rgba(255, 255, 255, 0.05);
+            width: 140px;
+            height: 140px;
+        }
+
+        .sil-plates {
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .sil-plates::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: inherit;
+        }
+
+        .sil-solar {
+            width: 100px;
+            height: 150px;
+        }
+
+        .product-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 5px;
+            line-height: 1.3;
+            min-height: 2.6rem;
+        }
+
+        .product-meta {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--color-accent);
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .product-price span {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 500;
+        }
+
+        .btn-add {
+            background: var(--color-accent);
+            color: #000;
+            font-weight: 800;
+            font-size: 0.8rem;
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #d97706;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-overlap {
+                flex-wrap: wrap;
+                margin-top: 20px;
+            }
+
+            .marketplace-hero {
+                padding: 40px 20px;
+                margin-top: 120px;
+            }
+
+            .hero-title-main {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-toolbar {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .pill-filters {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 
-<body class="premium-site">
+<body class="cinematic-home">
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+
+    <!-- Fixed Background Layers (From Theme) -->
+    <div class="fixed-bg-container">
+        <!-- We use the factory/industrial background for Sourcing -->
+        <div class="bg-layer layer-1 active" style="background-image: url('assets/hero_bg_1.png'); display: none;">
+        </div>
+        <!-- Let's use a subtle industrial look if we have one or just the global one -->
+        <div class="bg-layer layer-3 active" style="background-image: url('assets/scenes/scene_3_factory.png');"></div>
+        <div class="bg-overlay"
+            style="background: radial-gradient(circle at center top, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);">
+        </div>
+    </div>
+
+    <!-- Main Navigation (Global Header) -->
     <header id="site-header">
         <div class="container header-content">
             <a href="index.html" class="logo">
@@ -40,159 +470,227 @@
                 </ul>
             </nav>
             <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
-            <button class="mobile-menu-toggle"><i data-lucide="menu"></i></button>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
     </header>
 
+    <main id="story-container" class="container">
+        <!-- Hero Marketplace -->
+        <div class="marketplace-hero fade-in-up">
+            <h1 class="hero-title-main">
+                <span class="text-gold">Marketplace</span><br>
+                Sourcing Chine
+            </h1>
+            <p class="hero-subtitle">
+                Commandez directement des produits vérifiés,<br>avec contrôle qualité et logistique gérée.
+            </p>
 
-    <div class="vignette-layer" aria-hidden="true"></div>
-    <div class="data-stream-container" aria-hidden="true"></div>
-
-    <main class="sourcing-page marketplace blueprint-mode">
-        <div class="liquid-layer" data-viscosity="0.6">
-            <section class="hero sourcing-hero marketplace-hero" style="min-height: 60vh;">
-                <div class="hero-slider">
-                    <div class="hero-slide active" style="background-image: url('assets/hero_bg_2.png');"></div>
-                </div>
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <div class="hero-badges">
-                        <span class="badge badge-secure"><i data-lucide="shield-check"></i> Paiements securises</span>
-                        <span class="badge badge-joy"><i data-lucide="sparkles"></i> Catalogue verifie</span>
-                    </div>
-                    <h1 class="hero-title fade-in-up">Marketplace Sourcing Chine</h1>
-                    <p class="hero-subtitle fade-in-up delay-1">Commandez directement des produits verifies, avec
-                        controle qualite et logistique geree.</p>
-
-                    <div class="market-search">
-                        <div class="search-field">
-                            <i data-lucide="search"></i>
-                            <input id="product-search" type="text"
-                                placeholder="Rechercher un produit, une categorie, un materiau..." />
-                        </div>
-                        <button class="btn btn-primary" id="search-btn">Rechercher</button>
-                    </div>
-
-                    <div class="hero-metrics">
-                        <div class="metric"><strong>2,400+</strong><span>Produits actifs</span></div>
-                        <div class="metric"><strong>4.8/5</strong><span>Notes fournisseurs</span></div>
-                        <div class="metric"><strong>48h</strong><span>Validation commande</span></div>
-                    </div>
-                </div>
-            </section>
+            <div class="search-bar-wrapper">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" class="search-input"
+                    placeholder="Rechercher un produit, une catégorie, un matériau...">
+                <button class="search-btn">RECHERCHER</button>
+            </div>
         </div>
 
-        <section class="section marketplace-toolbar">
-            <div class="container toolbar-grid">
-                <div class="filter-group">
-                    <button class="chip active" data-filter="all">Tout</button>
-                    <button class="chip" data-filter="electronics">Electronique</button>
-                    <button class="chip" data-filter="fashion">Textile</button>
-                    <button class="chip" data-filter="home">Maison</button>
-                    <button class="chip" data-filter="industrial">Industriel</button>
+        <!-- Floating Stats -->
+        <div class="stats-overlap fade-in-up">
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="layers"></i></div>
+                <div class="stat-info">
+                    <h4>2,400+</h4>
+                    <p>Produits actifs</p>
                 </div>
-                <div class="sort-group">
-                    <label for="sort">Tri</label>
-                    <select id="sort">
-                        <option value="popular">Populaire</option>
-                        <option value="price-asc">Prix croissant</option>
-                        <option value="price-desc">Prix decroissant</option>
-                        <option value="moq">MOQ faible</option>
-                    </select>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="star"></i></div>
+                <div class="stat-info">
+                    <h4>4.8/5</h4>
+                    <p>Notes fournisseurs</p>
                 </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i data-lucide="clock"></i></div>
+                <div class="stat-info">
+                    <h4>48h</h4>
+                    <p>Validation commande</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters & Sort -->
+        <div class="filters-toolbar fade-in-up">
+            <div class="pill-filters">
+                <div class="filter-pill active">Tout</div>
+                <div class="filter-pill">Electronique</div>
+                <div class="filter-pill">Textile</div>
+                <div class="filter-pill">Maison</div>
+                <div class="filter-pill">Industriel</div>
+            </div>
+
+            <div class="controls-right">
+                <select class="sort-select">
+                    <option value="populaire">Populaire</option>
+                    <option value="prix_asc">Prix croissant</option>
+                    <option value="prix_desc">Prix décroissant</option>
+                    <option value="moq">MOQ le plus bas</option>
+                </select>
+
                 <div class="cart-indicator">
                     <i data-lucide="shopping-cart"></i>
-                    <span id="cart-count">0</span>
-                    <span class="cart-label">Votre commande</span>
+                    <span>0</span>
+                    <span>Votre commande</span>
                 </div>
             </div>
-        </section>
-
-        <div class="liquid-layer" data-viscosity="0.4">
-            <section class="section marketplace-grid">
-                <div class="container">
-                    <div class="product-grid" id="product-grid">
-                        <article class="product-card xray-card" data-category="electronics" data-price="18"
-                            data-moq="200">
-                            <div class="product-media"></div>
-                            <h3>Ecouteurs Bluetooth TWS</h3>
-                            <p class="product-meta">MOQ 200 | Shenzhen</p>
-                            <div class="product-footer">
-                                <span class="price">$18 / lot</span>
-                                <button class="btn btn-outline add-to-cart">Ajouter</button>
-                            </div>
-                        </article>
-                        <article class="product-card xray-card" data-category="fashion" data-price="9" data-moq="300">
-                            <div class="product-media"></div>
-                            <h3>Veste softshell premium</h3>
-                            <p class="product-meta">MOQ 300 | Guangzhou</p>
-                            <div class="product-footer">
-                                <span class="price">$9 / piece</span>
-                                <button class="btn btn-outline add-to-cart">Ajouter</button>
-                            </div>
-                        </article>
-                        <article class="product-card xray-card" data-category="home" data-price="4" data-moq="500">
-                            <div class="product-media"></div>
-                            <h3>Set vaisselle ceramique</h3>
-                            <p class="product-meta">MOQ 500 | Jingdezhen</p>
-                            <div class="product-footer">
-                                <span class="price">$4 / piece</span>
-                                <button class="btn btn-outline add-to-cart">Ajouter</button>
-                            </div>
-                        </article>
-                        <article class="product-card xray-card" data-category="industrial" data-price="120"
-                            data-moq="50">
-                            <div class="product-media"></div>
-                            <h3>Kit panneaux solaires 500W</h3>
-                            <p class="product-meta">MOQ 50 | Ningbo</p>
-                            <div class="product-footer">
-                                <span class="price">$120 / lot</span>
-                                <button class="btn btn-outline add-to-cart">Ajouter</button>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </section>
         </div>
 
-        <section class="section marketplace-cart">
-            <div class="container cart-panel">
-                <div class="cart-header">
-                    <h2 class="section-title">Votre Commande</h2>
-                    <p class="section-desc">Recapitulatif des produits selectionnes. Un conseiller valide avant
-                        paiement.</p>
+        <!-- Product Grid -->
+        <div class="product-grid fade-in-up">
+            <!-- Card 1 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-earbuds"></div>
                 </div>
-                <div id="cart-list" class="cart-list">
-                    <p class="empty-cart">Aucun produit ajoute.</p>
-                </div>
-                <div class="cart-footer">
-                    <div class="cart-total"><span>Total estimatif</span><strong id="cart-total">$0</strong></div>
-                    <a href="contact.html" class="btn btn-primary">Demarrer la commande</a>
+                <h3 class="product-title">Ecouteurs Bluetooth TWS</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
                 </div>
             </div>
-        </section>
+
+            <!-- Card 2 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-jacket"></div>
+                </div>
+                <h3 class="product-title">Veste softshell premium</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-plates"></div>
+                </div>
+                <h3 class="product-title">Set vaisselle ceramique</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-solar"></div>
+                </div>
+                <h3 class="product-title">Kit panneaux solaires 500W</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-plates"></div>
+                </div>
+                <h3 class="product-title">Set vaisselle ceramique TWS</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-jacket"></div>
+                </div>
+                <h3 class="product-title">Veste softshell premium</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-solar"></div>
+                </div>
+                <h3 class="product-title">Set vaisselle ceramique</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="product-card">
+                <div class="product-image-box">
+                    <div class="silhouette sil-earbuds"></div>
+                </div>
+                <h3 class="product-title">Kit panneaux solaires 500W</h3>
+                <p class="product-meta">MOQ 200 | Shenzhen</p>
+                <div class="product-bottom">
+                    <div class="product-price">$18 <span>/ lot</span></div>
+                    <button class="btn-add">AJOUTER</button>
+                </div>
+            </div>
+        </div>
     </main>
 
-
-
-    <footer class="site-footer">
+    <!-- Global Footer -->
+    <footer class="site-footer cinematic-footer" style="margin-top: 0;">
         <div class="container footer-content">
             <div class="footer-col brand-col">
-                <a href="index.html" class="logo footer-logo"><img src="assets/logo.png" alt="ABRSON"></a>
-                <p>Expert Chine.</p>
+                <a href="index.html" class="logo footer-logo">
+                    <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+                </a>
+                <p>Votre passerelle premium vers les opportunités chinoises.</p>
             </div>
             <div class="footer-col">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="transfert.html">Transfert</a></li>
-                    <li><a href="sourcing.html">Sourcing</a></li>
-                    <li><a href="etudes.html">Études</a></li>
+                <h4>Services rapides</h4>
+                <ul class="contact-list"
+                    style="list-style: none; padding: 0; gap: 10px; display: flex; flex-direction: column;">
+                    <li><a href="transfert.html" style="color: rgba(255,255,255,0.7);">Transfert d'Argent</a></li>
+                    <li><a href="sourcing.html" style="color: rgba(255,255,255,0.7);">Sourcing</a></li>
+                    <li><a href="etudes.html" style="color: rgba(255,255,255,0.7);">Études</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="contact-list" style="list-style: none; padding: 0;">
+                    <li><i data-lucide="message-circle"></i> WeChat: ChineAccesPro</li>
+                    <li><i data-lucide="mail"></i> contact@abrson.com</li>
+                    <li><i data-lucide="phone"></i> +86 191 9549 5220</li>
                 </ul>
             </div>
         </div>
+        <div class="container text-center"
+            style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+            <p>&copy; 2026 ABRSON Trading. Tous droits réservés.</p>
+        </div>
     </footer>
+
     <script src="js/main.js"></script>
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>

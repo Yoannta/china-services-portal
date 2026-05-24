@@ -4,415 +4,687 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Étudier en Chine — Accompagnement Académique | ABRSON</title>
-    <meta name="description"
-        content="Construisez votre avenir académique en Chine. Orientation, admission, visa et installation à Guangzhou. Accompagnement complet par ABRSON.">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/etudes.css">
+    <title>Portail Études en Chine Premium - ABRSON Trading</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600;1,9..144,700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <script src="js/vendor/gsap.min.js"></script>
-    <script src="js/vendor/ScrollTrigger.min.js"></script>
-    <script src="js/vendor/lenis.min.js"></script>
-    <script src="js/vendor/lucide.min.js"></script>
+
+    <!-- Theme Core CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Reusing global glassmorphism from Sourcing page logic where applicable */
+
+        /* --- ETUDES HERO --- */
+        .etudes-hero {
+            position: relative;
+            margin-top: 130px;
+            margin-bottom: 30px;
+            background: rgba(15, 23, 42, 0.3);
+            backdrop-filter: blur(8px);
+            border-radius: var(--radius-lg);
+            padding: 60px 50px 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .hero-title-main {
+            font-family: 'Fraunces', serif;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+            max-width: 600px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-gold {
+            background-color: var(--color-accent);
+            color: #000;
+        }
+
+        .btn-gold:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+        }
+
+        .btn-gold-outline {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+
+        /* Float badge top right of hero */
+        .expert-badge {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .expert-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+        }
+
+        /* --- FLOATING STATS OVERLAP --- */
+        .stats-overlap {
+            display: flex;
+            gap: 20px;
+            margin-top: -60px;
+            margin-left: 50px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            color: #0f172a;
+            border-radius: 12px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-card-dark {
+            background: rgba(30, 41, 59, 0.9);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(245, 158, 11, 0.2);
+            color: #d97706;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-info h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+
+        .stat-info p {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .stat-card-dark .stat-info p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- SECTION TITLES --- */
+        .section-header {
+            text-align: center;
+            margin: 80px 0 40px;
+        }
+
+        .section-header h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* --- UNIVERSITIES GRID --- */
+        .univ-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .univ-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .univ-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .univ-img-wrapper {
+            position: relative;
+            height: 150px;
+            background: rgba(15, 23, 42, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .univ-logo-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #0f172a;
+            font-size: 0.7rem;
+        }
+
+        .univ-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .univ-loc {
+            color: var(--color-accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .univ-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .univ-tag {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--color-accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            align-self: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .btn-univ {
+            margin-top: auto;
+            width: 100%;
+            background: #0f172a;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-univ:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- BOURSES BLOCK (Find Scholarships) --- */
+        .bourse-block {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid var(--color-accent);
+            border-radius: var(--radius-lg);
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto 80px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 10;
+        }
+
+        .bourse-block h2 {
+            text-align: center;
+            font-family: 'Fraunces', serif;
+            color: var(--color-accent);
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+        }
+
+        .bourse-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .bourse-col h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .select-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bourse-select {
+            width: 100%;
+            appearance: none;
+            background: #fff;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #0f172a;
+            background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="none" stroke="%230f172a" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+        }
+
+        .bourse-tag {
+            background: rgba(245, 158, 11, 0.9);
+            color: #000;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            border: 1px solid #000;
+        }
+
+        /* --- CONTACT FORM BLOCK --- */
+        .contact-form-block {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto 80px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .contact-form-block h2 {
+            font-family: 'Fraunces', serif;
+            color: var(--color-accent);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 6px;
+            border: none;
+            font-size: 1rem;
+            font-family: var(--font-main);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .wa-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #10b981;
+            /* WhatsApp green */
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .wa-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media(max-width: 900px) {
+            .univ-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bourse-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: span 1;
+            }
+
+            .etudes-hero {
+                padding: 40px 20px 100px;
+                margin-top: 100px;
+            }
+
+            .hero-title-main {
+                font-size: 2.5rem;
+            }
+
+            .stats-overlap {
+                margin-left: 20px;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .univ-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
-<body class="etudes-page">
+<body class="cinematic-home">
 
-    <!-- ===================== HEADER ===================== -->
-    <header id="site-header" class="et-header">
-        <div class="et-header__inner">
-            <a href="index.html" class="et-header__logo">
-                <img src="assets/logo.png" alt="ABRSON Logo">
+    <div class="vignette-layer" aria-hidden="true"></div>
+
+    <!-- Fixed Background Layers -->
+    <div class="fixed-bg-container">
+        <!-- Using Etudes specific background or fallback to global -->
+        <div class="bg-layer layer-1 active" style="background-image: url('assets/etudes_hero.png');"></div>
+        <div class="bg-overlay"
+            style="background: radial-gradient(circle at center top, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);">
+        </div>
+    </div>
+
+    <!-- Main Navigation (Global Header) -->
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
             </a>
-            <nav class="et-header__nav">
-                <a href="index.html">Accueil</a>
-                <a href="transfert.html">Transfert</a>
-                <a href="sourcing.html">Sourcing</a>
-                <a href="etudes.html" class="is-active">Études</a>
-                <a href="business.html">Business</a>
-                <a href="about.html">À propos</a>
-                <a href="contact.html">Contact</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html" class="active">Études</a></li>
+                    <li><a href="business.html">Business</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
             </nav>
-            <a href="contact.html" class="et-btn et-btn--red">Devis Gratuit</a>
-            <button class="et-header__burger mobile-menu-toggle" aria-label="Menu">
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle" aria-label="Menu">
                 <i data-lucide="menu"></i>
             </button>
         </div>
     </header>
 
-    <!-- ===================== SECTION 1 — HERO ===================== -->
-    <section class="et-hero" id="et-hero">
-        <div class="et-hero__media">
-            <img src="assets/etudes_hero.png" alt="Campus universitaire en Chine" class="et-hero__bg">
-            <div class="et-hero__overlay"></div>
-        </div>
-
-        <div class="et-hero__content">
-            <div class="et-badge et-badge--gold et-anim" data-delay="0">
-                <i data-lucide="graduation-cap"></i>
-                Accompagnement Académique Premium
+    <main class="container" style="position: relative;">
+        <!-- Hero Études -->
+        <div class="etudes-hero fade-in-up">
+            <div class="expert-badge hidden-mobile">
+                <div class="expert-avatar"><i data-lucide="user" size="16"></i></div>
+                <div>
+                    <strong>David TCHINDA</strong><br>
+                    <span style="opacity: 0.7; font-size: 0.7rem;">Portail Études en Chine</span>
+                </div>
             </div>
 
-            <h1 class="et-hero__title et-anim" data-delay="200">
-                <span class="et-title-line">Construisez votre</span>
-                <span class="et-title-line et-title-line--gold">avenir académique</span>
-                <span class="et-title-line">en Chine</span>
+            <h1 class="hero-title-main">
+                Votre Avenir Académique en Chine Commence Ici
             </h1>
 
-            <p class="et-hero__sub et-anim" data-delay="500">
-                La Chine figure parmi les principales destinations mondiales pour
-                l'enseignement supérieur — ingénierie, sciences, commerce et médecine.
-            </p>
+            <div class="hero-actions">
+                <button class="btn btn-gold">Trouver mon Université</button>
+                <button class="btn btn-outline">Réserver un Appel Expert</button>
+                <button class="btn btn-gold-outline"><i data-lucide="search" size="18"></i> Tester mon
+                    éligibilité</button>
+            </div>
+        </div>
 
-            <div class="et-hero__actions et-anim" data-delay="700">
-                <a href="#et-cta" class="et-btn et-btn--red et-btn--glow">
-                    <i data-lucide="send"></i>
-                    Commencer ma candidature
+        <!-- Floating Stats -->
+        <div class="stats-overlap fade-in-up">
+            <div class="stat-card stat-card-dark">
+                <div class="stat-icon"><i data-lucide="check-circle"></i></div>
+                <div class="stat-info">
+                    <h4>99%</h4>
+                    <p>Taux d'Admission</p>
+                </div>
+            </div>
+            <div class="stat-card stat-card-dark">
+                <div class="stat-icon"><i data-lucide="users"></i></div>
+                <div class="stat-info">
+                    <h4>+500</h4>
+                    <p>Étudiants Accompagnés</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Universities Grid Section -->
+        <div class="section-header fade-in-up">
+            <h2>Universities</h2>
+            <p>Premium accès aux meilleures écoles en Chine</p>
+        </div>
+
+        <div class="univ-grid fade-in-up">
+            <!-- Univ 1 -->
+            <div class="univ-card">
+                <div class="univ-img-wrapper"
+                    style="background-image: url('assets/hero_bg_1.png'); background-size: cover; background-position: center;">
+                    <div class="univ-logo-badge">TS</div>
+                </div>
+                <div class="univ-content">
+                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
+                    <h3 class="univ-title">Tsinghua University</h3>
+                    <span class="univ-tag">Bourses Disponibles</span>
+                    <button class="btn btn-univ">Voir Détails & Bourses</button>
+                </div>
+            </div>
+
+            <!-- Univ 2 -->
+            <div class="univ-card">
+                <div class="univ-img-wrapper"
+                    style="background-image: url('assets/hero_bg_2.png'); background-size: cover; background-position: center;">
+                    <div class="univ-logo-badge">PU</div>
+                </div>
+                <div class="univ-content">
+                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
+                    <h3 class="univ-title">Peking University</h3>
+                    <span class="univ-tag">Bourses Disponibles</span>
+                    <button class="btn btn-univ">Voir Détails & Bourses</button>
+                </div>
+            </div>
+
+            <!-- Univ 3 -->
+            <div class="univ-card">
+                <div class="univ-img-wrapper"
+                    style="background-image: url('assets/transfer_bg.png'); background-size: cover; background-position: center;">
+                    <div class="univ-logo-badge">FU</div>
+                </div>
+                <div class="univ-content">
+                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
+                    <h3 class="univ-title">Fudan University</h3>
+                    <span class="univ-tag">Bourses Disponibles</span>
+                    <button class="btn btn-univ">Voir Détails & Bourses</button>
+                </div>
+            </div>
+
+            <!-- Univ 4 -->
+            <div class="univ-card">
+                <div class="univ-img-wrapper"
+                    style="background-image: url('assets/etudes_hero.png'); background-size: cover; background-position: center;">
+                    <div class="univ-logo-badge">ZU</div>
+                </div>
+                <div class="univ-content">
+                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
+                    <h3 class="univ-title">Zhejiang University</h3>
+                    <span class="univ-tag">Bourses Disponibles</span>
+                    <button class="btn btn-univ">Voir Détails & Bourses</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Block: Trouver des Bourses -->
+        <div class="bourse-block fade-in-up">
+            <h2>Trouver des Bourses</h2>
+            <div class="bourse-grid">
+                <div class="bourse-col">
+                    <h4>Niveau d'Études</h4>
+                    <div class="select-list">
+                        <select class="bourse-select">
+                            <option>Licence</option>
+                        </select>
+                        <select class="bourse-select">
+                            <option>Master</option>
+                        </select>
+                        <select class="bourse-select">
+                            <option>Doctorat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="bourse-col">
+                    <h4>Estimation de Bourse</h4>
+                    <div class="select-list">
+                        <div class="bourse-tag">CSC Bourse Complète</div>
+                        <div class="bourse-tag" style="opacity: 0.8;">Bourse Provinciale</div>
+                        <div class="bourse-tag" style="opacity: 0.8;">Bourse Universitaire</div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-gold"
+                style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 15px;"><i
+                    data-lucide="search"></i> Tester mon éligibilité</button>
+        </div>
+
+        <!-- Block: Contact Form -->
+        <div class="contact-form-block fade-in-up">
+            <h2>Prêt à Réaliser Vos Rêves ?</h2>
+            <form action="#">
+                <div class="contact-grid">
+                    <input type="text" placeholder="Nom" class="contact-input">
+                    <input type="email" placeholder="Email" class="contact-input">
+                    <input type="tel" placeholder="Téléphone" class="contact-input full-width">
+                </div>
+                <button type="submit" class="btn btn-gold"
+                    style="width: 100%; justify-content: center; font-size: 1rem; padding: 15px; margin-top: 10px;">Demander
+                    une Consultation Gratuite</button>
+
+                <a href="https://wa.me/8619195495220" class="wa-link">
+                    <i data-lucide="message-circle" size="18"></i> ou Contactez-nous sur WhatsApp
                 </a>
-                <a href="#et-services" class="et-btn et-btn--ghost">
-                    Voir nos services
-                    <i data-lucide="arrow-down"></i>
+            </form>
+        </div>
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer cinematic-footer" style="margin-top: 0;">
+        <div class="container footer-content">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="logo footer-logo">
+                    <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
                 </a>
+                <p>Votre passerelle premium vers les opportunités chinoises.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Services rapides</h4>
+                <ul class="contact-list"
+                    style="list-style: none; padding: 0; gap: 10px; display: flex; flex-direction: column;">
+                    <li><a href="transfert.html" style="color: rgba(255,255,255,0.7);">Transfert d'Argent</a></li>
+                    <li><a href="sourcing.html" style="color: rgba(255,255,255,0.7);">Sourcing</a></li>
+                    <li><a href="etudes.html" style="color: rgba(255,255,255,0.7);">Études</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="contact-list" style="list-style: none; padding: 0;">
+                    <li><i data-lucide="message-circle"></i> WeChat: ChineAccesPro</li>
+                    <li><i data-lucide="mail"></i> contact@abrson.com</li>
+                    <li><i data-lucide="phone"></i> +86 191 9549 5220</li>
+                </ul>
             </div>
         </div>
-
-        <!-- Trust bar -->
-        <div class="et-hero__trust et-anim" data-delay="900">
-            <div class="et-trust-item">
-                <span class="et-trust-num">99%</span>
-                <span class="et-trust-label">Taux d'Admission</span>
-            </div>
-            <div class="et-trust-sep"></div>
-            <div class="et-trust-item">
-                <span class="et-trust-num">+200</span>
-                <span class="et-trust-label">Dossiers Gagnants</span>
-            </div>
-            <div class="et-trust-sep"></div>
-            <div class="et-trust-item">
-                <span class="et-trust-num">Elite</span>
-                <span class="et-trust-label">Accompagnement 360°</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== SECTION 2 — SERVICES ===================== -->
-    <section class="et-section et-services" id="et-services">
-        <div class="et-container">
-            <div class="et-section__header">
-                <div class="et-badge et-badge--red">Support Premium</div>
-                <h2 class="et-section__title">Nos Services<br><em>d'Accompagnement</em></h2>
-                <p class="et-section__desc">De la sélection universitaire à votre installation complète à Guangzhou —
-                    nous orchestrons chaque étape avec vous.</p>
-            </div>
-
-            <div class="et-services-grid">
-                <!-- Card 1: Orientation -->
-                <div class="et-service-mini-card et-scroll-reveal">
-                    <div class="et-mini-icon">
-                        <i data-lucide="compass"></i>
-                    </div>
-                    <h4>Orientation<br>Universitaire</h4>
-                    <p>Analyse de profil et sélection d'établissements stratégiques.</p>
-                    <div class="et-mini-foot">
-                        Support Premium
-                    </div>
-                </div>
-
-                <!-- Card 2: Admission -->
-                <div class="et-service-mini-card et-scroll-reveal">
-                    <div class="et-mini-icon">
-                        <i data-lucide="file-check-2"></i>
-                    </div>
-                    <h4>Inscription &<br>Admissions</h4>
-                    <p>Gestion administrative complète et dépôt de candidature.</p>
-                    <div class="et-mini-foot">
-                        Admission Directe
-                    </div>
-                </div>
-
-                <!-- Card 3: Logement -->
-                <div class="et-service-mini-card et-scroll-reveal">
-                    <div class="et-mini-icon">
-                        <i data-lucide="home"></i>
-                    </div>
-                    <h4>Logement &<br>Installation</h4>
-                    <p>Sécurisez votre logement avant même votre départ.</p>
-                    <div class="et-mini-foot">
-                        Logement Prêt
-                    </div>
-                </div>
-
-                <!-- Card 4: Visa -->
-                <div class="et-service-mini-card et-scroll-reveal">
-                    <div class="et-mini-icon">
-                        <i data-lucide="shield-check"></i>
-                    </div>
-                    <h4>Visa &<br>Accueil VIP</h4>
-                    <p>JW202, Visa X1/X2 et transfert dédié aéroport.</p>
-                    <div class="et-mini-foot">
-                        Zéro Stress
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== SECTION 3 — DOMAINES ===================== -->
-    <section class="et-section et-domains" id="et-domains">
-        <div class="et-container">
-            <div class="et-section__header et-section__header--center">
-                <div class="et-badge et-badge--gold">Expertise Académique</div>
-                <h2 class="et-section__title">Domaines d'Études<br><em>Disponibles</em></h2>
-                <p class="et-section__desc">Des filières d'excellence dans les universités chinoises les plus reconnues.
-                </p>
-            </div>
-
-            <div class="et-domains-directory">
-                <!-- Category 1: Ingénierie -->
-                <div class="et-domain-card et-scroll-reveal">
-                    <div class="et-domain-card__header">
-                        <div class="et-domain-card__icon">
-                            <i data-lucide="cpu"></i>
-                        </div>
-                        <h4>Ingénierie &<br>Technologie</h4>
-                    </div>
-                    <ul class="et-domain-card__list">
-                        <li>Informatique & IA</li>
-                        <li>Génie Civil</li>
-                        <li>Génie Minier</li>
-                        <li>Ingénierie Industrielle</li>
-                    </ul>
-                </div>
-
-                <!-- Category 2: Business -->
-                <div class="et-domain-card et-scroll-reveal">
-                    <div class="et-domain-card__header">
-                        <div class="et-domain-card__icon">
-                            <i data-lucide="globe"></i>
-                        </div>
-                        <h4>Business &<br>Économie</h4>
-                    </div>
-                    <ul class="et-domain-card__list">
-                        <li>Commerce International</li>
-                        <li>Gestion & Finance</li>
-                        <li>Logistique</li>
-                        <li>E-commerce</li>
-                    </ul>
-                </div>
-
-                <!-- Category 3: Santé -->
-                <div class="et-domain-card et-scroll-reveal">
-                    <div class="et-domain-card__header">
-                        <div class="et-domain-card__icon">
-                            <i data-lucide="stethoscope"></i>
-                        </div>
-                        <h4>Médecine &<br>Santé</h4>
-                    </div>
-                    <ul class="et-domain-card__list">
-                        <li>Médecine Générale</li>
-                        <li>Pharmacie</li>
-                        <li>Santé Publique</li>
-                        <li>Soins Infirmiers</li>
-                    </ul>
-                </div>
-
-                <!-- Category 4: Culture -->
-                <div class="et-domain-card et-scroll-reveal">
-                    <div class="et-domain-card__header">
-                        <div class="et-domain-card__icon">
-                            <i data-lucide="languages"></i>
-                        </div>
-                        <h4>Langue &<br>Culture</h4>
-                    </div>
-                    <ul class="et-domain-card__list">
-                        <li>Langue Chinoise</li>
-                        <li>Littérature</li>
-                        <li>Relations Internationales</li>
-                        <li>Histoire & Art</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Visual accent -->
-            <div class="et-domains__visual et-scroll-reveal">
-                <img src="assets/scenes/scene_3_university.png" alt="Université chinoise" loading="lazy">
-                <div class="et-domains__visual-overlay"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== SECTION 4 — BOURSES ===================== -->
-    <section class="et-section et-scholarships" id="et-scholarships">
-        <div class="et-container">
-            <div class="et-section__header et-section__header--center">
-                <div class="et-badge et-badge--gold">Financement Stratégique</div>
-                <h2 class="et-section__title">Bourses &<br><em>Optimisation</em></h2>
-                <p class="et-section__desc">Nous maximisons vos chances d'obtenir les financements les plus prestigieux
-                    du système éducatif chinois.</p>
-            </div>
-
-            <div class="et-scholarships__list">
-                <!-- CSC -->
-                <div class="et-scholar-row et-scroll-reveal">
-                    <div class="et-scholar-tag">CSC</div>
-                    <div class="et-scholar-info">
-                        <h4>Bourse Gouvernementale Chinoise</h4>
-                        <p>Excellence académique — Frais de scolarité, logement et allocation mensuelle inclus.</p>
-                    </div>
-                    <div class="et-scholar-badge">Excellence</div>
-                </div>
-
-                <!-- Provincial -->
-                <div class="et-scholar-row et-scroll-reveal">
-                    <div class="et-scholar-tag">PRV</div>
-                    <div class="et-scholar-info">
-                        <h4>Bourses Provinciales & Municipales</h4>
-                        <p>Soutien régional pour les talents internationaux — Conditions avantageuses par province.</p>
-                    </div>
-                    <div class="et-scholar-badge">Régional</div>
-                </div>
-
-                <!-- Partner -->
-                <div class="et-scholar-row et-scroll-reveal">
-                    <div class="et-scholar-tag">UNI</div>
-                    <div class="et-scholar-info">
-                        <h4>Bourses Universitaires Directes</h4>
-                        <p>Financement spécifique par nos établissements partenaires — Idéal pour les admissions
-                            directes.</p>
-                    </div>
-                    <div class="et-scholar-badge">Partenaire</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== SECTION 5 — ROADMAP ===================== -->
-    <section class="et-section et-roadmap" id="et-roadmap">
-        <div class="et-container">
-            <div class="et-section__header et-section__header--center">
-                <div class="et-badge et-badge--gold">Votre Parcours</div>
-                <h2 class="et-section__title">Le Parcours VIP<br><em>en 5 Étapes</em></h2>
-                <p class="et-section__desc">De la consultation initiale à votre installation sur le campus, nous
-                    orchestrons chaque détail.</p>
-            </div>
-
-            <div class="et-roadmap__timeline">
-                <!-- Step 1 -->
-                <div class="et-roadmap-step et-scroll-reveal">
-                    <span class="et-roadmap-step__num">Étape 01</span>
-                    <h4>Consultation Stratégique</h4>
-                    <p>Analyse de votre profil, sélection des universités cibles et définition de la stratégie de
-                        bourse.</p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="et-roadmap-step et-scroll-reveal">
-                    <span class="et-roadmap-step__num">Étape 02</span>
-                    <h4>Constitution du Dossier</h4>
-                    <p>Préparation rigoureuse de vos documents, lettres de recommandation et projet d'études VIP.</p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="et-roadmap-step et-scroll-reveal">
-                    <span class="et-roadmap-step__num">Étape 03</span>
-                    <h4>Admission & Certification</h4>
-                    <p>Dépôt sécurisé, suivi en temps réel avec les universités et réception de votre JW202 officiel.
-                    </p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="et-roadmap-step et-scroll-reveal">
-                    <span class="et-roadmap-step__num">Étape 04</span>
-                    <h4>Visa & Logistique</h4>
-                    <p>Accompagnement prioritaire pour votre Visa X1/X2 et réservation de votre logement premium.</p>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="et-roadmap-step et-scroll-reveal">
-                    <span class="et-roadmap-step__num">Étape 05</span>
-                    <h4>Départ & Immersion</h4>
-                    <p>Accueil personnalisé à l'aéroport en Chine et support complet pour votre installation finale.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== SECTION 6 — CTA ===================== -->
-    <section class="et-section et-cta" id="et-cta">
-        <div class="et-container">
-            <div class="et-cta__inner et-scroll-reveal">
-                <div class="et-cta__glow"></div>
-                <div class="et-badge et-badge--white">Prêt à commencez ?</div>
-                <h2 class="et-cta__title">Inscrivez-vous pour la prochaine<br><em>rentrée académique.</em></h2>
-
-                <a href="contact.html" class="et-btn et-btn--white et-btn--xl et-btn--glow">
-                    <i data-lucide="send"></i>
-                    Démarrer Mon Parcours
-                </a>
-
-                <div class="et-cta__indicators">
-                    <div class="et-cta-indicator">
-                        <i data-lucide="check-circle"></i>
-                        99% Taux d'Admission
-                    </div>
-                    <div class="et-cta-indicator">
-                        <i data-lucide="shield-check"></i>
-                        Partenaire Officiel
-                    </div>
-                    <div class="et-cta-indicator">
-                        <i data-lucide="award"></i>
-                        Support Elite 360°
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="et-footer">
-        <div class="et-container">
-            <div class="et-footer__grid">
-                <div class="et-footer__brand">
-                    <a href="index.html">
-                        <img src="assets/logo.png" alt="ABRSON Logo" class="et-footer__logo">
-                    </a>
-                    <p>MabrsonTrading — Votre pont de confiance vers l'excellence académique et commerciale en Chine.
-                    </p>
-                </div>
-                <div class="et-footer__col">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="transfert.html">Transfert d'argent</a></li>
-                        <li><a href="sourcing.html">Sourcing produit</a></li>
-                        <li><a href="etudes.html">Études en Chine</a></li>
-                        <li><a href="business.html">Business Setup</a></li>
-                    </ul>
-                </div>
-                <div class="et-footer__col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li><i data-lucide="message-circle"></i> WeChat: ABRSON_PRO</li>
-                        <li><i data-lucide="phone"></i> WhatsApp: +221 77 000 00 00</li>
-                        <li><i data-lucide="mail"></i> contact@abrson.com</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="et-footer__bottom">
-                <p>&copy; 2026 ABRSON. Tous droits réservés.</p>
-                <div class="et-footer__links">
-                    <a href="legal.html">Mentions légales</a>
-                    <a href="privacy.html">Politique de confidentialité</a>
-                </div>
-            </div>
+        <div class="container text-center"
+            style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+            <p>&copy; 2026 ABRSON Trading. Tous droits réservés.</p>
         </div>
     </footer>
 
     <script src="js/main.js"></script>
-    <script src="js/etudes.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>

@@ -267,6 +267,51 @@
             </footer>
     </main>
 
+    <!-- Mascot UI -->
+    <div id="virtual-mascot" class="mascot-container">
+        <div class="mascot-bubble" id="mascot-bubble">
+            <span class="close-bubble" id="close-mascot" aria-label="Close">&times;</span>
+            <p id="mascot-text">Besoin d'aide avec la Chine ? 👋</p>
+        </div>
+        <img src="assets/gif.gif" alt="Mascotte Renard" class="mascot-img" id="mascot-avatar">
+    </div>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Mascot Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const mascotBubble = document.getElementById('mascot-bubble');
+            const closeMascot = document.getElementById('close-mascot');
+            const mascotAvatar = document.getElementById('mascot-avatar');
+            const mascotText = document.getElementById('mascot-text');
+
+            const phrases = [
+                "Je peux vous aider à trouver des usines !",
+                "Saviez-vous que nous avons 600+ clients ?",
+                "Cliquez sur 'Transfert' pour simuler vos envois.",
+                "Besoin d'aide avec la Chine ? 👋"
+            ];
+
+            // Close bubble
+            if (closeMascot) {
+                closeMascot.addEventListener('click', () => {
+                    mascotBubble.style.display = 'none';
+                });
+            }
+
+            // Click avatar to show bubble with random text
+            if (mascotAvatar) {
+                mascotAvatar.addEventListener('click', () => {
+                    const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+                    mascotText.textContent = randomPhrase;
+                    mascotBubble.style.display = 'block';
+                    mascotBubble.style.animation = 'none';
+                    void mascotBubble.offsetWidth; // trigger reflow
+                    mascotBubble.style.animation = 'bubblePop 0.5s forwards';
+                });
+            }
+        });
+    </script>
     <script src="js/main.js"></script>
     <script>
         lucide.createIcons();

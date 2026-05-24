@@ -7,188 +7,312 @@
     <title>Transfert d'Argent & Paiements Chine - ABRSON</title>
     <meta name="description"
         content="Envoyez de l'argent vers la Chine en toute simplicité. Paiements fournisseurs, recharges WeChat/Alipay et taux de change compétitifs.">
-    <link rel="stylesheet" href="css/style.css">
-    <!-- GSAP & ScrollTrigger -->
-    <script src="js/vendor/gsap.min.js"></script>
-    <script src="js/vendor/ScrollTrigger.min.js"></script>
-    <!-- Lenis for Smooth Inertia Scrolling -->
-    <script src="js/vendor/lenis.min.js"></script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Lucide Icons -->
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GSAP & Vendor -->
+    <script src="js/vendor/gsap.min.js"></script>
+    <script src="js/vendor/ScrollTrigger.min.js"></script>
+    <script src="js/vendor/lenis.min.js"></script>
     <script src="js/vendor/lucide.min.js"></script>
+
     <style>
-        :root {
-            --fintech-gold: #F59E0B;
-            --fintech-gold-light: #FBBF24;
-            --fintech-violet: #8B5CF6;
-            --fintech-slate: #0F172A;
-            --fintech-text: #F8FAFC;
-        }
-
-        .transfer-page {
-            background-color: var(--fintech-slate);
-            color: var(--fintech-text);
-            font-family: 'Manrope', 'Noto Sans SC', sans-serif;
-        }
-
-        .transfer-card {
-            background: rgba(30, 41, 59, 0.7) !important;
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .transfer-card:hover {
-            border-color: var(--fintech-gold) !important;
-            transform: translateY(-5px);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--fintech-gold), #D97706) !important;
-            border: none !important;
-            color: #000 !important;
-            font-weight: 700 !important;
-            box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--fintech-gold-light), var(--fintech-gold)) !important;
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
-        }
-
-        .btn-whatsapp {
-            background: #25D366 !important;
-            color: #fff !important;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .form-group label {
-            color: var(--fintech-gold) !important;
-            font-weight: 600;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .form-group input,
-        .form-group select {
-            background: rgba(15, 23, 42, 0.8) !important;
-            border: 1px solid rgba(255, 255, 255, 0.1) !important;
-            color: #fff !important;
-            border-radius: 10px;
-            padding: 12px 15px;
-            width: 100%;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--fintech-gold) !important;
-        }
-
-        .transfer-flow {
+        /* Specific adjustments for Transfert layout to match Home theme */
+        .transfer-hero-split {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 30px;
+            gap: 50px;
+            padding-top: 160px;
+            /* Accounts for fixed header */
+            padding-bottom: 80px;
             position: relative;
+            z-index: 10;
         }
 
-        .flow-node {
-            background: var(--fintech-violet);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 2;
+        .hero-text-col {
+            flex: 1;
         }
 
-        .flow-line {
-            height: 2px;
-            background: linear-gradient(90deg, var(--fintech-violet), var(--fintech-gold));
-            flex-grow: 1;
-            margin: 0 10px;
+        .hero-form-col {
+            flex: 0 0 450px;
         }
 
-        #converted-amount,
-        #fee-amount,
-        #net-amount {
-            color: var(--fintech-gold);
-            font-size: 1.4rem;
+        /* Simulator Glass Card */
+        .simulator-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            color: var(--color-white);
         }
 
-        .result-row.total strong {
-            font-size: 2rem;
-            text-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--color-white);
         }
 
-        .trust-chip {
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 25px;
-            border-radius: 50px;
+            border-radius: var(--radius-md);
+            color: var(--color-white);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-input option {
+            background: var(--color-bg);
+            color: var(--color-text);
+        }
+
+        .btn-full {
+            width: 100%;
             display: flex;
+            justify-content: center;
+        }
+
+        /* Results Box inside Simulator */
+        .results-box {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+        }
+
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .result-row.total {
+            color: var(--color-accent);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            display: none;
+            /* hidden until conversion */
+            justify-content: center;
             align-items: center;
             gap: 10px;
+            margin-top: 20px;
+            border: none;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: scale(1.02);
+            color: white;
+        }
+
+        /* Trust Bar adjusted */
+        .trust-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            padding: 20px 40px;
+            margin-top: -30px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 20;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--color-white);
             font-weight: 500;
-            transition: all 0.3s ease;
         }
 
-        .trust-chip:hover {
+        .trust-item i {
+            color: var(--color-accent);
+        }
+
+        .trust-divider {
+            width: 1px;
+            height: 20px;
             background: rgba(255, 255, 255, 0.1);
-            border-color: var(--fintech-violet);
         }
 
-        .trust-chip i {
-            color: var(--fintech-gold);
+        /* Steps Section Grid */
+        .steps-horizontal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .step-card {
-            background: rgba(255, 255, 255, 0.02) !important;
+        .step-clean-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
-        .step-card:hover {
-            border-color: var(--fintech-violet) !important;
-            background: rgba(139, 92, 246, 0.05) !important;
+        .step-clean-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
         }
 
-        .step-num {
-            color: var(--fintech-violet) !important;
-            font-size: 2.5rem;
+        .step-icon-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .step-huge-num {
+            font-size: 3.5rem;
             font-weight: 800;
-            opacity: 0.5;
+            color: rgba(212, 175, 55, 0.2);
+            /* Gold transparent */
+            line-height: 1;
+        }
+
+        .step-clean-card h3 {
+            font-size: 1.3rem;
+            color: var(--color-white);
             margin-bottom: 10px;
         }
 
-        .hidden {
-            display: none;
+        .step-clean-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
 
-        #simulator-section {
-            scroll-margin-top: 100px;
+        /* FAQ */
+        .faq-clean-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            color: var(--color-white);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .faq-clean-item:hover {
+            color: var(--color-accent);
+        }
+
+        .stats-horizontal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-white);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .transfer-hero-split {
+                flex-direction: column;
+                padding-top: 120px;
+            }
+
+            .hero-form-col {
+                width: 100%;
+                flex: none;
+            }
+
+            .steps-horizontal-grid,
+            .detailed-services-grid .pillars-grid,
+            .stats-horizontal {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 30px;
+                border-radius: 20px;
+            }
+
+            .trust-divider {
+                width: 100%;
+                height: 1px;
+            }
         }
     </style>
 </head>
 
-<body class="premium-site transfer-page">
+<body class="cinematic-home">
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+
+    <!-- Fixed Background Layers (From theme) -->
+    <div class="fixed-bg-container">
+        <div class="bg-layer layer-1 active" style="background-image: url('assets/scenes/scene_1.png');"></div>
+        <div class="bg-overlay"
+            style="background: radial-gradient(circle at center top, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);">
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
     <header id="site-header">
         <div class="container header-content">
             <a href="index.html" class="logo">
@@ -206,329 +330,240 @@
                 </ul>
             </nav>
             <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
-            <button class="mobile-menu-toggle"><i data-lucide="menu"></i></button>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <i data-lucide="menu"></i>
+            </button>
         </div>
     </header>
 
-    <div class="vignette-layer" aria-hidden="true"></div>
-    <main>
-        <div class="liquid-layer" data-viscosity="0.6">
-            <section class="hero transfer-hero" style="min-height: 55vh;">
-                <div class="hero-slider">
-                    <div class="hero-slide active parallax-layer"
-                        style="background-image: url('assets/transfer_bg.png');">
-                    </div>
-                </div>
-                <div class="hero-overlay"></div>
-                <div class="container hero-content">
-                    <h1 class="hero-title fade-in-up">Transfert d'Argent & Paiements</h1>
-                    <p class="hero-subtitle fade-in-up delay-1">Envoyez des fonds vers la Chine en toute
-                        sécurité et à
-                        moindre coût.</p>
-                    <div class="hero-cta fade-in-up delay-2" style="margin-top: 30px; display: flex; justify-content: center;">
-                        <a href="#simulator-section" class="btn btn-primary btn-cta-pulse">Je veux convertir maintenant</a>
-                    </div>
-                </div>
-            </section>
-        </div>
+    <main id="story-container">
+        <!-- HERO SECTION -->
+        <div class="container transfer-hero-split">
 
-        <section class="transfer-trust">
-            <div class="container trust-grid">
-                <div class="trust-chip"><i data-lucide="badge-check"></i> Frais affiches avant validation</div>
-                <div class="trust-chip"><i data-lucide="bar-chart-3"></i> Taux de reference quotidien (ECB,
-                    info)</div>
-                <div class="trust-chip"><i data-lucide="message-circle"></i> Support humain jusqu'a finalisation
-                </div>
+            <div class="hero-text-col">
+                <h1 class="hero-title fade-in-up">
+                    Transfert d'Argent <br>
+                    <span class="text-gradient">vers la Chine</span>
+                </h1>
+                <p class="hero-subtitle fade-in-up"
+                    style="margin-bottom: 40px; font-size: 1.2rem; color: rgba(255,255,255,0.7); max-width: 500px;">
+                    Envoyez des fonds en toute sécurité et à moindre coût. Simulez votre envoi en temps réel.
+                </p>
             </div>
-        </section>
 
-
-        <section class="section transfer-steps">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Comment ca marche</h2>
-                    <p class="section-desc">Un parcours clair, rapide, et 100% accompagne.</p>
-                </div>
-                <div class="steps-grid">
-                    <div class="step-card">
-                        <div class="step-num">01</div>
-                        <h3>Simulation</h3>
-                        <p>Calculez votre montant en RMB et visualisez les frais.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-num">02</div>
-                        <h3>Confirmation</h3>
-                        <p>Confirmez le transfert avec un conseiller via WhatsApp.</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-num">03</div>
-                        <h3>Execution</h3>
-                        <p>Nous executons le paiement et vous suivez l'etat en direct.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="liquid-layer" data-viscosity="0.4">
-            <section id="simulator-section" class="section transfer-calculator">
-                <div class="container">
-                    <div class="section-header text-center">
-                        <h2 class="section-title">Simulateur de Transfert (RMB)</h2>
-                        <p class="section-desc">Conversion en RMB selon le taux du jour, avec frais de transfert
-                            inclus.
-                        </p>
-                    </div>
-
-                    <div class="transfer-grid">
-                        <form id="transfer-form" class="transfer-card">
-                            <div class="form-group">
-                                <label for="amount">Montant d'origine</label>
-                                <input id="amount" name="amount" type="number" min="0" step="0.01"
-                                    placeholder="Ex: 1000" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="currency-from">Devise d'origine</label>
-                                <select id="currency-from" name="currency-from"></select>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Convertir</button>
-                            <p id="rate-note" class="rate-note"></p>
-                        </form>
-
-                        <div class="transfer-card transfer-results">
-                            <div class="transfer-flow" aria-hidden="true">
-                                <span class="flow-node">Devise</span>
-                                <span class="flow-line"></span>
-                                <span class="flow-node">Conversion</span>
-                                <span class="flow-line"></span>
-                                <span class="flow-node">RMB</span>
-                            </div>
-                            <div class="result-row">
-                                <span>Montant converti</span>
-                                <strong id="converted-amount">?</strong>
-                            </div>
-                            <div class="result-row subtle">
-                                <span>Frais de transfert (7%)</span>
-                                <strong id="fee-amount">?</strong>
-                            </div>
-                            <div class="result-row total">
-                                <span>Montant final en RMB</span>
-                                <strong id="net-amount">?</strong>
-                            </div>
-                            <p class="fee-note">Frais appliques automatiquement et affiches avant validation.
-                            </p>
-                            <a id="whatsapp-btn" class="btn btn-primary btn-whatsapp hidden" href="#" target="_blank"
-                                rel="noopener">Continuer sur WhatsApp</a>
-                            <p class="discreet-note">Taux indicatif base ECB (mise a jour quotidienne).</p>
+            <div class="hero-form-col fade-in-up">
+                <div class="simulator-card">
+                    <form id="transfer-form">
+                        <div class="form-group">
+                            <label>Montant d'origine</label>
+                            <input type="number" id="amount" class="form-input" placeholder="Ex: 1000" min="1"
+                                step="0.01" required>
                         </div>
+                        <div class="form-group">
+                            <label>Devise (Currency)</label>
+                            <select id="currency-from" class="form-input">
+                                <option value="XOF">XOF - Franc CFA (BCEAO)</option>
+                                <option value="XAF">XAF - Franc CFA (BEAC)</option>
+                                <option value="EUR">EUR - Euro</option>
+                                <option value="USD">USD - Dollar US</option>
+                                <option value="MAD">MAD - Dirham Marocain</option>
+                                <option value="DZD">DZD - Dinar Algérien</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" style="width: 100%;">CONVERTIR</button>
+                        <p id="rate-info"
+                            style="font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 15px; text-align: center;">
+                        </p>
+                    </form>
+
+                    <div class="results-box">
+                        <div class="result-row">
+                            <span>Montant d'origine</span>
+                            <span id="res-amount">0.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Frais de transfert (7%)</span>
+                            <span id="res-fee">0.00</span>
+                        </div>
+                        <div class="result-row total">
+                            <span>Montant final en RMB</span>
+                            <span id="res-net">0.00 CNY</span>
+                        </div>
+
+                        <a id="whatsapp-btn" class="btn btn-primary btn-full whatsapp-btn" href="#" target="_blank">
+                            <i data-lucide="message-circle"></i> Confirmer sur WhatsApp
+                        </a>
                     </div>
                 </div>
-            </section>
+            </div>
+
         </div>
 
-        <section class="section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Solutions Financières</h2>
-                    <p class="section-desc">Des moyens de paiement fiables pour vos échanges avec la Chine.</p>
+        <!-- TRUST BAR -->
+        <div class="container">
+            <div class="trust-bar fade-in-up">
+                <div class="trust-item">
+                    <i data-lucide="shield-check"></i> frais tres competitif
                 </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="card-icon"><i data-lucide="arrow-right-left"></i></div>
-                        <h3>Transfert International</h3>
-                        <p>Envoi de fonds vers la Chine depuis n'importe quel pays avec des frais réduits.</p>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <i data-lucide="trending-up"></i> Taux officiel quotidien
+                </div>
+                <div class="trust-divider"></div>
+                <div class="trust-item">
+                    <i data-lucide="headphones"></i> Support humain 24/7
+                </div>
+            </div>
+        </div>
+
+        <!-- COMMENT CA MARCHE -->
+        <section class="scene" style="min-height: auto; padding: 60px 0;">
+            <div class="container">
+                <div class="text-block text-center fade-in-up">
+                    <h2 class="scene-title">Comment ça marche</h2>
+                </div>
+
+                <div class="steps-horizontal-grid fade-in-up">
+                    <div class="step-clean-card">
+                        <div class="step-icon-wrap">
+                            <span class="step-huge-num">01</span>
+                            <i data-lucide="calculator"
+                                style="color: var(--color-white); width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3>convertion</h3>
+                        <p>convertissez votre avec le convertisseur pour connaître le montant exact en RMB</p>
                     </div>
-                    <div class="service-card">
-                        <div class="card-icon"><i data-lucide="smartphone"></i></div>
-                        <h3>WeChat & Alipay</h3>
-                        <p>Recharge de portefeuilles électroniques et paiements directs fournisseurs.</p>
+                    <div class="step-clean-card">
+                        <div class="step-icon-wrap">
+                            <span class="step-huge-num">02</span>
+                            <i data-lucide="message-circle"
+                                style="color: var(--color-white); width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3>Confirmation</h3>
+                        <p>Validez votre demande via WhatsApp</p>
                     </div>
-                    <div class="service-card">
-                        <div class="card-icon"><i data-lucide="shield-check"></i></div>
-                        <h3>Paiement Fournisseur</h3>
-                        <p>Règlement sécurisé de vos commandes business en RMB ou USD.</p>
+                    <div class="step-clean-card">
+                        <div class="step-icon-wrap">
+                            <span class="step-huge-num">03</span>
+                            <i data-lucide="handshake"
+                                style="color: var(--color-white); width: 32px; height: 32px;"></i>
+                        </div>
+                        <h3>Exécution</h3>
+                        <p>Les fonds sont transférés immédiatement votre compte Alipay, WeChat ou bancaire</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section transfer-faq">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Questions frequentes</h2>
-                    <p class="section-desc">Transparence, taux et frais. Tout est clair avant validation.</p>
+        <!-- FOOTER INTEGRATION -->
+        <footer class="site-footer cinematic-footer" style="margin-top: 0;">
+            <div class="container footer-content">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+                    </a>
+                    <p>Votre passerelle premium vers les opportunités chinoises.</p>
                 </div>
-                <div class="faq-grid">
-                    <details class="faq-item">
-                        <summary>Le taux est-il en temps reel ?</summary>
-                        <p>Nous affichons un taux de reference quotidien a titre indicatif. Pour les
-                            conversions, le
-                            taux final depend de la validation et du canal de paiement.</p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Comment sont calcules les frais ?</summary>
-                        <p>Les frais de transfert sont fixes a 7% et affiches directement dans le simulateur.
-                        </p>
-                    </details>
-                    <details class="faq-item">
-                        <summary>Que se passe-t-il apres la simulation ?</summary>
-                        <p>Vous cliquez sur WhatsApp, un conseiller confirme les details et vous accompagne
-                            jusqu'a la
-                            finalisation.</p>
-                    </details>
+                <div class="footer-col">
+                    <h4>Services rapides</h4>
+                    <ul class="contact-list"
+                        style="list-style: none; padding: 0; gap: 10px; display: flex; flex-direction: column;">
+                        <li><a href="transfert.html" style="color: rgba(255,255,255,0.7);">Transfert d'Argent</a></li>
+                        <li><a href="sourcing.html" style="color: rgba(255,255,255,0.7);">Sourcing</a></li>
+                        <li><a href="etudes.html" style="color: rgba(255,255,255,0.7);">Études</a></li>
+                    </ul>
                 </div>
-            </div>
-        </section>
-
-        <section class="section transfer-joy-strip">
-            <div class="container joy-grid">
-                <div class="joy-card">
-                    <h3>+600 clients</h3>
-                    <p>Transferts reussis entre l'Afrique, l'Europe et la Chine.</p>
-                </div>
-                <div class="joy-card">
-                    <h3>24h-48h</h3>
-                    <p>Delais moyens de confirmation selon pays et banque.</p>
-                </div>
-                <div class="joy-card">
-                    <h3>Support humain</h3>
-                    <p>Un conseiller vous accompagne jusqu'a la finalisation.</p>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="contact-list" style="list-style: none; padding: 0;">
+                        <li><i data-lucide="message-circle"></i> WeChat: ChineAccesPro</li>
+                        <li><i data-lucide="mail"></i> contact@abrson.com</li>
+                        <li><i data-lucide="phone"></i> +86 191 9549 5220</li>
+                    </ul>
                 </div>
             </div>
-        </section>
+            <div class="container text-center"
+                style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; color: rgba(255,255,255,0.4); font-size: 0.9rem;">
+                <p>&copy; 2026 ABRSON Trading. Tous droits réservés.</p>
+            </div>
+        </footer>
     </main>
 
-    <footer class="site-footer">
-        <div class="container footer-content">
-            <div class="footer-col brand-col">
-                <a href="index.html" class="logo footer-logo"><img src="assets/logo.png" alt="ABRSON"></a>
-                <p>Expert Chine.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="transfert.html">Transfert d'Argent</a></li>
-                    <li><a href="sourcing.html">Sourcing & Achat</a></li>
-                    <li><a href="etudes.html">Études & Bourses</a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <!-- Base Scripts -->
     <script src="js/main.js"></script>
-    <script>lucide.createIcons();</script>
-
     <script>
-        (function () {
-            // New API: ExchangeRate-API (Free tier, no key for simple latest)
+        lucide.createIcons();
+
+        // Simple entry animations with GSAP (if loaded)
+        if (typeof gsap !== 'undefined') {
+            gsap.from(".fade-in-up", {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power3.out"
+            });
+        }
+
+        // Logic
+        document.addEventListener('DOMContentLoaded', () => {
             const apiBase = "https://open.er-api.com/v6/latest";
-            const currencySelect = document.getElementById('currency-from');
-            const amountInput = document.getElementById('amount');
             const form = document.getElementById('transfer-form');
-            const convertedEl = document.getElementById('converted-amount');
-            const feeEl = document.getElementById('fee-amount');
-            const netEl = document.getElementById('net-amount');
-            const rateNote = document.getElementById('rate-note');
-            const whatsappBtn = document.getElementById('whatsapp-btn');
+            const amountInput = document.getElementById('amount');
+            const currencySelect = document.getElementById('currency-from');
+
+            const resAmountEl = document.getElementById('res-amount');
+            const resFeeEl = document.getElementById('res-fee');
+            const resNetEl = document.getElementById('res-net');
+            const rateInfo = document.getElementById('rate-info');
+            const waBtn = document.getElementById('whatsapp-btn');
 
             const whatsappNumber = "+8619195495220";
 
-            // Prioritized African Currencies for traders
-            const priorityCurrencies = {
-                'XOF': 'Franc CFA (BCEAO)',
-                'XAF': 'Franc CFA (BEAC)',
-                'NGN': 'Naira nigérien',
-                'KES': 'Shilling kényan',
-                'GHS': 'Cedi ghanéen',
-                'ZAR': 'Rand sud-africain',
-                'EUR': 'Euro',
-                'USD': 'Dollar US'
-            };
-
+            // Formatters
             const fmt = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             const fmtRate = new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 4, maximumFractionDigits: 6 });
 
-            function setResult(converted, fee, net, rate, from, date) {
-                convertedEl.textContent = fmt.format(converted) + " CNY";
-                feeEl.textContent = "-" + fmt.format(fee) + " CNY";
-                netEl.textContent = fmt.format(net) + " CNY";
-                rateNote.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY (MàJ: ${date})`;
-            }
-
-            async function loadCurrencies() {
-                try {
-                    // Fetch all available metadata from EUR base
-                    const res = await fetch(`${apiBase}/EUR`);
-                    const data = await res.json();
-                    if (!data || !data.rates) throw new Error("API Error");
-
-                    const allCodes = Object.keys(data.rates).sort();
-
-                    let html = '<optgroup label="Monnaies Prioritaires (Afrique & Major)">';
-                    for (const code in priorityCurrencies) {
-                        html += `<option value="${code}">${code} - ${priorityCurrencies[code]}</option>`;
-                    }
-                    html += '</optgroup>';
-
-                    html += '<optgroup label="Toutes les Devises">';
-                    allCodes.forEach(code => {
-                        if (!priorityCurrencies[code]) {
-                            html += `<option value="${code}">${code}</option>`;
-                        }
-                    });
-                    html += '</optgroup>';
-
-                    currencySelect.innerHTML = html;
-                    currencySelect.value = 'XOF'; // Default for West Africa
-                } catch (e) {
-                    console.error("Currency load error:", e);
-                    currencySelect.innerHTML = '<option value="XOF">XOF - Franc CFA</option><option value="EUR">EUR - Euro</option>';
-                }
-            }
-
-            async function convert(e) {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const amount = parseFloat(amountInput.value || '0');
-                const from = (currencySelect.value || 'XOF').toUpperCase();
+                const amount = parseFloat(amountInput.value);
+                const from = currencySelect.value;
                 if (!amount || amount <= 0) return;
 
-                rateNote.textContent = "Récupération du taux...";
-                whatsappBtn.classList.add('hidden');
+                rateInfo.textContent = "Récupération du taux officiel...";
+                waBtn.style.display = 'none';
 
                 try {
-                    // Fetch rates relative to the selected 'from' currency
                     const res = await fetch(`${apiBase}/${from}`);
                     const data = await res.json();
-
-                    if (!data.rates || !data.rates.CNY) {
-                        throw new Error("CNY rate not found");
-                    }
+                    if (!data.rates || !data.rates.CNY) throw new Error("API rate unavailable");
 
                     const rate = data.rates.CNY;
-                    const converted = amount * rate;
-                    const fee = converted * 0.07;
-                    const net = converted - fee;
+                    const convertedCNY = amount * rate;
+                    const feeCNY = convertedCNY * 0.07;
+                    const netCNY = convertedCNY - feeCNY;
 
-                    const dateStr = new Date(data.time_last_update_unix * 1000).toLocaleDateString('fr-FR');
-                    setResult(converted, fee, net, rate, from, dateStr);
+                    resAmountEl.textContent = fmt.format(amount) + " " + from;
+                    resFeeEl.textContent = fmt.format(feeCNY) + " CNY";
+                    resNetEl.textContent = fmt.format(netCNY) + " CNY";
+                    rateInfo.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY`;
 
-                    const message = `Bonjour ABRSON, je souhaite transférer ${amount} ${from} vers la Chine.\n\n` +
-                        `• Conversion: ${fmt.format(converted)} CNY\n` +
-                        `• Frais (7%): ${fmt.format(fee)} CNY\n` +
-                        `• Net à recevoir: ${fmt.format(net)} CNY\n` +
-                        `• Taux indicatif: 1 ${from} = ${rate.toFixed(6)} CNY\n\n` +
-                        `Merci de me confirmer la procédure.`;
+                    const message = `Bonjour ABRSON, je souhaite simuler un transfert de ${amount} ${from}.\nLe simulateur indique un net de ${fmt.format(netCNY)} CNY.`;
+                    waBtn.href = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+                    waBtn.style.display = 'flex';
 
-                    const waUrl = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
-                    whatsappBtn.href = waUrl;
-                    whatsappBtn.classList.remove('hidden');
+                    // Fait scroller la page pour que le bouton soit bien visible au centre
+                    setTimeout(() => {
+                        waBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+
+
                 } catch (err) {
-                    console.error("Conversion error:", err);
-                    rateNote.textContent = "Erreur de connexion aux taux. Veuillez réessayer.";
+                    console.error(err);
+                    rateInfo.textContent = "Erreur. Veuillez réessayer plus tard.";
                 }
-            }
-
-            loadCurrencies();
-            form.addEventListener('submit', convert);
-        })();
+            });
+        });
     </script>
 </body>
 

@@ -1294,6 +1294,7 @@
             const id = document.getElementById('productId').value;
             const groupValue = document.getElementById('prodGroupSelect').value || null;
             const p = {
+                id: id || Date.now().toString(),
                 name: document.getElementById('prodName').value,
                 desc: document.getElementById('prodDesc').value,
                 price: document.getElementById('prodPrice').value,
@@ -1315,7 +1316,6 @@
                     p.images.push(...uploadedFiles);
                 }
 
-                if (!id) p.id = Date.now().toString();
                 let savedProduct = null;
                 let error = null;
                 try {

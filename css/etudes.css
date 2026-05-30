@@ -24,6 +24,10 @@
     --et-transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+html {
+    font-size: clamp(14px, 0.85vw + 8px, 16px);
+}
+
 /* --- RESET & BASE --- */
 .etudes-page {
     background-color: var(--et-midnight);

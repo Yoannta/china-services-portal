@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - ABRSON Portal</title>
+    <title>Admin Dashboard - MABRSON Portal</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -17,6 +17,10 @@
             --color-accent: #f59e0b;
             --color-text: #f8fafc;
             --radius-md: 12px;
+        }
+
+        html {
+            font-size: clamp(14px, 0.85vw + 8px, 16px);
         }
 
         * {
@@ -77,7 +81,7 @@
         /* Main Content */
         main {
             flex: 1;
-            padding: 40px;
+            padding: clamp(24px, 2.2vw, 40px);
             overflow-y: auto;
         }
 
@@ -93,12 +97,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: clamp(18px, 1.5vw, 30px);
         }
 
         .header-actions {
             display: flex;
-            gap: 15px;
+            gap: clamp(10px, 1vw, 15px);
         }
 
         h1 {
@@ -161,18 +165,22 @@
             background: var(--color-card);
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
             margin-bottom: 30px;
         }
 
         table {
             width: 100%;
+            min-width: 920px;
             border-collapse: collapse;
+            table-layout: auto;
         }
 
         th {
             text-align: left;
-            padding: 15px 20px;
+            padding: 14px 18px;
             background: rgba(255, 255, 255, 0.02);
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.8rem;
@@ -180,15 +188,17 @@
         }
 
         td {
-            padding: 15px 20px;
+            padding: 14px 18px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             vertical-align: middle;
         }
 
         .action-btns {
             display: flex;
             gap: 8px;
+            flex-wrap: nowrap;
+            min-width: max-content;
         }
 
         .action-btn {
@@ -832,12 +842,16 @@
                 <div class="form-group"><label>Description</label><textarea id="univDesc" name="desc"
                         rows="3"></textarea></div>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
-                    <div class="form-group"><label>Localisation</label><input type="text" id="univLocation" name="location" placeholder="ex: Beijing, Chine"></div>
-                    <div class="form-group"><label>World Rank</label><input type="text" id="univWorldRank" name="world_rank" placeholder="ex: QS World #57"></div>
+                    <div class="form-group"><label>Localisation</label><input type="text" id="univLocation"
+                            name="location" placeholder="ex: Beijing, Chine"></div>
+                    <div class="form-group"><label>World Rank</label><input type="text" id="univWorldRank"
+                            name="world_rank" placeholder="ex: QS World #57"></div>
                 </div>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
-                    <div class="form-group"><label>Asia Rank</label><input type="text" id="univAsiaRank" name="asia_rank" placeholder="ex: #9 en Asie"></div>
-                    <div class="form-group"><label>Points forts</label><input type="text" id="univHighlights" name="highlights" placeholder="Séparés par des virgules"></div>
+                    <div class="form-group"><label>Asia Rank</label><input type="text" id="univAsiaRank"
+                            name="asia_rank" placeholder="ex: #9 en Asie"></div>
+                    <div class="form-group"><label>Points forts</label><input type="text" id="univHighlights"
+                            name="highlights" placeholder="Séparés par des virgules"></div>
                 </div>
                 <div id="univPhotosArea" class="photo-grid"></div>
                 <div class="form-group" style="margin-top:15px;"><label>Ajouter des photos</label><input type="file"
@@ -1082,7 +1096,7 @@
             return upsertLocalById(list, row);
         }
 
-        function getImg(p) { 
+        function getImg(p) {
             if (!p) return 'https://via.placeholder.com/150';
             if (p.startsWith('http')) return p;
             if (p.startsWith('/uploads/')) {
@@ -1274,7 +1288,7 @@
             currentTempImages = [];
             modalMode = id ? 'edit' : 'add';
             document.getElementById('univModalTitle').innerText = id ? 'Modifier l\'université' : 'Nouvelle université';
-            
+
             if (id) {
                 const u = data.univ.find(x => x.id === id);
                 if (u) {
@@ -1383,7 +1397,7 @@
             currentTempImages = [];
             modalMode = id ? 'edit' : 'add';
             currentEditGroupId = groupId || null;
-            
+
             if (id) {
                 const p = data.products.find(x => x.id === id);
                 if (p) {

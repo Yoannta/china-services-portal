@@ -410,15 +410,48 @@
             const badge = document.getElementById('trackStatusBadge');
             badge.innerText = status.toUpperCase();
 
-            const isSea = trip.transport.toLowerCase().includes('maritime') || trip.transport.toLowerCase().includes('bateau');
+            const transportText = String(trip.transport || 'Aérien');
+            document.getElementById('trackTransport').innerText = transportText;
+
+            const transportLower = transportText.toLowerCase();
+            const isSea = transportLower.includes('maritime') || transportLower.includes('bateau');
+            const isRoad = transportLower.includes('camion') || transportLower.includes('truck') || transportLower.includes('route');
             const vehicleEl = document.getElementById('trackingVehicle');
-            vehicleEl.innerHTML = `<i data-lucide="${isSea ? 'ship' : 'plane'}"></i>`;
+            vehicleEl.innerHTML = `<i data-lucide="${isSea ? 'ship' : isRoad ? 'truck' : 'plane'}"></i>`;
 
-            let pos = '0%';
-            if (status === 'Addis-Abeba') pos = '50%';
-            if (status === 'Congo') pos = '100%';
+            const progressMap = {
+                'Chine': 8,
+                'Addis-Abeba': 56,
+                'Congo': 96
+            };
+            const progress = progressMap[status] ?? (status.toLowerCase().includes('transit') ? 56 : 8);
+            const visualEl = document.getElementById('trackingVisual');
+            if (visualEl) visualEl.style.setProperty('--track-progress', `${progress}%`);
 
-            vehicleEl.style.left = pos;
+            vehicleEl.style.left = `${progress}%`;
+
+            const journeyBadge = document.getElementById('trackJourneyBadge');
+            if (journeyBadge) {
+                journeyBadge.innerText = status === 'Congo' ? 'ARRIVÉE' : status === 'Addis-Abeba' ? 'TRANSIT' : 'DÉPART';
+            }
+
+            const routeTitle = document.getElementById('trackRouteTitle');
+            if (routeTitle) {
+                routeTitle.innerText = status === 'Congo'
+                    ? 'Trajet vers le Congo'
+                    : status === 'Addis-Abeba'
+                        ? 'Transit en Afrique'
+                        : 'Départ depuis la Chine';
+            }
+
+            const routeHint = document.getElementById('trackRouteHint');
+            if (routeHint) {
+                routeHint.innerText = isSea
+                    ? 'Simulation maritime légère avec suivi visuel.'
+                    : isRoad
+                        ? 'Simulation terrestre légère avec suivi visuel.'
+                        : 'Simulation aérienne légère avec suivi visuel.';
+            }
 
             document.querySelectorAll('.stop').forEach(s => {
                 s.classList.remove('active');
@@ -619,7 +652,7 @@
 
     <!-- MODAL TRACKING -->
     <div id="trackingModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 700px;">
+        <div class="modal-content" style="max-width: 430px; width: calc(100% - 12px); padding: 14px; border-radius: 14px; max-height: 84vh;">
             <button class="modal-close" onclick="closeTrackingModal()"
                 style="position: absolute; right: 20px; top: 20px;">
                 <i data-lucide="x"></i>
@@ -644,58 +677,68 @@
             </div>
 
             <div id="trackingDisplay" style="display:none;">
-                <div class="tracking-header">
-                    <div>
-                        <h2 id="trackClientName" style="margin-bottom:5px;">Chargement...</h2>
-                        <div id="trackCodeLabel" style="font-family:monospace; color:var(--et-gold-light);">CODE: -
-                        </div>
-                    </div>
-                    <div style="text-align:right;">
-                        <div id="trackStatusBadge" class="status-badge">POSITION</div>
-                    </div>
-                </div>
-
-                <div class="tracking-visual-container">
-                    <div class="tracking-line"></div>
-                    <div class="tracking-vehicle" id="trackingVehicle">
-                        <i data-lucide="plane"></i>
-                    </div>
-                    <div class="tracking-stops">
-                        <div class="stop" data-stop="Chine">
-                            <div class="stop-dot"></div>
-                            <span>Chine</span>
-                        </div>
-                        <div class="stop" data-stop="Addis-Abeba">
-                            <div class="stop-dot"></div>
-                            <span>Addis-Abeba</span>
-                        </div>
-                        <div class="stop" data-stop="Congo">
-                            <div class="stop-dot"></div>
-                            <span>Congo</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tracking-details">
-                    <div class="track-info-card">
-                        <i data-lucide="box"></i>
+                <div class="tracking-map-card">
+                    <div class="tracking-header">
                         <div>
-                            <span class="label">Colis</span>
-                            <div id="trackColisDesc">-</div>
+                            <h2 id="trackClientName" style="margin-bottom:5px;">Chargement...</h2>
+                            <div id="trackCodeLabel" style="font-family:monospace; color:var(--et-gold-light);">CODE: -
+                            </div>
+                        </div>
+                        <div style="text-align:right;">
+                            <div id="trackStatusBadge" class="status-badge">POSITION</div>
                         </div>
                     </div>
-                    <div class="track-info-card">
-                        <i data-lucide="truck"></i>
+
+                    <div class="tracking-map-top">
                         <div>
-                            <span class="label">Transport</span>
-                            <div id="trackTransport">-</div>
+                            <span class="tracking-map-kicker">Carte de suivi simulée</span>
+                            <div class="tracking-map-title" id="trackRouteTitle">Chine vers Congo</div>
+                            <div class="tracking-map-hint" id="trackRouteHint">Vue légère du trajet avec progression en
+                                temps réel.</div>
+                        </div>
+                        <div id="trackJourneyBadge" class="tracking-journey-badge">SIMULATION</div>
+                    </div>
+
+                    <div class="tracking-visual-container" id="trackingVisual">
+                        <div class="tracking-line"></div>
+                        <div class="tracking-vehicle" id="trackingVehicle">
+                            <i data-lucide="plane"></i>
+                        </div>
+                        <div class="tracking-stops">
+                            <div class="stop" data-stop="Chine">
+                                <div class="stop-dot"></div>
+                                <span>Chine</span>
+                            </div>
+                            <div class="stop" data-stop="Addis-Abeba">
+                                <div class="stop-dot"></div>
+                                <span>Addis-Abeba</span>
+                            </div>
+                            <div class="stop" data-stop="Congo">
+                                <div class="stop-dot"></div>
+                                <span>Congo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tracking-details">
+                        <div class="track-info-card">
+                            <i data-lucide="box"></i>
+                            <div>
+                                <span class="label">Colis</span>
+                                <div id="trackColisDesc">-</div>
+                            </div>
+                        </div>
+                        <div class="track-info-card">
+                            <i data-lucide="truck"></i>
+                            <div>
+                                <span class="label">Transport</span>
+                                <div id="trackTransport">-</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <button class="btn-new-search" onclick="resetTracking()">
-                    Nouvelle recherche
-                </button>
+                <button class="btn-new-search" onclick="resetTracking()">Nouvelle recherche</button>
             </div>
         </div>
     </div>

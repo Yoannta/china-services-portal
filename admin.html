@@ -1171,6 +1171,13 @@
             else saveBtn.disabled = false;
         }
 
+        function markModalChanged(modalId) {
+            hasChanges = true;
+            const saveBtn = document.querySelector(`#${modalId} button[type="submit"]`);
+            if (!saveBtn) return;
+            if (modalMode === 'edit') saveBtn.disabled = false;
+        }
+
         function renderAll() {
             renderUniv();
             renderProducts();
@@ -1672,7 +1679,7 @@
         function removeTempImg(type, imgPath) {
             currentTempImages = currentTempImages.filter(img => img !== imgPath);
             renderPhotoManager(type);
-            hasChanges = true;
+            markModalChanged(type === 'univ' ? 'univModal' : 'productModal');
         }
 
         function renderCargoPhotos() {

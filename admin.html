@@ -1487,11 +1487,9 @@
 
         // --- CARGO LOGIC ---
         function generateCargoId() {
-            const date = new Date();
-            const y = date.getFullYear().toString().slice(-2);
-            const m = String(date.getMonth() + 1).padStart(2, '0');
-            const d = String(date.getDate()).padStart(2, '0');
-            return `CRG-${y}${m}${d}-${Math.floor(1000 + Math.random() * 9000)}`;
+            return window.crypto?.randomUUID
+                ? window.crypto.randomUUID()
+                : `${Date.now().toString(16)}-${Math.random().toString(16).slice(2, 10)}-${Math.random().toString(16).slice(2, 10)}`;
         }
 
         function generateTrackingCode() {

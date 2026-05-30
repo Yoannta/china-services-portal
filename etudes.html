@@ -18,8 +18,15 @@
 
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Reusing global glassmorphism from Sourcing page logic where applicable */
 
         /* --- ETUDES HERO --- */
@@ -30,10 +37,127 @@
             background: rgba(15, 23, 42, 0.3);
             backdrop-filter: blur(8px);
             border-radius: var(--radius-lg);
-            padding: 60px 50px 100px;
+            padding: 60px 50px 80px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
             z-index: 10;
+        }
+
+        .hero-flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-text-side {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-form-side {
+            width: 380px;
+            flex-shrink: 0;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(25px);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .hero-form-side h2 {
+            font-family: 'Fraunces', serif;
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* --- UNIVERSITY SLIDER --- */
+        .univ-section-wrapper {
+            position: relative;
+            padding: 20px 0;
+            margin: 40px -20px;
+            overflow: hidden;
+        }
+
+        .univ-slider-container {
+            display: flex;
+            gap: 25px;
+            padding: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE/Edge */
+        }
+
+        .univ-slider-container::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        .univ-card {
+            min-width: 320px;
+            flex: 0 0 320px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: rgba(30, 41, 59, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+
+        .univ-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+        }
+
+        .slider-nav-btn:hover {
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .btn-prev {
+            left: 10px;
+        }
+
+        .btn-next {
+            right: 10px;
+        }
+
+        .form-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            display: block;
         }
 
         .hero-title-main {
@@ -93,31 +217,343 @@
         }
 
         /* Float badge top right of hero */
-        .expert-badge {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-            background: rgba(255, 255, 255, 0.1);
+        /* --- MODAL ELIGIBILITY --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.9);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: flex;
+            display: none;
             align-items: center;
-            gap: 12px;
-            color: #fff;
-            font-size: 0.85rem;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
         }
 
-        .expert-avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+        .modal-content {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            max-width: 440px;
+            width: 100%;
+            padding: 20px 25px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+            padding: 0;
+            visibility: hidden;
+            /* Hidden by default */
+        }
+
+        .btn-back.visible {
+            visibility: visible;
+        }
+
+        .btn-back:hover {
+            color: var(--color-accent);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            height: 100%;
             background: var(--color-accent);
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-container {
+            display: none;
+            animation: fadeInStep 0.5s ease-out;
+        }
+
+        .step-container.active {
+            display: block;
+        }
+
+        @keyframes fadeInStep {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-question {
+            font-family: 'Fraunces', serif;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .option-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn:hover {
+            background: rgba(245, 158, 11, 0.1);
+            border-color: var(--color-accent);
+        }
+
+        .input-step {
+            width: 100%;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .doc-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .doc-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .doc-num {
+            background: var(--color-accent);
+            color: #000;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
+            font-weight: 800;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .doc-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.82rem;
+            line-height: 1.2;
+        }
+
+        .doc-note {
+            display: block;
+            color: var(--color-accent);
+            font-size: 0.7rem;
+            margin-top: 1px;
+            font-weight: 600;
+        }
+
+        .sticky-actions {
+            position: relative;
+            background: none;
+            padding: 10px 0 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 100;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #fff;
+        }
+
+        .success-checkmark {
+            color: #10b981;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        /* --- UNIVERSITY DETAIL MODAL --- */
+        .univ-detail-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px);
+            display: none;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .univ-detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.7);
+        }
+
+        .detail-header {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+
+        .detail-main-img {
+            width: 350px;
+            height: 220px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .detail-info-text {
+            flex: 1;
+        }
+
+        .detail-univ-name {
+            font-family: 'Fraunces', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .detail-rankings {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .rank-tag {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .detail-desc {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .univ-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            height: 80px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .detail-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* --- FLOATING STATS OVERLAP --- */
@@ -192,33 +628,6 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
-        /* --- UNIVERSITIES GRID --- */
-        .univ-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 80px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .univ-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .univ-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
         .univ-img-wrapper {
             position: relative;
             height: 150px;
@@ -279,18 +688,6 @@
             margin-bottom: 20px;
         }
 
-        .btn-univ {
-            margin-top: auto;
-            width: 100%;
-            background: #0f172a;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .btn-univ:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         /* --- BOURSES BLOCK (Find Scholarships) --- */
         .bourse-block {
             background: linear-gradient(145deg, #0f172a, #1e293b);
@@ -331,19 +728,33 @@
             gap: 15px;
         }
 
+        .hero-form-side .bourse-select {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="none" stroke="%23ffffff" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"></path></svg>');
+        }
+
+        .hero-form-side .bourse-select:focus {
+            border-color: var(--color-accent);
+            background-color: rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+
         .bourse-select {
             width: 100%;
             appearance: none;
             background: #fff;
             border: none;
-            padding: 12px 15px;
-            border-radius: 6px;
+            padding: 15px;
+            border-radius: 12px;
             font-weight: 600;
             color: #0f172a;
             background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="none" stroke="%230f172a" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"></path></svg>');
             background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 16px;
+            background-position: right 15px center;
+            background-size: 18px;
+            transition: all 0.3s;
         }
 
         .bourse-tag {
@@ -414,10 +825,6 @@
 
         /* Responsive */
         @media(max-width: 900px) {
-            .univ-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .bourse-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
@@ -444,11 +851,23 @@
                 margin-left: 20px;
                 flex-wrap: wrap;
             }
-        }
 
-        @media(max-width: 600px) {
-            .univ-grid {
-                grid-template-columns: 1fr;
+            .hero-flex-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .hero-text-side {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-form-side {
+                width: 100%;
             }
         }
     </style>
@@ -479,6 +898,7 @@
                     <li><a href="transfert.html">Transfert</a></li>
                     <li><a href="sourcing.html">Sourcing</a></li>
                     <li><a href="etudes.html" class="active">Études</a></li>
+                    <li><a href="cargo.html">Cargo</a></li>
                     <li><a href="business.html">Business</a></li>
                     <li><a href="about.html">À propos</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -494,23 +914,30 @@
     <main class="container" style="position: relative;">
         <!-- Hero Études -->
         <div class="etudes-hero fade-in-up">
-            <div class="expert-badge hidden-mobile">
-                <div class="expert-avatar"><i data-lucide="user" size="16"></i></div>
-                <div>
-                    <strong>David TCHINDA</strong><br>
-                    <span style="opacity: 0.7; font-size: 0.7rem;">Portail Études en Chine</span>
+
+            <div class="hero-flex-container">
+                <div class="hero-text-side">
+                    <h1 class="hero-title-main">
+                        Votre Avenir Académique en Chine Commence Ici
+                    </h1>
+                    <div class="hero-actions">
+                        <a href="#universities-section" class="btn btn-gold" style="text-decoration: none;">Voir les
+                            écoles</a>
+                    </div>
                 </div>
-            </div>
 
-            <h1 class="hero-title-main">
-                Votre Avenir Académique en Chine Commence Ici
-            </h1>
-
-            <div class="hero-actions">
-                <button class="btn btn-gold">Trouver mon Université</button>
-                <button class="btn btn-outline">Réserver un Appel Expert</button>
-                <button class="btn btn-gold-outline"><i data-lucide="search" size="18"></i> Tester mon
-                    éligibilité</button>
+                <div class="hero-form-side"
+                    style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <i data-lucide="graduation-cap" size="48"
+                        style="color: var(--color-accent); margin-bottom: 20px; opacity: 0.8;"></i>
+                    <h2 style="font-size: 1.8rem; margin-bottom: 25px;">Prêt à partir ?</h2>
+                    <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px; font-size: 0.95rem;">Vérifiez votre
+                        éligibilité aux bourses chinoises en moins de 2 minutes.</p>
+                    <button class="btn btn-gold" id="openEligibilityModal"
+                        style="width: 100%; justify-content: center; padding: 18px; font-size: 1.1rem; border-radius: 15px; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);">
+                        Tester mon éligibilité
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -532,120 +959,29 @@
             </div>
         </div>
 
-        <!-- Universities Grid Section -->
-        <div class="section-header fade-in-up">
-            <h2>Universities</h2>
-            <p>Premium accès aux meilleures écoles en Chine</p>
-        </div>
-
-        <div class="univ-grid fade-in-up">
-            <!-- Univ 1 -->
-            <div class="univ-card">
-                <div class="univ-img-wrapper"
-                    style="background-image: url('assets/hero_bg_1.png'); background-size: cover; background-position: center;">
-                    <div class="univ-logo-badge">TS</div>
-                </div>
-                <div class="univ-content">
-                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
-                    <h3 class="univ-title">Tsinghua University</h3>
-                    <span class="univ-tag">Bourses Disponibles</span>
-                    <button class="btn btn-univ">Voir Détails & Bourses</button>
-                </div>
-            </div>
-
-            <!-- Univ 2 -->
-            <div class="univ-card">
-                <div class="univ-img-wrapper"
-                    style="background-image: url('assets/hero_bg_2.png'); background-size: cover; background-position: center;">
-                    <div class="univ-logo-badge">PU</div>
-                </div>
-                <div class="univ-content">
-                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
-                    <h3 class="univ-title">Peking University</h3>
-                    <span class="univ-tag">Bourses Disponibles</span>
-                    <button class="btn btn-univ">Voir Détails & Bourses</button>
-                </div>
-            </div>
-
-            <!-- Univ 3 -->
-            <div class="univ-card">
-                <div class="univ-img-wrapper"
-                    style="background-image: url('assets/transfer_bg.png'); background-size: cover; background-position: center;">
-                    <div class="univ-logo-badge">FU</div>
-                </div>
-                <div class="univ-content">
-                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
-                    <h3 class="univ-title">Fudan University</h3>
-                    <span class="univ-tag">Bourses Disponibles</span>
-                    <button class="btn btn-univ">Voir Détails & Bourses</button>
-                </div>
-            </div>
-
-            <!-- Univ 4 -->
-            <div class="univ-card">
-                <div class="univ-img-wrapper"
-                    style="background-image: url('assets/etudes_hero.png'); background-size: cover; background-position: center;">
-                    <div class="univ-logo-badge">ZU</div>
-                </div>
-                <div class="univ-content">
-                    <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> Rang Mondial, Top 20</p>
-                    <h3 class="univ-title">Zhejiang University</h3>
-                    <span class="univ-tag">Bourses Disponibles</span>
-                    <button class="btn btn-univ">Voir Détails & Bourses</button>
-                </div>
+        <!-- Universities Slider Section -->
+        <div id="universities-section" class="section-header fade-in-up"
+            style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 50px;">
+            <div>
+                <h2>Universités Partenaires</h2>
+                <p>Découvrez les établissements les plus prestigieux de Chine</p>
             </div>
         </div>
 
-        <!-- Block: Trouver des Bourses -->
-        <div class="bourse-block fade-in-up">
-            <h2>Trouver des Bourses</h2>
-            <div class="bourse-grid">
-                <div class="bourse-col">
-                    <h4>Niveau d'Études</h4>
-                    <div class="select-list">
-                        <select class="bourse-select">
-                            <option>Licence</option>
-                        </select>
-                        <select class="bourse-select">
-                            <option>Master</option>
-                        </select>
-                        <select class="bourse-select">
-                            <option>Doctorat</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="bourse-col">
-                    <h4>Estimation de Bourse</h4>
-                    <div class="select-list">
-                        <div class="bourse-tag">CSC Bourse Complète</div>
-                        <div class="bourse-tag" style="opacity: 0.8;">Bourse Provinciale</div>
-                        <div class="bourse-tag" style="opacity: 0.8;">Bourse Universitaire</div>
-                    </div>
-                </div>
+        <div class="univ-section-wrapper fade-in-up">
+            <button class="slider-nav-btn btn-prev" onclick="scrollSlider(-1)"><i
+                    data-lucide="chevron-left"></i></button>
+            <button class="slider-nav-btn btn-next" onclick="scrollSlider(1)"><i
+                    data-lucide="chevron-right"></i></button>
+
+            <div class="univ-slider-container" id="univSlider">
+                <!-- Data will be injected here via API -->
             </div>
-            <button class="btn btn-gold"
-                style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 15px;"><i
-                    data-lucide="search"></i> Tester mon éligibilité</button>
+
+        </div>
         </div>
 
-        <!-- Block: Contact Form -->
-        <div class="contact-form-block fade-in-up">
-            <h2>Prêt à Réaliser Vos Rêves ?</h2>
-            <form action="#">
-                <div class="contact-grid">
-                    <input type="text" placeholder="Nom" class="contact-input">
-                    <input type="email" placeholder="Email" class="contact-input">
-                    <input type="tel" placeholder="Téléphone" class="contact-input full-width">
-                </div>
-                <button type="submit" class="btn btn-gold"
-                    style="width: 100%; justify-content: center; font-size: 1rem; padding: 15px; margin-top: 10px;">Demander
-                    une Consultation Gratuite</button>
 
-                <a href="https://wa.me/8619195495220" class="wa-link">
-                    <i data-lucide="message-circle" size="18"></i> ou Contactez-nous sur WhatsApp
-                </a>
-            </form>
-        </div>
     </main>
 
     <!-- Global Footer -->
@@ -681,9 +1017,612 @@
         </div>
     </footer>
 
+    <!-- Eligibility Modal -->
+    <div id="eligibilityModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-controls">
+                <button id="prevStepBtn" class="btn-back" onclick="prevStep()"><i data-lucide="arrow-left"
+                        size="14"></i> Retour</button>
+                <button class="modal-close" id="closeEligibilityModal" style="position: static;"><i
+                        data-lucide="x"></i></button>
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div id="stepsContainer">
+                <!-- Step 1 -->
+                <div class="step-container active" data-step="1">
+                    <h3 class="modal-question">Est-ce que vous êtes réellement intéressé(e) à postuler pour étudier en
+                        Chine ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Oui')">Oui</button>
+                        <button class="option-btn" onclick="nextStep('Non')">Non</button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-container" data-step="2">
+                    <h3 class="modal-question">Quel est votre âge ?</h3>
+                    <input type="number" id="ageInput" class="input-step" placeholder="Ex: 22">
+                    <button class="btn btn-gold" style="width:100%; justify-content:center;"
+                        onclick="nextStep()">Continuer</button>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-container" data-step="3">
+                    <h3 class="modal-question">Quelle filière souhaitez-vous étudier ?</h3>
+                    <input type="text" id="filiereInput" class="input-step" placeholder="Ex: Médecine, Commerce...">
+                    <button class="btn btn-gold" style="width:100%; justify-content:center;"
+                        onclick="nextStep()">Continuer</button>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-container" data-step="4">
+                    <h3 class="modal-question">Quel est votre dernier diplôme obtenu ?</h3>
+                    <input type="text" id="diplomeInput" class="input-step" placeholder="Ex: Baccalauréat, Licence...">
+                    <button class="btn btn-gold" style="width:100%; justify-content:center;"
+                        onclick="nextStep()">Continuer</button>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-container" data-step="5">
+                    <h3 class="modal-question">Avez-vous déjà un passeport valide ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Oui')">Oui</button>
+                        <button class="option-btn" onclick="nextStep('Non')">Non</button>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-container" data-step="6">
+                    <h3 class="modal-question">Quel est votre niveau en anglais ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Débutant')">Débutant</button>
+                        <button class="option-btn" onclick="nextStep('Moyen')">Moyen</button>
+                        <button class="option-btn" onclick="nextStep('Bon')">Bon</button>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div class="step-container" data-step="7">
+                    <h3 class="modal-question">Pensez-vous pouvoir vous adapter à un programme en anglais ou en chinois
+                        ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Oui')">Oui</button>
+                        <button class="option-btn" onclick="nextStep('Non')">Non</button>
+                    </div>
+                </div>
+
+                <!-- Step 8 -->
+                <div class="step-container" data-step="8">
+                    <h3 class="modal-question" style="margin-bottom: 10px;">Êtes-vous en mesure de payer les frais de
+                        procédure ?</h3>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 1rem; margin-bottom: 25px; font-weight: 600;">
+                        (177$ à l'inscription et 1400$ après admission)</p>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Oui')">Oui, je suis prêt(e)</button>
+                        <button class="option-btn" onclick="nextStep('Non')">Non, pas pour le moment</button>
+                    </div>
+                </div>
+
+                <!-- Step 9 -->
+                <div class="step-container" data-step="9">
+                    <h3 class="modal-question">Dans quel pays vivez-vous actuellement ?</h3>
+                    <input type="text" id="paysInput" class="input-step" placeholder="Ex: Cameroun, Côte d'Ivoire...">
+                    <button class="btn btn-gold" style="width:100%; justify-content:center;"
+                        onclick="startAnalysis()">Vérifier mon admissibilité</button>
+                </div>
+
+                <!-- Analysis Step (Hidden initially) -->
+                <div class="step-container" id="analysisStep">
+                    <h3 class="modal-question" style="text-align: center;">Analyse de votre profil en cours...</h3>
+                    <div class="progress-container" style="height: 12px; margin-top: 30px;">
+                        <div id="analysisBar" class="progress-bar" style="width: 0%; background: var(--color-accent);">
+                        </div>
+                    </div>
+                    <p id="analysisStatus"
+                        style="text-align: center; color: rgba(255,255,255,0.6); margin-top: 15px; font-size: 0.9rem;">
+                        Vérification des critères d'admissibilité...
+                    </p>
+                </div>
+
+                <!-- Final Success Step -->
+                <div class="step-container" id="successStep">
+                    <div class="success-checkmark" style="text-align: center; margin-bottom: 20px; color: #10b981;">
+                        <i data-lucide="party-popper" size="64"></i>
+                    </div>
+                    <h3 class="modal-question" style="text-align: center; font-size: 1.8rem; color: #10b981;">
+                        Félicitations !</h3>
+                    <p id="successMessage"
+                        style="color: rgba(255,255,255,0.8); text-align: center; margin-bottom: 30px; font-size: 1.1rem; line-height: 1.5;">
+                        Vous êtes éligible pour des écoles avec la filière <strong id="resultFiliere"
+                            style="color: var(--color-accent);"></strong> en Chine.
+                    </p>
+                    <button class="btn btn-gold" style="width:100%; justify-content:center; padding: 18px;"
+                        onclick="showDocumentsView()">
+                        Voir la liste des documents à fournir
+                    </button>
+                </div>
+
+                <!-- Documents List Step (Hidden initially) -->
+                <div class="step-container" id="documentsStep" style="flex: 1; display: none; flex-direction: column;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h3 class="modal-question" style="margin: 0;">Documents à fournir</h3>
+                        <button onclick="downloadDocList()" title="Télécharger la liste"
+                            style="background:none; border:none; color: var(--color-accent); cursor:pointer;">
+                            <i data-lucide="download" size="20"></i>
+                        </button>
+                    </div>
+
+                    <p style="color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 15px;">
+                        Veuillez préparer les documents suivants pour votre candidature (Septembre 2026) :
+                    </p>
+
+                    <ul class="doc-list">
+                        <li class="doc-item">
+                            <span class="doc-num">1</span>
+                            <div class="doc-text">Passeport valide</div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">2</span>
+                            <div class="doc-text">Diplôme du Baccalauréat et Licence</div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">3</span>
+                            <div class="doc-text">Relevé de notes du Baccalauréat et Licence</div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">4</span>
+                            <div class="doc-text">Casier judiciaire <span class="doc-note">*Doit être traduit</span>
+                            </div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">5</span>
+                            <div class="doc-text">Examen médical <span class="doc-note">Notre agence vous enverra le
+                                    formulaire officiel</span></div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">6</span>
+                            <div class="doc-text">Plan d’étude (Study Plan) <span class="doc-note">Notre agence s’occupe
+                                    de la rédaction</span></div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">7</span>
+                            <div class="doc-text">Lettre de recommandation <span class="doc-note">Nous vous enverrons un
+                                    modèle</span></div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">8</span>
+                            <div class="doc-text">Formulaire de candidature <span class="doc-note">Nous l'enverrons à
+                                    remplir</span></div>
+                        </li>
+                        <li class="doc-item">
+                            <span class="doc-num">9</span>
+                            <div class="doc-text">Relevé bancaire (min. 3800 USD / ±2.28M FCFA) <span
+                                    class="doc-note">Preuve de capacité financière</span></div>
+                        </li>
+                        <div
+                            style="background: rgba(245, 158, 11, 0.1); border: 1px dashed var(--color-accent); padding: 15px; border-radius: 12px; margin-top: 20px;">
+                            <p style="font-size: 0.85rem; color: #fff; margin-bottom: 5px;">📍 <strong>Note sur la
+                                    traduction :</strong></p>
+                            <p style="font-size: 0.8rem; color: rgba(255,255,255,0.7);">Si vous n'avez pas encore la
+                                traduction anglaise, nous proposons un service à 25 USD (±15 000 FCFA) par document.</p>
+                        </div>
+                    </ul>
+
+                    <div class="sticky-actions">
+                        <button class="btn btn-gold" onclick="sendCustomWhatsApp('ready')"
+                            style="background-color: #10b981; border: none; padding: 12px; font-size: 0.9rem;">
+                            J'AI TOUS LES DOCUMENTS, JE SUIS PRÊT DÉSORMAIS
+                        </button>
+                        <button class="btn" onclick="sendCustomWhatsApp('help')"
+                            style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.2); padding: 12px; font-size: 0.85rem;">
+                            VOUS N'AVEZ PAS ENCORE TOUT ? ON VOUS AIDE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- University Detail Modal -->
+    <div id="univDetailModal" class="univ-detail-overlay" onclick="if(event.target==this) closeUnivDetail()">
+        <div class="univ-detail-content">
+            <button class="detail-close" onclick="closeUnivDetail()"><i data-lucide="x"></i></button>
+            <div class="detail-header">
+                <img id="detailMainImg" class="detail-main-img" src="" alt="Univ" referrerpolicy="no-referrer">
+                <div class="detail-info-text">
+                    <h2 id="detailName" class="detail-univ-name"></h2>
+                    <div class="detail-rankings">
+                        <span id="detailWorldRank" class="rank-tag"></span>
+                        <span id="detailAsiaRank" class="rank-tag"></span>
+                    </div>
+                    <p id="detailDesc" class="detail-desc"></p>
+                    <div id="detailHighlights" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <!-- Highlights populated by JS -->
+                    </div>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                <h4 style="color: #fff; margin-bottom: 15px; font-size: 1.1rem;">Galerie du Campus</h4>
+                <div id="detailGallery" class="univ-gallery">
+                    <!-- Gallery populated by JS -->
+                </div>
+            </div>
+            <div style="margin-top: 25px; text-align: center;">
+                <button class="btn btn-gold" style="padding: 12px 35px; font-size: 1rem;"
+                    onclick="closeUnivDetail(); document.getElementById('openEligibilityModal').click();">
+                    Contactez-nous
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/main.js"></script>
     <script>
         lucide.createIcons();
+
+        // University Data
+        let allUniversities = [];
+        const SB_URL = 'https://afqmlatvphijcdqirrny.supabase.co';
+        const SB_KEY = 'sb_publishable_n4kbzZ-YfO3RdHq99zjaJQ_gCFEQtH3';
+        const sbClient = window.supabase.createClient(SB_URL, SB_KEY);
+        const normalizeUniversity = (u) => ({
+            ...u,
+            world_rank: u?.world_rank || u?.worldRank || null,
+            asia_rank: u?.asia_rank || u?.asiaRank || null,
+            location: u?.location || 'Chine',
+            highlights: Array.isArray(u?.highlights) ? u.highlights : (u?.highlights ? [u.highlights] : [])
+        });
+
+        async function fetchUniversities() {
+            try {
+                const { data, error } = await sbClient.from('universities').select('*').order('name');
+                if (error) throw error;
+                allUniversities = (data || []).map(normalizeUniversity);
+                renderUniversities();
+            } catch (err) {
+                console.error("Impossible de charger les universités depuis Supabase.", err);
+            }
+        }
+
+        function getFullImgPath(path) {
+            if (!path) return 'https://via.placeholder.com/800x600?text=ABRSON';
+            if (path.startsWith('http')) return path;
+            if (path.startsWith('/uploads/')) return path;
+            if (path.startsWith('uploads/')) return `/${path}`;
+            return `${SB_URL}/storage/v1/object/public/uploads/${path}`;
+        }
+
+        function renderUniversities() {
+            const container = document.getElementById('univSlider');
+            if (!container) return;
+
+            container.innerHTML = allUniversities.map(u => `
+                <div class="univ-card" onclick="openUnivDetail('${u.id}')">
+                    <div class="univ-img-wrapper">
+                        <img src="${getFullImgPath(u.images ? u.images[0] : null)}"
+                            alt="${u.name}" referrerpolicy="no-referrer"
+                            style="width:100%; height:100%; object-fit:cover;">
+                        <div class="univ-logo-badge">${u.name.substring(0, 2).toUpperCase()}</div>
+                    </div>
+                    <div class="univ-content">
+                        <p class="univ-loc"><i data-lucide="map-pin" size="14"></i> ${u.location || 'Chine'}</p>
+                        <h3 class="univ-title">${u.name}</h3>
+                        <span class="univ-tag">${u.world_rank || 'Partenaire Officiel'}</span>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function openUnivDetail(id) {
+            const data = allUniversities.find(u => u.id === id);
+            if (!data) return;
+
+            document.getElementById('detailName').innerText = data.name;
+            document.getElementById('detailWorldRank').innerText = data.world_rank || "Certification ABRSON";
+            document.getElementById('detailWorldRank').style.display = data.world_rank ? 'inline-block' : 'none';
+            document.getElementById('detailAsiaRank').innerText = data.asia_rank || "";
+            document.getElementById('detailAsiaRank').style.display = data.asia_rank ? 'inline-block' : 'none';
+
+            document.getElementById('detailDesc').innerText = data.desc;
+            document.getElementById('detailMainImg').src = getFullImgPath(data.images ? data.images[0] : null);
+
+            const highlightsEl = document.getElementById('detailHighlights');
+            highlightsEl.innerHTML = (data.highlights || []).map(h => `<div style="color: rgba(255,255,255,0.8); font-size: 0.9rem; display: flex; align-items: center; gap: 8px;"><i data-lucide="check" size="14" color="#f59e0b"></i> ${h}</div>`).join('');
+
+            const galleryEl = document.getElementById('detailGallery');
+            galleryEl.innerHTML = (data.images || []).map(img => `<div class="gallery-item" onclick="document.getElementById('detailMainImg').src='${getFullImgPath(img)}'"><img src="${getFullImgPath(img)}" alt="Campus" referrerpolicy="no-referrer"></div>`).join('');
+
+            document.getElementById('univDetailModal').style.display = 'block';
+            lucide.createIcons();
+        }
+
+        function closeUnivDetail() {
+            document.getElementById('univDetailModal').style.display = 'none';
+        }
+
+        function scrollSlider(direction) {
+            const slider = document.getElementById('univSlider');
+            const scrollAmount = 350; // Approximative width of card + gap
+            slider.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        }
+
+        // Initial fetch
+        fetchUniversities();
+
+        // Existing Modal Logic
+        const modal = document.getElementById('eligibilityModal');
+        const openBtn = document.getElementById('openEligibilityModal');
+        const closeBtn = document.getElementById('closeEligibilityModal');
+        let currentStep = 1;
+        const totalSteps = 9;
+        const answers = {};
+
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                updateProgress();
+            });
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+        window.onclick = (event) => {
+            if (event.target == modal) closeModal();
+            if (event.target == document.getElementById('univDetailModal')) closeUnivDetail();
+        };
+
+        function closeModal() {
+            modal.style.display = 'none';
+            // We DON'T reset the modal state here to keep it in localStorage if the user reopens it.
+        }
+
+        function forceResetModal() {
+            localStorage.removeItem('eligReq_step');
+            localStorage.removeItem('eligReq_answers');
+            resetModal();
+        }
+
+        function resetModal() {
+            currentStep = 1;
+            document.querySelectorAll('.step-container').forEach(step => {
+                step.classList.remove('active');
+                step.style.display = 'none';
+            });
+            document.querySelector('[data-step="1"]').classList.add('active');
+            document.querySelector('[data-step="1"]').style.display = 'block';
+            document.getElementById('analysisBar').style.width = '0%';
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('progressBar').style.background = 'var(--color-accent)';
+            updateProgress();
+        }
+
+        function nextStep(answer) {
+            if (answer) answers[currentStep] = answer;
+
+            if (currentStep === 2) {
+                const val = document.getElementById('ageInput').value;
+                if (!val) return;
+                answers.age = val;
+            }
+            if (currentStep === 3) {
+                const val = document.getElementById('filiereInput').value;
+                if (!val) return;
+                answers.filiere = val;
+            }
+            if (currentStep === 4) {
+                const val = document.getElementById('diplomeInput').value;
+                if (!val) return;
+                answers.diplome = val;
+            }
+
+            // Save to localStorage
+            localStorage.setItem('eligReq_step', currentStep + 1);
+            localStorage.setItem('eligReq_answers', JSON.stringify(answers));
+
+            if (currentStep < totalSteps) {
+                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+                currentStep++;
+                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
+                updateProgress();
+            }
+        }
+
+        function prevStep() {
+            // Hide result screens if they were visible
+            if (document.getElementById('analysisStep')) document.getElementById('analysisStep').style.display = 'none';
+            if (document.getElementById('successStep')) document.getElementById('successStep').style.display = 'none';
+            if (document.getElementById('documentsStep')) document.getElementById('documentsStep').style.display = 'none';
+
+            if (currentStep > 1) {
+                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+                currentStep--;
+                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
+                updateProgress();
+
+                // Update localStorage
+                localStorage.setItem('eligReq_step', currentStep);
+            }
+        }
+
+        function updateProgress() {
+            const bar = document.getElementById('progressBar');
+            const perc = (currentStep / totalSteps) * 100;
+            bar.style.width = perc + '%';
+
+            // Show/Hide back button
+            const backBtn = document.getElementById('prevStepBtn');
+            if (currentStep > 1 && currentStep <= totalSteps) {
+                backBtn.classList.add('visible');
+            } else {
+                backBtn.classList.remove('visible');
+            }
+        }
+
+        function startAnalysis() {
+            const pays = document.getElementById('paysInput').value;
+            if (!pays) return;
+            answers[9] = pays;
+
+            // Transition to Analysis
+            document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+            document.getElementById('analysisStep').classList.add('active');
+
+            let progress = 0;
+            const bar = document.getElementById('analysisBar');
+            const statusText = document.getElementById('analysisStatus');
+            const stages = [
+                "Recherche d'établissements compatibles...",
+                "Vérification des quotas de bourses 2026...",
+                "Analyse des prérequis académiques...",
+                "Finalisation du diagnostic..."
+            ];
+
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+
+                bar.style.width = progress + '%';
+
+                if (progress < 30) statusText.innerText = stages[0];
+                else if (progress < 60) statusText.innerText = stages[1];
+                else if (progress < 85) statusText.innerText = stages[2];
+                else statusText.innerText = stages[3];
+
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(showFinalResult, 500);
+                }
+            }, 400);
+        }
+
+        function showFinalResult(triggerConfetti = true) {
+            document.getElementById('analysisStep').classList.remove('active');
+            document.getElementById('analysisStep').style.display = 'none';
+            document.getElementById('successStep').style.display = 'block';
+            document.getElementById('resultFiliere').innerText = answers.filiere || "votre filière";
+
+            // Persist success state
+            localStorage.setItem('eligReq_step', 'success');
+
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('progressBar').style.background = '#10b981';
+
+            // Confetti Effect - Only trigger if requested (prevents loop on page reload)
+            if (triggerConfetti) {
+                const duration = 3 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 2000 };
+
+                function randomInRange(min, max) { return Math.random() * (max - min) + min; }
+
+                const interval = setInterval(function () {
+                    const timeLeft = animationEnd - Date.now();
+                    if (timeLeft <= 0) return clearInterval(interval);
+
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: 0.6 } }));
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: 0.6 } }));
+                }, 250);
+            }
+
+            lucide.createIcons();
+        }
+
+        function showDocumentsView() {
+            document.getElementById('successStep').style.display = 'none';
+            document.getElementById('documentsStep').style.display = 'block';
+            localStorage.setItem('eligReq_step', 'documents');
+            // Reset scroll for the list
+            document.querySelector('.doc-list').scrollTop = 0;
+            lucide.createIcons();
+        }
+
+        function downloadDocList() {
+            const listText = `LISTE DES DOCUMENTS - ÉTUDES EN CHINE (ABRSON TRADING)
+
+1. Passeport valide
+2. Diplôme du Baccalauréat et Licence
+3. Relevé de notes du Baccalauréat et Licence
+4. Casier judiciaire (Traduit en anglais)
+5. Examen médical (Formulaire officiel à demander)
+6. Plan d’étude (Study Plan) - Nous le rédigeons
+7. Lettre de recommandation - Modèle fourni
+8. Formulaire de candidature
+9. Relevé bancaire (min. 3800 USD)
+
+Contact WhatsApp : +86 191 9549 5220
+Site : abrson.com`;
+
+            const blob = new Blob([listText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'documents_chine_2026.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Initialize state from localStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedStep = localStorage.getItem('eligReq_step');
+            const savedAnswers = localStorage.getItem('eligReq_answers');
+
+            if (savedAnswers) {
+                Object.assign(answers, JSON.parse(savedAnswers));
+                // Pre-fill inputs
+                if (answers.age) document.getElementById('ageInput').value = answers.age;
+                if (answers.filiere) document.getElementById('filiereInput').value = answers.filiere;
+                if (answers.diplome) document.getElementById('diplomeInput').value = answers.diplome;
+                if (answers[9]) document.getElementById('paysInput').value = answers[9];
+            }
+
+            if (savedStep) {
+                if (savedStep === 'success') {
+                    // Start in success view (no confetti on reload)
+                    document.querySelector('[data-step="1"]').classList.remove('active');
+                    document.querySelector('[data-step="1"]').style.display = 'none';
+                    showFinalResult(false);
+                } else if (savedStep === 'documents') {
+                    document.querySelector('[data-step="1"]').classList.remove('active');
+                    document.querySelector('[data-step="1"]').style.display = 'none';
+                    showDocumentsView();
+                } else {
+                    currentStep = parseInt(savedStep);
+                    document.querySelector('[data-step="1"]').classList.remove('active');
+                    document.querySelector('[data-step="1"]').style.display = 'none';
+                    document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                    document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
+                    updateProgress();
+                }
+            }
+        });
+
+        function sendCustomWhatsApp(type) {
+            const phone = "8619195495220";
+            let msg = `Bonjour ABRSON, j'ai passé le test d'éligibilité pour les études en Chine.\n\n`;
+            msg += `Profil : ${answers.age} ans, Filière ${answers.filiere}, Diplôme : ${answers.diplome}.\n`;
+
+            if (type === 'ready') {
+                msg += `👉 JE SUIS PRÊT : J'ai déjà réuni tous les documents de la liste (Passeport, Diplômes, Relevés, etc.) et je souhaite lancer mon dossier.`;
+            } else {
+                msg += `👉 BESOIN D'AIDE : J'ai consulté la liste des documents mais j'ai besoin de votre aide et d'un suivi (Traduction, Study Plan, etc.) pour certains d'entre eux.`;
+            }
+
+            const encodedMsg = encodeURIComponent(msg);
+            window.location.href = `https://wa.me/${phone}?text=${encodedMsg}`;
+        }
     </script>
 </body>
 

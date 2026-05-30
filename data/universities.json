@@ -1,0 +1,62 @@
+[
+    {
+        "id": "ustc",
+        "name": "Univ. of Sci & Tech of China",
+        "location": "Hefei, Chine",
+        "worldRank": "QS World #57",
+        "asiaRank": "#9 en Asie",
+        "desc": "Considérée par certains comme la 'Caltech de la Chine', l'USTC se concentre sur les sciences fondamentales.",
+        "highlights": [],
+        "images": [
+            "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop"
+        ]
+    },
+    {
+        "id": "1779722863648",
+        "name": "Tsinghua University — Beijing",
+        "desc": "Très réputée en ingénierie, informatique, IA et business. Campus moderne et immense.",
+        "highlights": [
+            "Nouvel établissement",
+            "Bourse disponible"
+        ],
+        "images": [
+            "/uploads/1779722863637-WhatsApp Image 2026-05-25 at 2.44.57 PM.jpeg",
+            "/uploads/1779722863641-WhatsApp Image 2026-05-25 at 2.44.58 PM.jpeg",
+            "/uploads/1779722863643-WhatsApp Image 2026-05-25 at 2.44.59 PM.jpeg",
+            "/uploads/1779722863645-WhatsApp Image 2026-05-25 at 2.44.59 PM (1).jpeg"
+        ]
+    },
+    {
+        "id": "1779724306068",
+        "name": "Xi’an Jiaotong University",
+        "desc": "Xi’an Jiaotong University is a major public research university in Xi’an, Shaanxi Province, China. It is one of the oldest and most prestigious universities in the country, renowned for engineering, management, and medical education. The university plays a leading role in the national “Double First Class” and former “Project 985” and “Project 211” initiatives",
+        "highlights": [
+            "Partenaire ABRSON",
+            "Bourse disponible"
+        ],
+        "images": [
+            "/uploads/1779725022945-WhatsApp Image 2026-05-25 at 2.57.04 PM (1).jpeg",
+            "/uploads/1779725022946-WhatsApp Image 2026-05-25 at 2.57.04 PM (2).jpeg",
+            "/uploads/1779725022947-WhatsApp Image 2026-05-25 at 2.57.05 PM.jpeg",
+            "/uploads/1779725022948-WhatsApp Image 2026-05-25 at 2.57.05 PM (1).jpeg",
+            "/uploads/1779725022949-WhatsApp Image 2026-05-25 at 2.57.05 PM (2).jpeg",
+            "/uploads/1779725022950-WhatsApp Image 2026-05-25 at 2.57.06 PM.jpeg"
+        ]
+    },
+    {
+        "id": "1779781509598",
+        "name": "Zhejiang University",
+        "desc": "Zhejiang University (ZJU) is a leading comprehensive public research university located in Hangzhou, China. It is one of China’s oldest and most prestigious higher education institutions, renowned for its rigorous academic standards, innovation, and interdisciplinary research strength.",
+        "highlights": [
+            "Partenaire ABRSON",
+            "Bourse disponible"
+        ],
+        "images": [
+            "/uploads/1779781509577-WhatsApp Image 2026-05-25 at 2.54.24 PM (1).jpeg",
+            "/uploads/1779781509582-WhatsApp Image 2026-05-25 at 2.54.24 PM (2).jpeg",
+            "/uploads/1779781509590-WhatsApp Image 2026-05-25 at 2.54.25 PM.jpeg",
+            "/uploads/1779781509592-WhatsApp Image 2026-05-25 at 2.54.25 PM (1).jpeg",
+            "/uploads/1779781509592-WhatsApp Image 2026-05-25 at 2.54.25 PM (2).jpeg"
+        ]
+    }
+]

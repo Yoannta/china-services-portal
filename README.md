@@ -12,13 +12,15 @@ china-services-portal/
 ├── etudes.html             ← Études en Chine (refonte complète)
 ├── transfert.html          ← Transfert d'argent
 ├── sourcing.html           ← Sourcing produit
+├── cargo.html              ← Cargo / Logistique (nouveau)
 ├── business.html           ← Business Setup
 ├── about.html              ← À propos
 ├── contact.html            ← Contact (Conciergerie Premium)
 │
 ├── css/
 │   ├── style.css           ← Styles globaux (cinematic system)
-│   └── etudes.css          ← Styles exclusifs page Études (namespace 'et-')
+│   ├── etudes.css          ← Styles exclusifs page Études (namespace 'et-')
+│   └── cargo.css           ← Styles exclusifs page Cargo (namespace 'et-' partagé)
 │
 ├── js/
 │   ├── main.js             ← Logique globale (GSAP, Lenis, Lucide, guards)
@@ -32,6 +34,7 @@ china-services-portal/
 └── assets/
     ├── logo.png
     ├── etudes_hero.png     ← Image hero générée par IA (campus universitaire)
+    ├── cargo_hero.png      ← Image hero page Cargo (container ship)
     ├── hero_bg_*.png
     ├── student_group.png
     ├── student_grad.png
@@ -53,6 +56,7 @@ china-services-portal/
 | Fond secondaire | Midnight Sec | `#161B27` |
 | Accent principal | China Red | `#C41E3A` |
 | Accent luxe | Liquid Gold | `#D4AF37` |
+| Accent luxe clair | Gold Light | `#F1D279` |
 | Texte principal | White | `#FFFFFF` |
 | Texte secondaire | Silver | `#94A3B8` |
 
@@ -99,6 +103,79 @@ Suite à la revue de direction et aux optimisations de mise en page, les métriq
 ---
 
 ## 📋 Historique des modifications
+
+### 🚢 Session Cargo — Création & Finalisation (29-30/05/2026)
+
+#### 📄 Nouveaux fichiers créés
+
+- **`cargo.html`** — Page Logistique / Cargo complète
+- **`css/cargo.css`** — Feuille de style dédiée (design system partagé avec namespace `et-`)
+
+#### 🎨 Design & Interface
+
+- **Hero Section** : Layout deux colonnes (texte à gauche, carte CTA à droite) aligné sur le modèle de `etudes.html` (`.hero-form-side`, 380px, padding 40px/30px, border-radius 24px)
+- **Palette unifiée** : Synchronisation complète avec le thème Midnight/Gold du site — ajout de `--et-gold-light: #F1D279` dans `cargo.css` pour harmoniser les jaunes avec les autres pages
+- **Bouton CTA** (`Je veux envoyer un colis`) : Police réduite à `0.85rem`, `white-space: nowrap`, gap optimisé pour tenir sur une seule ligne
+- **Stats flottantes** : Bande de statistiques en overlap sur le hero (même logique que `etudes.html`)
+- **Grille de services** : 3 colonnes de cartes glassmorphiques avec hover doré
+- **Bouton "Nous contacter"** : Converti de lien `<a>` en `<button>` avec même déclencheur que le bouton principal. Styles `.btn` et `.btn-gold:hover` ajoutés dans `cargo.css` pour l'animation curseur/survol
+
+#### 🔀 Formulaire Multi-Étapes (Modal)
+
+Architecture inspirée du formulaire `Tester mon éligibilité` de `etudes.html` :
+
+- **Étape 1 — Type de colis** :
+  - Petit objet (vêtement, tissu, airpod, assiettes...)
+  - Objet dangereux (batterie, liquide ou inflammable...)
+  - Appareil électronique cat. 1 (ordinateur, écran TV, projecteur...)
+  - Appareil électronique cat. 3 (téléphone, tablette, appareil sensible...)
+  - Titre de catégorie en gras avec exemples en sous-ligne
+
+- **Étape 2 — Option de transport** :
+  - Format : `Standard (1 à 2 mois)` + icône bateau 🚢 (jaune doré)
+  - Format : `Rapide (8 à 12 jours)` + icône avion ✈️ (jaune doré)
+  - Format : `Ultra rapide (5 jours)` + icône éclair ⚡ (jaune doré)
+  - Icônes Lucide colorées avec `var(--et-gold-light)`
+
+- **Étape 3 — Destination** : Brazzaville, Pointe-Noire, Kinshasa
+
+- **Étape Analyse** : Barre de progression animée avec messages d'état dynamiques
+
+#### 🧮 Logique de tarification (`calculatePrice()`)
+
+| Catégorie | Standard / Rapide | Ultra rapide |
+| :--- | :--- | :--- |
+| Petit objet | 10 000 (Bzv) / 11 500 (PNR) / 10 500 (KIN) Fcfa | 14 000 Fcfa (Congo) / 21$ (KIN) |
+| Objet dangereux | 13 000 Fcfa/kg (toutes dest.) | 14 000 Fcfa (Congo) / 21$ (KIN) |
+| Élec. cat. 1 | 35 000 Fcfa/kg (toutes dest.) | 14 000 Fcfa (Congo) / 21$ (KIN) |
+| Élec. cat. 3 | 15 000 Fcfa (toutes dest.) | 14 000 Fcfa (Congo) / 21$ (KIN) |
+
+#### 🚢 Gestion spéciale Transport Maritime (Standard)
+
+- Si l'utilisateur choisit **Standard (Bateau)** : le prix n'est **pas affiché** (tarif en CBM non calculable automatiquement — 280 000 Fcfa/CBM)
+- Message de remplacement : *"discutez des détails du prix avec nos agents"*
+- Apparition d'un second bouton `Voir devis autre transport` (outline gold) qui relance le formulaire pour comparer avec un mode aérien
+- Pour **tous les autres transports** : comportement normal avec affichage du prix estimé
+
+#### 🖥️ Affichage du Devis Final
+
+- Texte de synthèse avec variables clés en couleur `--et-gold-light` (catégorie, transport, destination)
+- Prix large et contrasté en jaune doré
+- Disposition verticale : texte en haut, prix en bas (pour éviter les débordements horizontaux)
+
+#### 🔗 Intégration WhatsApp
+
+- Bouton CTA final : **"Se faire suivre par un agent"** → ouvre WhatsApp avec message structuré contenant : type de colis, transport choisi, destination, estimation de prix
+- Le message envoie automatiquement toutes les données du formulaire au numéro ABRSON
+
+#### 🐛 Corrections de Bugs
+
+- **Superposition de l'écran de devis lors du retour** : `prevStep()` masque désormais systématiquement les vues `analysisStep`, `successStep` avant de naviguer en arrière — corrigé aussi sur `etudes.html`
+- **Bouton "Nous contacter"** sans animation de survol : ajout de `cursor: pointer` + transition dans `cargo.css`
+- **Confettis de `etudes.html` qui se relançaient à chaque rechargement** : `showFinalResult()` accepte maintenant un paramètre `triggerConfetti = false` lors de la restauration de session — les confettis ne se déclenchent qu'une seule fois, lors de la validation réelle
+- **Fermeture de modal** : ajout de `resetModal()` à l'événement de fermeture pour éviter tout état incohérent à la réouverture
+
+---
 
 ### ✅ Session Animation Slider — (02/03/2026)
 
@@ -169,23 +246,29 @@ python -m http.server 8080
 
 # Option 2: Node (http-server)
 npx http-server . -p 8080
+
+# Option 3: Node (server.js local)
+node server.js
 ```
 
-Puis naviguer vers : `http://localhost:8080/etudes.html`
+Puis naviguer vers : `http://localhost:3000`
 
 ---
 
 ## 🧩 Pages & Classes CSS Body
 
-| Page | Classe body | Fichier JS dédié |
-| :--- | :--- | :--- |
-| Accueil | `cinematic-home premium-site` | `main.js` |
-| Études | `etudes-page` | `etudes.js` |
-| Transfert | `premium-site transfer-page` | `main.js` |
-| Sourcing | `premium-site sourcing-page` | `main.js` |
-| Contact | `premium-site contact-page` | `main.js` |
-| À propos | `premium-site about-page` | `main.js` |
+| Page | Classe body | Fichier JS dédié | CSS dédié |
+| :--- | :--- | :--- | :--- |
+| Accueil | `cinematic-home premium-site` | `main.js` | `style.css` |
+| Études | `etudes-page` | `etudes.js` | `etudes.css` |
+| Cargo | `premium-site` | inline `<script>` | `cargo.css` |
+| Transfert | `premium-site transfer-page` | `main.js` | `style.css` |
+| Sourcing | `premium-site sourcing-page` | `main.js` | `style.css` |
+| Contact | `premium-site contact-page` | `main.js` | `style.css` |
+| À propos | `premium-site about-page` | `main.js` | `style.css` |
 
 ---
+
+Designed & built by ABRSON Design System — 2026
 
 Designed & built by ABRSON Design System — 2026

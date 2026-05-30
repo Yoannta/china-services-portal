@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fret Chine-Congo Premium - ABRSON Cargo</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Theme Core CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cargo.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="cinematic-home">
+
+    <div class="vignette-layer" aria-hidden="true"></div>
+
+    <!-- Fixed Background Layers -->
+    <div class="fixed-bg-container">
+        <div class="bg-layer layer-1 active" style="background-image: url('assets/cargo_hero.png');"></div>
+        <div class="bg-overlay"
+            style="background: radial-gradient(circle at center top, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);">
+        </div>
+    </div>
+
+    <!-- Main Navigation (Global Header) -->
+    <header id="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="ABRSON Logo" class="logo-img">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="transfert.html">Transfert</a></li>
+                    <li><a href="sourcing.html">Sourcing</a></li>
+                    <li><a href="etudes.html">Études</a></li>
+                    <li><a href="cargo.html" class="active">Cargo</a></li>
+                    <li><a href="business.html">Business</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Devis Gratuit</a>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="container" style="position: relative;">
+        <!-- Hero Cargo -->
+        <div class="cargo-hero fade-in-up">
+            <div class="hero-flex-container">
+                <div class="hero-text-side">
+                    <h1 class="hero-title-main">
+                        Votre Logistique <br>
+                        <span class="text-gold">Chine vers votre destination </span>
+                    </h1>
+                    <p class="hero-desc">
+                        Solutions de fret aérien et maritime sécurisées depuis Guangzhou et Yiwu vers Brazzaville et
+                        Pointe-Noire. Profitez d'une expertise terrain unique.
+                    </p>
+                    <div class="hero-actions">
+                        <button class="btn btn-gold trigger-cargo-modal"
+                            style="padding: 15px 30px; border-radius: 12px; font-weight: 700;">Nous contacter</button>
+                        <button class="btn btn-white" onclick="openTrackingModal()"
+                            style="padding: 15px 30px; border-radius: 12px; font-weight: 700;">Suivre mon colis</button>
+                    </div>
+                </div>
+
+                <div class="hero-cta-frame">
+                    <div class="hero-cta-icon">
+                        <i data-lucide="package" size="32"></i>
+                    </div>
+                    <h2 class="hero-cta-title">Un colis à envoyer ?</h2>
+                    <p class="hero-cta-desc">
+                        Besoin d'expédier de la marchandise vers le Congo ? Obtenez vos tarifs personnalisés
+                        immédiatement.
+                    </p>
+                    <button class="btn-premium trigger-cargo-modal">
+                        <i data-lucide="message-circle"></i>
+                        Je veux envoyer un colis
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Stats -->
+        <div class="stats-overlap fade-in-up">
+            <div class="stat-card-dark">
+                <div class="stat-icon"><i data-lucide="plane"></i></div>
+                <div class="stat-info">
+                    <h4>7-12 Jours</h4>
+                    <p>Fret Aérien Express</p>
+                </div>
+            </div>
+            <div class="stat-card-dark">
+                <div class="stat-icon"><i data-lucide="ship"></i></div>
+                <div class="stat-info">
+                    <h4>35-45 Jours</h4>
+                    <p>Maritime Groupage</p>
+                </div>
+            </div>
+            <div class="stat-card-dark">
+                <div class="stat-icon"><i data-lucide="shield-check"></i></div>
+                <div class="stat-info">
+                    <h4>100%</h4>
+                    <p>Sécurité & Dédouanement</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div id="services-grid" class="cargo-services-grid">
+            <div class="service-card fade-in-up">
+                <div class="service-icon">
+                    <i data-lucide="zap"></i>
+                </div>
+                <h3>Fret Aérien</h3>
+                <p>Spécialement conçu pour vos envois urgents et de haute valeur. Départs bimensuels depuis Guangzhou.
+                    Transit rapide et sécurisé.</p>
+            </div>
+            <div class="service-card fade-in-up">
+                <div class="service-icon">
+                    <i data-lucide="container"></i>
+                </div>
+                <h3>Fret Maritime</h3>
+                <p>Solutions de groupage (LCL) et conteneurs complets (FCL). Idéal pour les gros volumes de marchandises
+                    et les articles lourds.</p>
+            </div>
+            <div class="service-card fade-in-up">
+                <div class="service-icon">
+                    <i data-lucide="file-text"></i>
+                </div>
+                <h3>Dédouanement</h3>
+                <p>Gestion complète des formalités administratives. Nous nous occupons de tout pour vous garantir une
+                    livraison sans soucis au Congo.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Cargo Multi-step Modal -->
+    <div id="cargoModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-controls">
+                <button id="prevStepBtn" class="btn-back" onclick="prevStep()">
+                    <i data-lucide="arrow-left" size="14"></i> Retour
+                </button>
+                <button class="modal-close" id="closeCargoModal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+
+            <div class="progress-container">
+                <div id="progressBar" class="progress-bar"></div>
+            </div>
+
+            <div id="stepsContainer">
+                <!-- Step 1: Type de colis -->
+                <div class="step-container active" data-step="1">
+                    <h3 class="modal-question">Quel type de colis voulez-vous envoyer ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn"
+                            onclick="nextStep('Petit objet', 'vêtement, tissu, airpod, assiettes...')">
+                            <span class="option-title">Petit objet</span>
+                            <span class="option-examples">Vêtement, tissu, airpod, assiettes...</span>
+                        </button>
+                        <button class="option-btn"
+                            onclick="nextStep('Objet dangereux', 'batterie, produit liquide ou inflammable...')">
+                            <span class="option-title">Objet dangereux</span>
+                            <span class="option-examples">Batterie, produit liquide ou inflammable...</span>
+                        </button>
+                        <button class="option-btn"
+                            onclick="nextStep('Appareil électronique catégorie 1', 'ordinateur, écran TV, projecteur...')">
+                            <span class="option-title">Appareil électronique cat. 1</span>
+                            <span class="option-examples">Ordinateur, écran TV, projecteur...</span>
+                        </button>
+                        <button class="option-btn"
+                            onclick="nextStep('Appareil électronique catégorie 3', 'téléphone, tablette, appareil sensible...')">
+                            <span class="option-title">Appareil électronique cat. 3</span>
+                            <span class="option-examples">Téléphone, tablette, appareil sensible...</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Moyen de transport -->
+                <div class="step-container" data-step="2">
+                    <h3 class="modal-question">Quelle option de transport voulez-vous ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Standard')">
+                            <span class="option-title">Standard (1 à 2 mois)</span>
+                            <span class="option-examples" style="display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="ship" size="14" style="color: var(--et-gold-light);"></i> Transport
+                                maritime
+                            </span>
+                        </button>
+                        <button class="option-btn" onclick="nextStep('Rapide')">
+                            <span class="option-title">Rapide (8 à 12 jours)</span>
+                            <span class="option-examples" style="display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="plane" size="14" style="color: var(--et-gold-light);"></i> Transport
+                                aérien classique
+                            </span>
+                        </button>
+                        <button class="option-btn" onclick="nextStep('Ultra rapide')">
+                            <span class="option-title">Ultra rapide (5 jours)</span>
+                            <span class="option-examples" style="display: flex; align-items: center; gap: 8px;">
+                                <i data-lucide="zap" size="14" style="color: var(--et-gold-light);"></i> Service
+                                Prioritaire Express
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Destination -->
+                <div class="step-container" data-step="3">
+                    <h3 class="modal-question">Quelle est votre destination ?</h3>
+                    <div class="option-list">
+                        <button class="option-btn" onclick="nextStep('Brazzaville')">
+                            <span class="option-title">Brazzaville</span>
+                            <span class="option-examples">République du Congo</span>
+                        </button>
+                        <button class="option-btn" onclick="nextStep('Pointe-Noire')">
+                            <span class="option-title">Pointe-Noire</span>
+                            <span class="option-examples">République du Congo</span>
+                        </button>
+                        <button class="option-btn" onclick="nextStep('Kinshasa')">
+                            <span class="option-title">Kinshasa</span>
+                            <span class="option-examples">République Démocratique du Congo</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Analysis Step -->
+                <div class="step-container" id="analysisStep">
+                    <h3 class="modal-question" style="text-align: center;">Calcul de votre itinéraire...</h3>
+                    <div class="progress-container" style="height: 12px; margin-top: 30px;">
+                        <div id="analysisBar" class="progress-bar" style="width: 0%; background: var(--et-gold);"></div>
+                    </div>
+                    <p id="analysisStatus"
+                        style="text-align: center; color: var(--et-silver); margin-top: 15px; font-size: 0.9rem;">
+                        Estimation de prix en cours...
+                    </p>
+                </div>
+
+                <!-- Final Success Step -->
+                <div class="step-container" id="successStep">
+                    <div class="success-checkmark" style="text-align: center; margin-bottom: 20px; color: #10b981;">
+                        <i data-lucide="check-circle" size="64"></i>
+                    </div>
+                    <h3 class="modal-question" style="text-align: center; font-size: 1.8rem; color: #10b981;">Devis Prêt
+                        !</h3>
+                    <div id="successMessage" style="margin-bottom: 35px;">
+                        <!-- Updated by JS -->
+                    </div>
+                    <div id="successActions" style="display: flex; flex-direction: column; gap: 12px;">
+                        <button class="btn-premium" style="width: 100%;" onclick="sendWhatsApp()">
+                            Se faire suivre par un agent
+                        </button>
+                        <button id="rateAirBtn" class="btn-outline-gold"
+                            style="display:none; width:100%; padding:16px; border-radius:12px; border: 1px solid var(--et-gold); background: transparent; color: var(--et-gold-light); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s;"
+                            onclick="resetModal()" onmouseover="this.style.background='rgba(212,175,55,0.1)'"
+                            onmouseout="this.style.background='transparent'">
+                            Voir devis autre transport
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer"
+        style="background: rgba(10,13,24,0.9); padding: 80px 0 40px; margin-top: 100px; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container footer-grid">
+            <div class="footer-col brand-col">
+                <img src="assets/logo.png" alt="Logo" style="height: 40px; margin-bottom: 25px;">
+                <p style="color: rgba(255,255,255,0.6); line-height: 1.6;">Votre partenaire de confiance pour le
+                    business, les études et la logistique entre la Chine et le Congo.</p>
+            </div>
+            <div class="footer-col">
+                <h4 style="color: #fff; margin-bottom: 25px; font-family: 'Fraunces', serif;">Navigation</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="index.html" style="color: rgba(255,255,255,0.7);">Accueil</a></li>
+                    <li><a href="transfert.html" style="color: rgba(255,255,255,0.7);">Transfert</a></li>
+                    <li><a href="sourcing.html" style="color: rgba(255,255,255,0.7);">Sourcing</a></li>
+                    <li><a href="etudes.html" style="color: rgba(255,255,255,0.7);">Études</a></li>
+                    <li><a href="cargo.html" style="color: rgba(255,255,255,0.7);">Cargo</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container"
+            style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; padding-top: 30px; text-align: center; color: rgba(255,255,255,0.4);">
+            <p>&copy; 2026 ABRSON Trading. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Modal Logic
+        const modal = document.getElementById('cargoModal');
+        const openBtns = document.querySelectorAll('.trigger-cargo-modal');
+        const closeBtn = document.getElementById('closeCargoModal');
+        let currentStep = 1;
+        const totalSteps = 3;
+        const answers = {};
+
+        if (openBtns) {
+            openBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    resetModal();
+                });
+            });
+        }
+
+        closeBtn.onclick = () => {
+            modal.classList.remove('active');
+            resetModal();
+        };
+
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        };
+
+        // Supabase Initialization
+        const supabaseUrl = 'https://afqmlatvphijcdqirrny.supabase.co';
+        const supabaseKey = 'sb_publishable_n4kbzZ-YfO3RdHq99zjaJQ_gCFEQtH3';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openTrackingModal() {
+            const modal = document.getElementById('trackingModal');
+            if (modal) {
+                modal.classList.add('active');
+                modal.style.display = 'flex';
+                resetTracking();
+                lucide.createIcons();
+            }
+        }
+
+        function closeTrackingModal() {
+            const modal = document.getElementById('trackingModal');
+            if (modal) {
+                modal.classList.remove('active');
+                modal.style.display = 'none';
+            }
+        }
+
+        function resetTracking() {
+            document.getElementById('trackingEntry').style.display = 'block';
+            document.getElementById('trackingDisplay').style.display = 'none';
+            document.getElementById('trackingInput').value = '';
+            document.getElementById('trackingError').style.display = 'none';
+        }
+
+        async function processTracking() {
+            const code = document.getElementById('trackingInput').value.trim().toUpperCase();
+            if (!code) return;
+
+            const btn = document.querySelector('#trackingEntry button');
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="loader" class="spinner"></i> RECHERCHE...';
+            lucide.createIcons();
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('abrson_cargo')
+                    .select('*')
+                    .eq('tracking_code', code)
+                    .single();
+
+                if (error || !data) {
+                    document.getElementById('trackingError').style.display = 'flex';
+                    lucide.createIcons();
+                } else {
+                    showTrackingAnimation(data);
+                }
+            } catch (err) {
+                console.error("Error tracking:", err);
+                document.getElementById('trackingError').style.display = 'flex';
+            } finally {
+                btn.innerHTML = originalBtnText;
+                lucide.createIcons();
+            }
+        }
+
+        function showTrackingAnimation(trip) {
+            document.getElementById('trackingEntry').style.display = 'none';
+            document.getElementById('trackingDisplay').style.display = 'block';
+
+            document.getElementById('trackClientName').innerText = trip.client_name || trip.clientName;
+            document.getElementById('trackCodeLabel').innerText = `CODE: ${trip.tracking_code || trip.trackingCode}`;
+            document.getElementById('trackColisDesc').innerText = trip.colis || 'Détails confidentiels';
+            document.getElementById('trackTransport').innerText = trip.transport || 'Aérien';
+
+            const status = trip.status || 'Chine';
+            const badge = document.getElementById('trackStatusBadge');
+            badge.innerText = status.toUpperCase();
+
+            const isSea = trip.transport.toLowerCase().includes('maritime') || trip.transport.toLowerCase().includes('bateau');
+            const vehicleEl = document.getElementById('trackingVehicle');
+            vehicleEl.innerHTML = `<i data-lucide="${isSea ? 'ship' : 'plane'}"></i>`;
+
+            let pos = '0%';
+            if (status === 'Addis-Abeba') pos = '50%';
+            if (status === 'Congo') pos = '100%';
+
+            vehicleEl.style.left = pos;
+
+            document.querySelectorAll('.stop').forEach(s => {
+                s.classList.remove('active');
+                if (s.getAttribute('data-stop') === status) s.classList.add('active');
+            });
+
+            lucide.createIcons();
+        }
+
+        function resetModal() {
+            currentStep = 1;
+            answers.type = '';
+            answers.examples = '';
+            answers.transport = '';
+            answers.destination = '';
+            answers.price = 0;
+            document.querySelectorAll('.step-container').forEach(s => {
+                s.classList.remove('active');
+                s.style.display = 'none';
+            });
+            document.querySelector('[data-step="1"]').classList.add('active');
+            document.querySelector('[data-step="1"]').style.display = 'block';
+            document.getElementById('successStep').style.display = 'none';
+            document.getElementById('analysisStep').style.display = 'none';
+            updateProgress();
+        }
+
+        function nextStep(val, examples = '') {
+            if (currentStep === 1) {
+                answers.type = val;
+                answers.examples = examples;
+            }
+            if (currentStep === 2) answers.transport = val;
+            if (currentStep === 3) answers.destination = val;
+
+            if (currentStep < totalSteps) {
+                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+                currentStep++;
+                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
+                updateProgress();
+            } else {
+                startAnalysis();
+            }
+        }
+
+        function prevStep() {
+            // Always ensure results screens are hidden when going back
+            document.getElementById('analysisStep').style.display = 'none';
+            document.getElementById('successStep').style.display = 'none';
+            document.getElementById('successStep').classList.remove('active');
+
+            if (currentStep > 1) {
+                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+                currentStep--;
+                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
+                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
+                updateProgress();
+            }
+        }
+
+        function updateProgress() {
+            const bar = document.getElementById('progressBar');
+            const perc = (currentStep / totalSteps) * 100;
+            bar.style.width = perc + '%';
+
+            const backBtn = document.getElementById('prevStepBtn');
+            if (currentStep > 1) backBtn.classList.add('visible');
+            else backBtn.classList.remove('visible');
+        }
+
+        function calculatePrice() {
+            let price = 0;
+            const type = answers.type;
+            const transport = answers.transport;
+            const dest = answers.destination;
+            const usdRate = 600; // Conversion USD to FCFA as requested
+
+            // Rule for Express (Ultra rapide)
+            if (transport === 'Ultra rapide') {
+                if (dest === 'Brazzaville' || dest === 'Pointe-Noire') {
+                    price = 14000;
+                } else if (dest === 'Kinshasa') {
+                    price = 21 * usdRate; // 21 USD
+                }
+            } else {
+                // Rules based on category
+                if (type === 'Petit objet') {
+                    if (dest === 'Brazzaville') price = 10000;
+                    else if (dest === 'Pointe-Noire') price = 11500;
+                    else if (dest === 'Kinshasa') price = 17.5 * usdRate; // 17.5 USD
+                } else if (type === 'Objet dangereux') {
+                    price = 13000;
+                } else if (type === 'Appareil électronique catégorie 1') {
+                    price = 35000;
+                } else if (type === 'Appareil électronique catégorie 3') {
+                    price = 15000;
+                }
+            }
+            return price;
+        }
+
+        function startAnalysis() {
+            document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
+            document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+            document.getElementById('analysisStep').classList.add('active');
+            document.getElementById('analysisStep').style.display = 'block';
+
+            let progress = 0;
+            const bar = document.getElementById('analysisBar');
+            const statusText = document.getElementById('analysisStatus');
+            const stages = [
+                "Vérification des lignes logistiques...",
+                "Estimation de prix en cours...",
+                "Analyse des formalités douanières...",
+                "Génération de votre devis personnalisé..."
+            ];
+
+            const interval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress > 100) progress = 100;
+                bar.style.width = progress + '%';
+
+                if (progress < 30) statusText.innerText = stages[0];
+                else if (progress < 60) statusText.innerText = stages[1];
+                else if (progress < 85) statusText.innerText = stages[2];
+                else statusText.innerText = stages[3];
+
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(showFinalResult, 600);
+                }
+            }, 300);
+        }
+
+        function showFinalResult() {
+            const estimatedPrice = calculatePrice();
+            answers.price = estimatedPrice;
+            const isSeaShipping = answers.transport === 'Standard';
+
+            document.getElementById('analysisStep').classList.remove('active');
+            document.getElementById('analysisStep').style.display = 'none';
+            document.getElementById('successStep').classList.add('active');
+            document.getElementById('successStep').style.display = 'block';
+
+            const successMsg = document.getElementById('successMessage');
+            const airBtn = document.getElementById('rateAirBtn');
+
+            if (isSeaShipping) {
+                // Maritime: hide price, show agent message + second button
+                successMsg.innerHTML = `
+                    <div class="estimation-display">
+                        <div class="estimation-text">
+                            Pour <span class="highlight">${answers.type}</span> et une livraison
+                            <span class="highlight">${answers.transport}</span>
+                            vers <span class="highlight">${answers.destination}</span>,
+                            <strong style="color: var(--et-gold-light);">discutez des détails du prix avec nos agents.</strong>
+                        </div>
+                    </div>
+                `;
+                airBtn.style.display = 'block';
+            } else {
+                // Air/Express: show normal estimated price
+                successMsg.innerHTML = `
+                    <div class="estimation-display">
+                        <div class="estimation-text">
+                            Pour <span class="highlight">${answers.type}</span> et une livraison <span class="highlight">${answers.transport}</span> vers <span class="highlight">${answers.destination}</span>, ça fera environ
+                        </div>
+                        <div class="estimation-price">
+                            ${estimatedPrice.toLocaleString()} Fcfa/kg
+                        </div>
+                    </div>
+                `;
+                airBtn.style.display = 'none';
+            }
+
+            document.getElementById('progressBar').style.width = '100%';
+            document.getElementById('progressBar').style.background = '#10b981';
+            lucide.createIcons();
+        }
+
+        function sendWhatsApp() {
+            const phone = "8619195495220";
+            let msg = `Bonjour ABRSON, je souhaite un devis personnalisé pour un envoi Cargo.\n\n`;
+            msg += `*Détails de l'envoi :*\n`;
+            msg += `- Type de colis : ${answers.type}\n`;
+            msg += `- Option de transport : ${answers.transport}\n`;
+            msg += `- Destination : ${answers.destination}\n`;
+            msg += `- Estimation reçue : ${answers.price.toLocaleString()} Fcfa/kg\n\n`;
+            msg += `Pouvez-vous me confirmer ces tarifs et me donner les prochaines étapes ? Merci.`;
+
+            const encodedMsg = encodeURIComponent(msg);
+            window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
+        }
+    </script>
+
+    <!-- MODAL TRACKING -->
+    <div id="trackingModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 700px;">
+            <button class="modal-close" onclick="closeTrackingModal()"
+                style="position: absolute; right: 20px; top: 20px;">
+                <i data-lucide="x"></i>
+            </button>
+
+            <div id="trackingEntry">
+                <h2 class="modal-title">Suivi de colis</h2>
+                <p style="opacity:0.6; margin-bottom:25px;">Entrez votre code délivré par votre agent pour localiser
+                    votre marchandise (ex: ABR-XXXX).</p>
+                <div class="tracking-input-wrapper">
+                    <i data-lucide="package"></i>
+                    <input type="text" id="trackingInput" name="track_code" placeholder="CODE DE SUIVI (EX: ABR-8Z2K)"
+                        style="text-transform: uppercase;">
+                </div>
+                <button class="btn-premium" onclick="processTracking()" style="width:100%; justify-content:center;">
+                    <i data-lucide="search"></i> LOCALISER MON COLIS
+                </button>
+                <div id="trackingError"
+                    style="color:#ef4444; margin-top:15px; display:none; text-align:center; font-size:0.9rem;">
+                    <i data-lucide="alert-circle" size="16"></i> Code invalide ou colis non trouvé.
+                </div>
+            </div>
+
+            <div id="trackingDisplay" style="display:none;">
+                <div class="tracking-header">
+                    <div>
+                        <h2 id="trackClientName" style="margin-bottom:5px;">Chargement...</h2>
+                        <div id="trackCodeLabel" style="font-family:monospace; color:var(--et-gold-light);">CODE: -
+                        </div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div id="trackStatusBadge" class="status-badge">POSITION</div>
+                    </div>
+                </div>
+
+                <div class="tracking-visual-container">
+                    <div class="tracking-line"></div>
+                    <div class="tracking-vehicle" id="trackingVehicle">
+                        <i data-lucide="plane"></i>
+                    </div>
+                    <div class="tracking-stops">
+                        <div class="stop" data-stop="Chine">
+                            <div class="stop-dot"></div>
+                            <span>Chine</span>
+                        </div>
+                        <div class="stop" data-stop="Addis-Abeba">
+                            <div class="stop-dot"></div>
+                            <span>Addis-Abeba</span>
+                        </div>
+                        <div class="stop" data-stop="Congo">
+                            <div class="stop-dot"></div>
+                            <span>Congo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tracking-details">
+                    <div class="track-info-card">
+                        <i data-lucide="box"></i>
+                        <div>
+                            <span class="label">Colis</span>
+                            <div id="trackColisDesc">-</div>
+                        </div>
+                    </div>
+                    <div class="track-info-card">
+                        <i data-lucide="truck"></i>
+                        <div>
+                            <span class="label">Transport</span>
+                            <div id="trackTransport">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-new-search" onclick="resetTracking()">
+                    Nouvelle recherche
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    </script>
+</body>
+
+</html>

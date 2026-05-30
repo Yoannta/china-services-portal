@@ -324,6 +324,7 @@
                     <li><a href="transfert.html" class="active">Transfert</a></li>
                     <li><a href="sourcing.html">Sourcing</a></li>
                     <li><a href="etudes.html">Études</a></li>
+                    <li><a href="cargo.html">Cargo</a></li>
                     <li><a href="business.html">Business</a></li>
                     <li><a href="about.html">À propos</a></li>
                     <li><a href="contact.html">Contact</a></li>
@@ -393,6 +394,10 @@
                         <a id="whatsapp-btn" class="btn btn-primary btn-full whatsapp-btn" href="#" target="_blank">
                             <i data-lucide="message-circle"></i> Confirmer sur WhatsApp
                         </a>
+                        <a id="how-it-works-btn" href="#comment-ca-marche"
+                            style="display:none; justify-content:center; align-items:center; gap:8px; margin-top:12px; width:100%; padding:11px 20px; border-radius:var(--radius-md); border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.65); font-size:0.9rem; font-weight:500; text-decoration:none; transition:all 0.3s; background:transparent;">
+                            <i data-lucide="info" style="width:16px; height:16px;"></i> Comment ça marche ?
+                        </a>
                     </div>
                 </div>
             </div>
@@ -417,7 +422,8 @@
         </div>
 
         <!-- COMMENT CA MARCHE -->
-        <section class="scene" style="min-height: auto; padding: 60px 0;">
+        <section id="comment-ca-marche" class="scene"
+            style="min-height: auto; padding: 60px 0; scroll-margin-top: 80px;">
             <div class="container">
                 <div class="text-block text-center fade-in-up">
                     <h2 class="scene-title">Comment ça marche</h2>
@@ -551,6 +557,10 @@
                     const message = `Bonjour ABRSON, je souhaite simuler un transfert de ${amount} ${from}.\nLe simulateur indique un net de ${fmt.format(netCNY)} CNY.`;
                     waBtn.href = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
                     waBtn.style.display = 'flex';
+
+                    // Also show the 'comment ça marche' secondary button
+                    const howBtn = document.getElementById('how-it-works-btn');
+                    if (howBtn) { howBtn.style.display = 'flex'; lucide.createIcons(); }
 
                     // Fait scroller la page pour que le bouton soit bien visible au centre
                     setTimeout(() => {

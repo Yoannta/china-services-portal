@@ -1,0 +1,15 @@
+[
+    {
+        "id": "1779785156874",
+        "name": "school",
+        "desc": "bien etre ",
+        "price": "19",
+        "groupId": "1779785103500",
+        "images": [
+            "/uploads/1779787418265-WhatsApp Image 2026-05-25 at 2.54.25 PM.jpeg",
+            "/uploads/1779787418273-WhatsApp Image 2026-05-25 at 2.54.25 PM (1).jpeg",
+            "/uploads/1779787418276-WhatsApp Image 2026-05-25 at 2.54.25 PM (2).jpeg"
+        ],
+        "moq": "100"
+    }
+]

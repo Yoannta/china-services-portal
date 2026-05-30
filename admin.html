@@ -1192,6 +1192,7 @@
             const id = document.getElementById('univId').value;
             const highlightsRaw = document.getElementById('univHighlights').value || '';
             const univ = {
+                id: id || Date.now().toString(),
                 name: document.getElementById('univName').value,
                 desc: document.getElementById('univDesc').value,
                 location: document.getElementById('univLocation').value || 'Chine',
@@ -1214,7 +1215,6 @@
                     univ.images.push(...uploadedFiles);
                 }
 
-                if (!id) univ.id = Date.now().toString();
                 const { data: savedUniv, error } = await supabaseClient.from('universities').upsert([univ], { onConflict: 'id' }).select().single();
                 if (error) throw error;
                 data.univ = upsertLocalById(data.univ, savedUniv || univ);

@@ -1325,14 +1325,6 @@
                 } catch (err) {
                     error = err;
                 }
-                if (error && isSchemaMismatchError(error, 'group_id')) {
-                    const fallback = { ...p };
-                    delete fallback.group_id;
-                    fallback.groupId = groupValue;
-                    const res = await supabaseClient.from('products').upsert([fallback], { onConflict: 'id' }).select().single();
-                    savedProduct = res.data;
-                    error = res.error;
-                }
                 if (error) throw error;
                 data.products = upsertLocalById(data.products, savedProduct || p);
                 renderProducts();

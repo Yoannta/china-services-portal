@@ -1361,6 +1361,15 @@
         const closeBtn = document.getElementById('closeEligibilityModal');
         let currentStep = 1;
         const totalSteps = 9;
+
+        // Affiche UN seul step (masque tout le reste) — évite les fuites de style.display inline
+        function showStepOnly(el) {
+            document.querySelectorAll('.step-container').forEach(s => {
+                s.classList.remove('active');
+                s.style.display = '';
+            });
+            if (el) el.classList.add('active');
+        }
         const answers = {};
 
         if (openBtn) {
@@ -1390,12 +1399,7 @@
 
         function resetModal() {
             currentStep = 1;
-            document.querySelectorAll('.step-container').forEach(step => {
-                step.classList.remove('active');
-                step.style.display = 'none';
-            });
-            document.querySelector('[data-step="1"]').classList.add('active');
-            document.querySelector('[data-step="1"]').style.display = 'block';
+            showStepOnly(document.querySelector('[data-step="1"]'));
             document.getElementById('analysisBar').style.width = '0%';
             document.getElementById('progressBar').style.width = '0%';
             document.getElementById('progressBar').style.background = 'var(--color-accent)';
@@ -1426,27 +1430,18 @@
             localStorage.setItem('eligReq_answers', JSON.stringify(answers));
 
             if (currentStep < totalSteps) {
-                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
-                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+                const next = document.querySelector(`[data-step="${currentStep + 1}"]`);
+                showStepOnly(next);
                 currentStep++;
-                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
-                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
                 updateProgress();
             }
         }
 
         function prevStep() {
-            // Hide result screens if they were visible
-            if (document.getElementById('analysisStep')) document.getElementById('analysisStep').style.display = 'none';
-            if (document.getElementById('successStep')) document.getElementById('successStep').style.display = 'none';
-            if (document.getElementById('documentsStep')) document.getElementById('documentsStep').style.display = 'none';
-
             if (currentStep > 1) {
-                document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
-                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'none';
+                const prev = document.querySelector(`[data-step="${currentStep - 1}"]`);
+                showStepOnly(prev);
                 currentStep--;
-                document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
-                document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
                 updateProgress();
 
                 // Update localStorage
@@ -1474,8 +1469,7 @@
             answers[9] = pays;
 
             // Transition to Analysis
-            document.querySelector(`[data-step="${currentStep}"]`).classList.remove('active');
-            document.getElementById('analysisStep').classList.add('active');
+            showStepOnly(document.getElementById('analysisStep'));
 
             let progress = 0;
             const bar = document.getElementById('analysisBar');
@@ -1506,9 +1500,7 @@
         }
 
         function showFinalResult(triggerConfetti = true) {
-            document.getElementById('analysisStep').classList.remove('active');
-            document.getElementById('analysisStep').style.display = 'none';
-            document.getElementById('successStep').style.display = 'block';
+            showStepOnly(document.getElementById('successStep'));
             document.getElementById('resultFiliere').innerText = answers.filiere || "votre filière";
 
             // Persist success state
@@ -1539,8 +1531,7 @@
         }
 
         function showDocumentsView() {
-            document.getElementById('successStep').style.display = 'none';
-            document.getElementById('documentsStep').style.display = 'block';
+            showStepOnly(document.getElementById('documentsStep'));
             localStorage.setItem('eligReq_step', 'documents');
             // Reset scroll for the list
             document.querySelector('.doc-list').scrollTop = 0;
@@ -1591,19 +1582,12 @@ Site : abrson.com`;
             if (savedStep) {
                 if (savedStep === 'success') {
                     // Start in success view (no confetti on reload)
-                    document.querySelector('[data-step="1"]').classList.remove('active');
-                    document.querySelector('[data-step="1"]').style.display = 'none';
                     showFinalResult(false);
                 } else if (savedStep === 'documents') {
-                    document.querySelector('[data-step="1"]').classList.remove('active');
-                    document.querySelector('[data-step="1"]').style.display = 'none';
                     showDocumentsView();
                 } else {
                     currentStep = parseInt(savedStep);
-                    document.querySelector('[data-step="1"]').classList.remove('active');
-                    document.querySelector('[data-step="1"]').style.display = 'none';
-                    document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
-                    document.querySelector(`[data-step="${currentStep}"]`).style.display = 'block';
+                    showStepOnly(document.querySelector(`[data-step="${currentStep}"]`));
                     updateProgress();
                 }
             }

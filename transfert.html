@@ -207,11 +207,28 @@
         }
 
         .step-huge-num {
-            font-size: 3.5rem;
+            position: absolute;
+            top: -12px;
+            right: 8px;
+            font-size: 6rem;
             font-weight: 800;
-            color: rgba(212, 175, 55, 0.2);
-            /* Gold transparent */
+            color: var(--color-accent);
+            opacity: 0.14;
             line-height: 1;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .step-icon-wrap,
+        .step-clean-card h3,
+        .step-clean-card p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-clean-card {
+            position: relative;
+            overflow: hidden;
         }
 
         .step-clean-card h3 {
@@ -267,13 +284,82 @@
             font-size: 1rem;
         }
 
+        /* === Bottom Nav Mobile (design Stitch) === */
+        .bottom-nav-mobile {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            background: rgba(29, 32, 34, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 12px;
+        }
+
+        .bnm-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            width: 64px;
+            height: 56px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .bnm-item i {
+            width: 22px;
+            height: 22px;
+        }
+
+        .bnm-item:hover {
+            color: var(--color-accent);
+        }
+
+        .bnm-item.active {
+            color: var(--color-accent);
+            background: rgba(233, 195, 73, 0.15);
+        }
+
+        /* Flèche du select (design Stitch) */
+        .select-wrap {
+            position: relative;
+        }
+
+        .select-wrap select {
+            appearance: none;
+            -webkit-appearance: none;
+            padding-right: 42px;
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
             .transfer-hero-split {
                 flex-direction: column;
                 padding-top: 120px;
             }
-
             .hero-form-col {
                 width: 100%;
                 flex: none;
@@ -295,6 +381,17 @@
             .trust-divider {
                 width: 100%;
                 height: 1px;
+            }
+        }
+
+        /* Bottom nav mobile visible < 768px (design Stitch) */
+        @media (max-width: 768px) {
+            .bottom-nav-mobile {
+                display: flex;
+            }
+
+            main {
+                padding-bottom: 70px;
             }
         }
     </style>
@@ -362,14 +459,17 @@
                         </div>
                         <div class="form-group">
                             <label>Devise (Currency)</label>
-                            <select id="currency-from" class="form-input">
-                                <option value="XOF">XOF - Franc CFA (BCEAO)</option>
-                                <option value="XAF">XAF - Franc CFA (BEAC)</option>
-                                <option value="EUR">EUR - Euro</option>
-                                <option value="USD">USD - Dollar US</option>
-                                <option value="MAD">MAD - Dirham Marocain</option>
-                                <option value="DZD">DZD - Dinar Algérien</option>
-                            </select>
+                            <div class="select-wrap">
+                                <select id="currency-from" class="form-input">
+                                    <option value="XOF">XOF - Franc CFA (BCEAO)</option>
+                                    <option value="XAF">XAF - Franc CFA (BEAC)</option>
+                                    <option value="EUR">EUR - Euro</option>
+                                    <option value="USD">USD - Dollar US</option>
+                                    <option value="MAD">MAD - Dirham Marocain</option>
+                                    <option value="DZD">DZD - Dinar Algérien</option>
+                                </select>
+                                <i data-lucide="chevron-down" class="select-arrow"></i>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full" style="width: 100%;">CONVERTIR</button>
                         <p id="rate-info"
@@ -431,17 +531,17 @@
 
                 <div class="steps-horizontal-grid fade-in-up">
                     <div class="step-clean-card">
+                        <span class="step-huge-num">01</span>
                         <div class="step-icon-wrap">
-                            <span class="step-huge-num">01</span>
                             <i data-lucide="calculator"
                                 style="color: var(--color-white); width: 32px; height: 32px;"></i>
                         </div>
-                        <h3>convertion</h3>
-                        <p>convertissez votre avec le convertisseur pour connaître le montant exact en RMB</p>
+                        <h3>Conversion</h3>
+                        <p>Convertissez votre montant avec le convertisseur pour connaître le montant exact en RMB</p>
                     </div>
                     <div class="step-clean-card">
+                        <span class="step-huge-num">02</span>
                         <div class="step-icon-wrap">
-                            <span class="step-huge-num">02</span>
                             <i data-lucide="message-circle"
                                 style="color: var(--color-white); width: 32px; height: 32px;"></i>
                         </div>
@@ -449,8 +549,8 @@
                         <p>Validez votre demande via WhatsApp</p>
                     </div>
                     <div class="step-clean-card">
+                        <span class="step-huge-num">03</span>
                         <div class="step-icon-wrap">
-                            <span class="step-huge-num">03</span>
                             <i data-lucide="handshake"
                                 style="color: var(--color-white); width: 32px; height: 32px;"></i>
                         </div>
@@ -494,6 +594,26 @@
             </div>
         </footer>
     </main>
+
+    <!-- Bottom Navigation (Mobile) — design Stitch -->
+    <nav class="bottom-nav-mobile" aria-label="Navigation mobile">
+        <a href="transfert.html" class="bnm-item active">
+            <i data-lucide="currency-exchange"></i>
+            <span>Transfert</span>
+        </a>
+        <a href="sourcing.html" class="bnm-item">
+            <i data-lucide="package"></i>
+            <span>Achat</span>
+        </a>
+        <a href="business.html" class="bnm-item">
+            <i data-lucide="briefcase"></i>
+            <span>Business</span>
+        </a>
+        <a href="contact.html" class="bnm-item">
+            <i data-lucide="headset"></i>
+            <span>Contact</span>
+        </a>
+    </nav>
 
     <!-- Base Scripts -->
     <script src="js/main.js"></script>

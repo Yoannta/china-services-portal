@@ -59,58 +59,7 @@
             text-transform: uppercase;
         }
 
-        .search-bar-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            display: flex;
-            align-items: center;
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 8px;
-            transition: border-color 0.3s;
-        }
-
-        .search-bar-wrapper:focus-within {
-            border-color: var(--color-accent);
-        }
-
-        .search-icon {
-            color: rgba(255, 255, 255, 0.5);
-            margin: 0 15px;
-        }
-
-        .search-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #fff;
-            font-size: 1rem;
-            padding: 12px 0;
-            outline: none;
-        }
-
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
-        }
-
-        .search-btn {
-            background-color: var(--color-accent);
-            color: #000;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .search-btn:hover {
-            transform: scale(1.05);
-            background-color: #d97706;
-        }
+        /* Barre de recherche SUPPRIMÉE (élément mort sans JS — décision Yoyo) */
 
         /* --- FLOATING STATS --- */
         .stats-overlap {
@@ -499,17 +448,6 @@
 
             .stat-card:first-child {
                 grid-row: span 2;
-            }
-
-            /* Search bar en pilule (design Stitch) */
-            .search-bar-wrapper {
-                border-radius: 999px;
-            }
-
-            .search-btn {
-                border-radius: 999px;
-                padding: 10px 16px;
-                font-size: 0.75rem;
             }
         }
 
@@ -1009,13 +947,6 @@
             <p class="hero-subtitle">
                 Commandez directement des produits vérifiés,<br>avec contrôle qualité et logistique gérée.
             </p>
-
-            <div class="search-bar-wrapper">
-                <i data-lucide="search" class="search-icon"></i>
-                <input type="text" class="search-input"
-                    placeholder="Rechercher un produit, une catégorie, un matériau...">
-                <button class="search-btn">RECHERCHER</button>
-            </div>
         </div>
 
         <!-- Floating Stats -->

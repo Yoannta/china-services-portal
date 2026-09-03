@@ -3404,3 +3404,27 @@ body.premium-site {
         letter-spacing: 0.4px;
     }
 }
+
+/* ============================================================
+   SERVICES À LA CARTE (accueil) — doré renforcé (Yoyo 2026-09-03)
+   Les bordures or à 0.18-0.2 d'opacité paraissaient GRISES ;
+   on les rend franchement dorées + textes secondaires éclaircis.
+   Overrides en fin de fichier (cascade gagnante), formes intactes.
+   ============================================================ */
+.cinematic-home .skills-window {
+    border-color: rgba(230, 197, 138, 0.35);
+}
+.cinematic-home .skill-card {
+    border-color: rgba(230, 197, 138, 0.5);
+}
+.cinematic-home .skill-card:hover {
+    border-color: rgba(230, 197, 138, 0.8);
+    box-shadow: 0 0 26px rgba(230, 197, 138, 0.16), 0 14px 44px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+.cinematic-home .skill-card p {
+    color: rgba(242, 238, 231, 0.85);
+}
+.cinematic-home .skill-foot {
+    color: rgba(230, 197, 138, 0.95);
+}

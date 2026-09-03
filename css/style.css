@@ -3346,3 +3346,61 @@ body.premium-site {
         padding-bottom: 70px;
     }
 }
+
+/* --- Skills à la carte : piste scrollable G→D + cartes compactes (fix responsive accueil) --- */
+/* Un vieux bloc global (".skills-track" vertical grid, overflow:visible !important) empêchait
+   le défilement horizontal et laissait les cartes (260px min) déborder/couper en mobile.
+   Ici on redonne au track son rôle de carrousel <768px — le desktop (>768px) est inchangé. */
+@media (max-width: 768px) {
+    .cinematic-home .skills-window {
+        padding: 24px 14px 16px;
+    }
+
+    .cinematic-home .skills-track {
+        grid-template-columns: none;
+        grid-auto-columns: minmax(175px, 58vw);
+        gap: 12px;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        scroll-snap-type: x proximity;
+        padding: 2px 2px 14px;
+        -webkit-overflow-scrolling: touch;
+        cursor: grab;
+    }
+
+    .cinematic-home .skill-card {
+        padding: 14px;
+        min-height: 168px;
+        border-radius: 14px;
+    }
+
+    .cinematic-home .skill-top {
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .cinematic-home .skill-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+    }
+
+    .cinematic-home .skill-card h4 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    .cinematic-home .skill-card p {
+        font-size: 0.8rem;
+        line-height: 1.45;
+    }
+
+    .cinematic-home .skill-meter {
+        margin: 10px 0 8px;
+    }
+
+    .cinematic-home .skill-foot {
+        font-size: 0.68rem;
+        letter-spacing: 0.4px;
+    }
+}

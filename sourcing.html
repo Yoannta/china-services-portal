@@ -65,8 +65,10 @@
             position: relative;
             display: flex;
             align-items: center;
-            background: rgba(30, 41, 59, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(9, 11, 16, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(230, 197, 138, 0.22);
             border-radius: 12px;
             padding: 8px;
             transition: border-color 0.3s;
@@ -77,7 +79,7 @@
         }
 
         .search-icon {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(230, 197, 138, 0.75);
             margin: 0 15px;
         }
 
@@ -97,9 +99,9 @@
         }
 
         .search-btn {
-            background-color: var(--color-accent);
-            color: #000;
-            border: none;
+            background: linear-gradient(135deg, #E6C58A 0%, #B88A3B 60%, #8E6A2B 100%);
+            color: #1A140B;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             padding: 14px 24px;
             border-radius: 8px;
             font-weight: 800;
@@ -111,8 +113,8 @@
         }
 
         .search-btn:hover {
-            transform: scale(1.05);
-            background-color: #d97706;
+            transform: scale(1.02);
+            box-shadow: 0 10px 26px rgba(199, 164, 90, 0.4);
         }
 
         /* --- FLOATING STATS --- */

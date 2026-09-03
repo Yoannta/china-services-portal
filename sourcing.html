@@ -83,6 +83,7 @@
 
         .search-input {
             flex: 1;
+            min-width: 0;
             background: transparent;
             border: none;
             color: #fff;
@@ -105,6 +106,8 @@
             font-size: 0.95rem;
             cursor: pointer;
             transition: all 0.2s;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .search-btn:hover {

@@ -3428,3 +3428,16 @@ body.premium-site {
 .cinematic-home .skill-foot {
     color: rgba(230, 197, 138, 0.95);
 }
+
+/* ============================================================
+   SERVICES À LA CARTE — FIX CHEVAUCHEMENT DES CARTES (Yoyo 2026-09-04)
+   Le vieux bloc .skill-card (ligne ~1700) force min-width:320px ;
+   le track grid les place dans des colonnes minmax(175px,58vw)
+   (mobile) / minmax(240px,1fr) (desktop) -> chaque carte débordait
+   sur la suivante et se superposait. min-width:0 = la carte épouse
+   sa colonne (stretch grid par défaut).
+   ============================================================ */
+.cinematic-home .skill-card {
+    min-width: 0;
+    max-width: none;
+}

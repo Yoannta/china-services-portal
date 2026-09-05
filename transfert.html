@@ -483,10 +483,6 @@
                             <span>Montant d'origine</span>
                             <span id="res-amount">0.00</span>
                         </div>
-                        <div class="result-row">
-                            <span>Frais de transfert (7%)</span>
-                            <span id="res-fee">0.00</span>
-                        </div>
                         <div class="result-row total">
                             <span>Montant final en RMB</span>
                             <span id="res-net">0.00 CNY</span>
@@ -642,13 +638,11 @@
 
         // Logic
         document.addEventListener('DOMContentLoaded', () => {
-            const apiBase = "https://open.er-api.com/v6/latest";
             const form = document.getElementById('transfer-form');
             const amountInput = document.getElementById('amount');
             const currencySelect = document.getElementById('currency-from');
 
             const resAmountEl = document.getElementById('res-amount');
-            const resFeeEl = document.getElementById('res-fee');
             const resNetEl = document.getElementById('res-net');
             const rateInfo = document.getElementById('rate-info');
             const waBtn = document.getElementById('whatsapp-btn');
@@ -665,42 +659,33 @@
                 const from = currencySelect.value;
                 if (!amount || amount <= 0) return;
 
-                rateInfo.textContent = "Récupération du taux officiel...";
+                rateInfo.textContent = "Calcul du taux ABRSON...";
                 waBtn.style.display = 'none';
 
-                try {
-                    const res = await fetch(`${apiBase}/${from}`);
-                    const data = await res.json();
-                    if (!data.rates || !data.rates.CNY) throw new Error("API rate unavailable");
+                // Taux ABRSON (maison, fixes) — reference : 1 CNY = 92,5 FCFA.
+                // Chaque devise est convertie en FCFA puis divisee par 92,5.
+                // XOF/XAF = FCFA (parite 1:1) ; EUR ancree (655,957 FCFA).
+                // Ajuster FCFA_PER_UNIT si la marge/le taux change.
+                const FCFA_PER_UNIT = { XOF: 1, XAF: 1, EUR: 655.957, USD: 600, MAD: 60.4, DZD: 4.52 };
+                const rate = FCFA_PER_UNIT[from] / 92.5;
+                const netCNY = amount * rate;
 
-                    const rate = data.rates.CNY;
-                    const convertedCNY = amount * rate;
-                    const feeCNY = convertedCNY * 0.07;
-                    const netCNY = convertedCNY - feeCNY;
+                resAmountEl.textContent = fmt.format(amount) + " " + from;
+                resNetEl.textContent = fmt.format(netCNY) + " CNY";
+                rateInfo.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY`;
 
-                    resAmountEl.textContent = fmt.format(amount) + " " + from;
-                    resFeeEl.textContent = fmt.format(feeCNY) + " CNY";
-                    resNetEl.textContent = fmt.format(netCNY) + " CNY";
-                    rateInfo.textContent = `Taux: 1 ${from} = ${fmtRate.format(rate)} CNY`;
+                const message = `Bonjour ABRSON, je souhaite simuler un transfert de ${amount} ${from}.\nLe simulateur indique un net de ${fmt.format(netCNY)} CNY.`;
+                waBtn.href = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
+                waBtn.style.display = 'flex';
 
-                    const message = `Bonjour ABRSON, je souhaite simuler un transfert de ${amount} ${from}.\nLe simulateur indique un net de ${fmt.format(netCNY)} CNY.`;
-                    waBtn.href = `https://wa.me/${whatsappNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
-                    waBtn.style.display = 'flex';
+                // Also show the 'comment ça marche' secondary button
+                const howBtn = document.getElementById('how-it-works-btn');
+                if (howBtn) { howBtn.style.display = 'flex'; lucide.createIcons(); }
 
-                    // Also show the 'comment ça marche' secondary button
-                    const howBtn = document.getElementById('how-it-works-btn');
-                    if (howBtn) { howBtn.style.display = 'flex'; lucide.createIcons(); }
-
-                    // Fait scroller la page pour que le bouton soit bien visible au centre
-                    setTimeout(() => {
-                        waBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }, 100);
-
-
-                } catch (err) {
-                    console.error(err);
-                    rateInfo.textContent = "Erreur. Veuillez réessayer plus tard.";
-                }
+                // Fait scroller la page pour que le bouton soit bien visible au centre
+                setTimeout(() => {
+                    waBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             });
         });
     </script>

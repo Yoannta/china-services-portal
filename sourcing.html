@@ -297,6 +297,13 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
+        /* Dans la modale produit, le conteneur image remplit tout le cadre .main-prod-img */
+        .main-prod-img .silhouette,
+        .main-prod-img .silhouette-off {
+            width: 100%;
+            height: 100%;
+        }
+
         .sil-earbuds {
             border-radius: 20px;
             position: relative;
@@ -1211,12 +1218,12 @@
             const div = document.createElement('div');
             div.className = 'product-card';
             div.innerHTML = `
-                <div class="product-image-box" onclick="openProductDetails('${p.id}')">
+                <div class="product-image-box" onclick="openProductModal('${p.id}')">
                     <img src="${(p.images && p.images.length > 0) ? getImg(p.images[0]) : 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800'}" alt="${p.name}">
                 </div>
                 <div class="product-details-section">
                     <div class="product-price">${p.price || '--'}<span>/unit</span></div>
-                    <h3 class="product-title" onclick="openProductDetails('${p.id}')">${p.name}</h3>
+                    <h3 class="product-title" onclick="openProductModal('${p.id}')">${p.name}</h3>
                     <p class="product-meta">
                         <span><i data-lucide="package" size="12"></i> ${p.moq || '10'} min.</span>
                         <span><i data-lucide="map-pin" size="12"></i> Chine</span>
@@ -1250,32 +1257,10 @@
         // Initialize
         loadProductData();
 
-        async function openProductDetails(id) {
-            try {
-                const { data: p, error } = await supabaseClient.from('products').select('*').eq('id', id).single();
-                if (error || !p) return;
-
-                document.getElementById('modalProdTitle').innerText = p.name;
-                document.getElementById('modalProdPrice').innerText = "$" + p.price || '--';
-                document.getElementById('modalMoqLabel').innerText = `Quantité (MOQ - Min: ${p.moq || '10'})`;
-                
-                // Main image
-                const silBox = document.getElementById('modalSil');
-                silBox.innerHTML = `<img id="mainModalImg" src="${(p.images && p.images.length > 0) ? getImg(p.images[0]) : 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&q=80&w=800'}" style="width:100%; height:100%; object-fit:contain;">`;
-                
-                // Gallery
-                const gallery = document.querySelector('.prod-gallery-mini');
-                gallery.innerHTML = (p.images || []).map(img => `<div class="gallery-mini-item" onclick="document.getElementById('mainModalImg').src='${getImg(img)}'"><img src="${getImg(img)}" style="width:100%; height:100%; object-fit:cover; border-radius:6px;"></div>`).join('');
-                
-                document.getElementById('productModal').style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                lucide.createIcons();
-            } catch (err) { console.error(err); }
-        }
-
         // --- CART LOGIC ---
         let cart = JSON.parse(localStorage.getItem('abrson_cart')) || [];
         let activeProductId = null;
+        let currentQty = 1, currentMoq = 1, currentUnitPrice = 0;
 
         const saveCart = () => {
             localStorage.setItem('abrson_cart', JSON.stringify(cart));

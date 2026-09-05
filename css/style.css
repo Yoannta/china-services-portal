@@ -3441,3 +3441,14 @@ body.premium-site {
     min-width: 0;
     max-width: none;
 }
+
+/* ============================================================
+   ACCUEIL — hero trop haut sur grand écran (Yoyo 2026-09-05)
+   .scene force min-height:100vh -> le hero (contenu court) laissait
+   ~un demi-écran vide sous les boutons avant scene-2. Le hero suit
+   désormais son contenu (padding 140px conservé). Scene-hero n'existe
+   que sur index.html.
+   ============================================================ */
+.scene-hero {
+    min-height: auto;
+}

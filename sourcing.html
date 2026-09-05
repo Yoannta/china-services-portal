@@ -703,6 +703,8 @@
             right: -100%;
             width: 400px;
             height: 100vh;
+            height: 100dvh;
+            /* mobile : hauteur reelle visible (barres navigateur incluses) */
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(25px);
             z-index: 3000;
@@ -902,6 +904,39 @@
 
         @media (max-width: 500px) {
             .cart-drawer {
+                width: 100%;
+            }
+
+            .cart-drawer-footer {
+                padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            }
+        }
+
+        /* --- MODALE PRODUIT : responsive mobile (Yoyo 2026-09-05) --- */
+        @media (max-width: 700px) {
+            .product-modal-overlay {
+                padding: 16px 10px;
+            }
+
+            .product-modal-content {
+                flex-direction: column;
+                padding: 24px 18px;
+                max-height: 92vh;
+                max-height: 92dvh;
+                overflow-y: auto;
+                gap: 20px;
+            }
+
+            .product-modal-left {
+                flex: none;
+                width: 100%;
+            }
+
+            .main-prod-img {
+                height: 260px;
+            }
+
+            .product-modal-right {
                 width: 100%;
             }
         }

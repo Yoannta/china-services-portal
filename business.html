@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Travel & Visa - ABRSON</title>
-    <meta name="description"
-        content="Obtenez votre Visa Chine (M/F) et organisez vos voyages d'affaires avec ABRSON. Invitations officielles, interprètes et logistique complète.">
+    <title>Location Prestige - ABRSON</title>
+    <meta name="description" content="Location de voitures de luxe avec chauffeur : Mercedes-Maybach, Range Rover Defender, Toyota Alphard. Expérience VIP en Chine.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +17,137 @@
     <script src="js/vendor/lenis.min.js"></script>
     <!-- Lucide Icons -->
     <script src="js/vendor/lucide.min.js"></script>
+
+    <!-- ===== Location Prestige (design Stitch VIP) : dependances ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;0,8..60,700;1,8..60,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-lowest": "#0b0f10",
+            "on-error-container": "#ffdad6",
+            "on-secondary-container": "#342800",
+            "inverse-surface": "#e0e3e5",
+            "on-error": "#690005",
+            "on-secondary": "#241800",
+            "surface-container-high": "#272a2c",
+            "primary-container": "#0f172a",
+            "on-surface": "#f5f5f7",
+            "surface-container": "#1d2022",
+            "on-secondary-fixed": "#241a00",
+            "surface-dim": "#101415",
+            "glass-stroke": "rgba(255, 255, 255, 0.08)",
+            "glass-gold": "rgba(233, 195, 73, 0.15)",
+            "secondary-container": "#af8d11",
+            "on-primary-container": "#798098",
+            "inverse-primary": "#565e74",
+            "tertiary": "#bcc7de",
+            "success-green": "#25D366",
+            "tertiary-fixed": "#d8e3fb",
+            "on-primary-fixed": "#131b2e",
+            "on-tertiary-container": "#768197",
+            "secondary-fixed-dim": "#e9c349",
+            "on-surface-variant": "#9fa3af",
+            "surface": "#101415",
+            "tertiary-container": "#0c1829",
+            "on-primary-fixed-variant": "#3f465c",
+            "on-tertiary-fixed-variant": "#3c475a",
+            "surface-variant": "#1c2124",
+            "tertiary-fixed-dim": "#bcc7de",
+            "primary-fixed": "#dae2fd",
+            "background": "#0b0f10",
+            "outline-variant": "rgba(255, 255, 255, 0.12)",
+            "on-background": "#f5f5f7",
+            "on-tertiary-fixed": "#111c2d",
+            "primary": "#bec6e0",
+            "error": "#ffb4ab",
+            "secondary-fixed": "#ffe088",
+            "error-container": "#93000a",
+            "secondary": "#E5B842",
+            "gold-hover": "#F1C95A",
+            "primary-fixed-dim": "#bec6e0",
+            "surface-bright": "#363a3b",
+            "on-primary": "#283044",
+            "on-secondary-fixed-variant": "#574500",
+            "outline": "#909097",
+            "surface-tint": "#E5B842",
+            "surface-container-highest": "#2c3033",
+            "inverse-on-surface": "#2d3133",
+            "on-tertiary": "#263143",
+            "surface-container-low": "#15181a"
+          },
+          borderRadius: {
+            "DEFAULT": "0.35rem",
+            "lg": "0.75rem",
+            "xl": "1rem",
+            "2xl": "1.25rem",
+            "3xl": "1.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin-mobile": "16px",
+            "margin-desktop": "40px",
+            "unit": "8px"
+          },
+          fontFamily: {
+            "headline-lg-mobile": ["\"Source Serif 4\"", "serif"],
+            "display-lg": ["\"Source Serif 4\"", "serif"],
+            "headline-lg": ["\"Source Serif 4\"", "serif"],
+            "body-lg": ["Manrope", "sans-serif"],
+            "body-md": ["Manrope", "sans-serif"],
+            "label-md": ["Manrope", "sans-serif"],
+            "label-sm": ["Manrope", "sans-serif"]
+          }
+        }
+      }
+    };
+  
+    </script>
+<style>
+
+    /* fond de la page : design VIP (impose hors @layer pour gagner sur style.css) */
+    html, body {
+        background-color: #0b0f10 !important;
+        color: #f5f5f7;
+        margin: 0;
+        padding: 0;
+    }
+    body { overscroll-behavior-y: none; }
+
+    
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .gold-glow {
+      box-shadow: 0 0 35px -8px rgba(229, 184, 66, 0.22);
+    }
+    .gold-border {
+      border: 1px solid rgba(229, 184, 66, 0.28);
+    }
+    .gold-radial {
+      background: radial-gradient(circle at 50% 0%, rgba(229, 184, 66, 0.15) 0%, rgba(11, 15, 16, 0) 70%);
+    }
+    .glass-card {
+      background: linear-gradient(145deg, rgba(29, 32, 34, 0.78) 0%, rgba(16, 20, 21, 0.9) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  
+</style>
+
 </head>
 
-<body>
+<body class="cinematic-home">
     <header id="site-header">
         <div class="container header-content">
             <a href="index.html" class="logo">
@@ -43,47 +170,315 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero" style="min-height: 50vh;">
-            <div class="hero-slider">
-                <div class="hero-slide active" style="background-image: url('assets/hero_bg_1.png');"></div>
-            </div>
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-                <h1 class="hero-title fade-in-up">Voyage d'Affaires & Visa</h1>
-                <p class="hero-subtitle fade-in-up delay-1">Simplifiez vos déplacements professionnels en Chine.</p>
-            </div>
-        </section>
+    <main class="max-w-[480px] mx-auto pt-24 pb-16 px-0 overflow-x-hidden">
+<!-- Hero Ambient Glow + Experience Switcher -->
+<div class="gold-radial pt-4 pb-2 px-margin-mobile flex flex-col gap-4">
+<!-- Experience Mode Switcher (Pill Switcher) -->
 
-        <section class="section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <h2 class="section-title">Nos Services Business</h2>
-                    <p class="section-desc">Une offre complète pour les professionnels.</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="card-icon"><i data-lucide="file-check"></i></div>
-                        <h3>Visa Business</h3>
-                        <p>Obtention rapide de lettres d'invitation officielles et assistance visa M/F.</p>
-                        <a href="contact.html" class="link-arrow">Demander <i data-lucide="arrow-right"></i></a>
-                    </div>
-                    <div class="service-card">
-                        <div class="card-icon"><i data-lucide="plane"></i></div>
-                        <h3>Logistique Voyage</h3>
-                        <p>Réservation de vols, hôtels et trains à grande vitesse en Chine.</p>
-                        <a href="contact.html" class="link-arrow">Réserver <i data-lucide="arrow-right"></i></a>
-                    </div>
-                    <div class="service-card">
-                        <div class="card-icon"><i data-lucide="users"></i></div>
-                        <h3>Interprète & Guide</h3>
-                        <p>Accompagnement linguistique pour vos négociations.</p>
-                        <a href="contact.html" class="link-arrow">Trouver un guide <i data-lucide="arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- Hero Headline & Value Props -->
+<div class="flex flex-col gap-1.5 mt-1">
+
+
+
+</div>
+<!-- Luxury Quick Booking Bar / Chip Selector -->
+<div class="p-3 rounded-2xl glass-card border border-glass-stroke shadow-2xl flex flex-col gap-2.5">
+<div class="grid grid-cols-12 gap-2">
+<!-- Location Picker -->
+<div class="col-span-7 flex items-center gap-2.5 p-2.5 rounded-xl bg-surface-container-lowest/80 border border-glass-stroke">
+<span class="material-symbols-outlined text-secondary text-[19px]">flight_takeoff</span>
+<div class="flex flex-col overflow-hidden">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant tracking-wider">ville</span>
+<span class="text-xs font-bold text-on-surface truncate">&nbsp;Brazzaville</span>
+</div>
+</div>
+<!-- Quick Duration -->
+<div class="col-span-5 flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-lowest/80 border border-glass-stroke">
+<span class="material-symbols-outlined text-secondary text-[18px]">calendar_today</span>
+<div class="flex flex-col overflow-hidden">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant tracking-wider">Durée</span>
+<span class="text-xs font-bold text-on-surface truncate">72 Heures&nbsp;</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 px-1">
+<div class="flex items-center gap-3 text-[11px] text-on-surface-variant">
+
+
+</div>
+<button class="text-xs text-secondary font-bold hover:underline flex items-center gap-0.5" onclick="document.getElementById('instantBookingSection').scrollIntoView({ behavior: 'smooth' })">
+            Ajuster <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Luxury Category Pill Micro-Bar -->
+<div class="px-margin-mobile mt-3 mb-1">
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-2 -mx-margin-mobile px-margin-mobile" id="categoryScroller">
+<button class="cat-pill active flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-secondary text-black shadow-md border border-secondary transition-all shrink-0" onclick="filterShowcase('all', this)">
+<span class="material-symbols-outlined text-[17px]">auto_awesome</span>
+<span class="">Tous les modèles</span>
+</button>
+<button class="cat-pill flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-surface-container/70 text-on-surface-variant border border-glass-stroke hover:text-white transition-all shrink-0" onclick="filterShowcase('berline', this)">
+<span class="material-symbols-outlined text-[17px]">directions_car</span>
+<span class="">Berlines&nbsp;</span>
+</button>
+<button class="cat-pill flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-surface-container/70 text-on-surface-variant border border-glass-stroke hover:text-white transition-all shrink-0" onclick="filterShowcase('suv', this)">
+<span class="material-symbols-outlined text-[17px]">local_shipping</span>
+<span class="">SUV&nbsp;</span>
+</button>
+
+</div>
+</div>
+<!-- FLAGSHIP SPOTLIGHT SNAP CAROUSEL -->
+<section class="mt-4">
+<div class="px-margin-mobile flex items-center justify-between mb-2.5">
+
+
+</div>
+<!-- Snap Horizontal Carousel -->
+<div class="flex gap-4 overflow-x-auto snap-x snap-mandatory px-margin-mobile pb-3 no-scrollbar" id="spotlightTrack">
+<!-- SPOTLIGHT CARD 1: Mercedes-Maybach Classe S -->
+<div class="snap-center shrink-0 w-[86vw] max-w-[345px] rounded-3xl glass-card overflow-hidden gold-border flex flex-col shadow-2xl relative" data-tag="berline" style="display: flex;">
+<div class="relative h-48 w-full overflow-hidden bg-black">
+<img alt="Mercedes-Benz Classe S Maybach" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1URF2NE3xjp3AFwC0veHAVkDcFlzZljs5AgdZ6Ss4a_ZHkEDjvLRRZcWSIcAinZseMXUu0nkpeDLDw2mMxL-bTybOfG9g5sFLqUJAjJnqA-d5BIoQoG0yeygzoUsK6zeIULpTTjRtQmgFIzt5ukTkrYSdLfefNbB20H5o2BtNdO1VEgBzdJg6Gl5nSR6XtRhXJB6HNehZ5fcf0rQY9IwKFJDaLtEh5OdOKPW77GoWWSs4zmtlOQAvD7bCj2">
+<div class="absolute inset-0 bg-gradient-to-t from-[#101415] via-transparent to-black/30"></div>
+<!-- Badges Floating -->
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-black/60 backdrop-blur-md border border-secondary/40 text-secondary">
+                Édition Présidentielle
+              </span>
+</div>
+<!-- Price Glass Overlay -->
+<div class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-surface-container-lowest/85 backdrop-blur-md border border-glass-stroke flex flex-col items-end">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant">Tarif Journalier</span>
+<span class="text-sm font-extrabold text-secondary">180.000 FCFA <span class="text-[10px] font-normal text-white">/j</span></span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold uppercase tracking-widest text-secondary">Prestige Limousine</span>
+<span class="flex items-center gap-1 text-[11px] text-amber-300 font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">grade</span>
+                  5.0 (42 missions)
+                </span>
+</div>
+<h3 class="font-headline-lg-mobile text-[18px] font-bold text-white leading-snug mt-0.5">
+                Mercedes-Benz Classe S Maybach
+              </h3>
+</div>
+<!-- Specs Grid Pills -->
+
+<!-- Actions Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-5 h-11 rounded-xl bg-surface-container-high/80 border border-glass-stroke text-xs font-bold text-on-surface flex items-center justify-center gap-1 hover:bg-surface-bright transition-all" onclick="openSpecSheet('Mercedes-Benz Classe S Maybach', '180.000 FCFA / jour (280$ USD)', 'Salon First-Class avec inclinaison 43.5°, isolation acoustique intégrale, sellerie cuir nappa étendu, suspension Magic Body Control avec lecture laser de la route. Idéale pour chefs d\'État, PDG et diplomates.', 'https://lh3.googleusercontent.com/aida/AEtjO1URF2NE3xjp3AFwC0veHAVkDcFlzZljs5AgdZ6Ss4a_ZHkEDjvLRRZcWSIcAinZseMXUu0nkpeDLDw2mMxL-bTybOfG9g5sFLqUJAjJnqA-d5BIoQoG0yeygzoUsK6zeIULpTTjRtQmgFIzt5ukTkrYSdLfefNbB20H5o2BtNdO1VEgBzdJg6Gl5nSR6XtRhXJB6HNehZ5fcf0rQY9IwKFJDaLtEh5OdOKPW77GoWWSs4zmtlOQAvD7bCj2')">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span class="">voir detail</span>
+</button>
+<a class="col-span-7 h-11 rounded-xl bg-secondary text-black text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-lg hover:bg-gold-hover transition-all" href="https://wa.me/?text=Bonjour%20ABRSON%20Trading,%20je%20souhaite%20r%C3%A9server%20imm%C3%A9diatement%20la%20Mercedes-Maybach%20Classe%20S%20pour%20une%20mission%20VIP" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="">Réserver en 1 clic</span>
+</a>
+</div>
+</div>
+</div>
+<!-- SPOTLIGHT CARD 2: Range Rover Defender Obsidian Sentinel -->
+<div class="snap-center shrink-0 w-[86vw] max-w-[345px] rounded-3xl glass-card overflow-hidden gold-border flex flex-col shadow-2xl relative" data-tag="suv" style="display: flex;">
+<div class="relative h-48 w-full overflow-hidden bg-black">
+<img alt="Range Rover Defender Obsidian 4x4" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1UeJQwJ_MscLRuY12mSJUnXlq79DtRTgPF0J_zoK0qO7e9U0RRVxeCAsjcLVgz4gbSMQBYkOTzYVLRPH2nllzJ0OFPxbU51x63G961TGpDyepUuqJdFZpdqfgZ07akB5Yw-OF1yd5Oe9NGIOiq0EoK-8tTnvusVrixNdql39H3vHL83FHE3IcExVhejVAQlq9IJMurU1A2awWO5NCgjklBhSuHCsAH8fMYHzntVRnxAXVYZzJkS57co-mt_">
+<div class="absolute inset-0 bg-gradient-to-t from-[#101415] via-transparent to-black/30"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-black/60 backdrop-blur-md border border-secondary/40 text-secondary">
+                Blindage VR7 Dispo
+              </span>
+</div>
+<div class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-surface-container-lowest/85 backdrop-blur-md border border-glass-stroke flex flex-col items-end">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant">Tarif Journalier</span>
+<span class="text-sm font-extrabold text-secondary">150.000 FCFA <span class="text-[10px] font-normal text-white">/j</span></span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold uppercase tracking-widest text-secondary">Tactical &amp; Prestige SUV</span>
+<span class="flex items-center gap-1 text-[11px] text-amber-300 font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">grade</span>
+                  4.97 (38 missions)
+                </span>
+</div>
+<h3 class="font-headline-lg-mobile text-[18px] font-bold text-white leading-snug mt-0.5">
+                Range Rover Defender Obsidian
+              </h3>
+</div>
+<!-- Specs Grid Pills -->
+
+<!-- Actions Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-5 h-11 rounded-xl bg-surface-container-high/80 border border-glass-stroke text-xs font-bold text-on-surface flex items-center justify-center gap-1 hover:bg-surface-bright transition-all" onclick="openSpecSheet('Range Rover Defender Obsidian 4x4', '150.000 FCFA / jour (240$ USD)', 'Configuration haute sécurité avec pare-brise thermique surteinté, filtration d\'air NBC, système audio Meridian 825W et grande autonomie. Convient pour escortes officielles et pistes exigeantes.', 'https://lh3.googleusercontent.com/aida/AEtjO1UeJQwJ_MscLRuY12mSJUnXlq79DtRTgPF0J_zoK0qO7e9U0RRVxeCAsjcLVgz4gbSMQBYkOTzYVLRPH2nllzJ0OFPxbU51x63G961TGpDyepUuqJdFZpdqfgZ07akB5Yw-OF1yd5Oe9NGIOiq0EoK-8tTnvusVrixNdql39H3vHL83FHE3IcExVhejVAQlq9IJMurU1A2awWO5NCgjklBhSuHCsAH8fMYHzntVRnxAXVYZzJkS57co-mt_')">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span class="">voir detail</span>
+</button>
+<a class="col-span-7 h-11 rounded-xl bg-secondary text-black text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-lg hover:bg-gold-hover transition-all" href="https://wa.me/?text=Bonjour%20ABRSON%20Trading,%20je%20souhaite%20r%C3%A9server%20le%20Range%20Rover%20Defender%20Obsidian" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="">Réserver en 1 clic</span>
+</a>
+</div>
+</div>
+</div>
+<!-- SPOTLIGHT CARD 3: Toyota Alphard Executive Lounge -->
+<div class="snap-center shrink-0 w-[86vw] max-w-[345px] rounded-3xl glass-card overflow-hidden gold-border flex flex-col shadow-2xl relative" data-tag="van" style="display: flex;">
+<div class="relative h-48 w-full overflow-hidden bg-black">
+<img alt="Toyota Alphard Executive Lounge" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg1B5KF_TcGW5czCfFV8FEgzZKZbUgfhg7vwIZ-cB30-WtsyamCWyR-axgx4HNqYCSb5xUZJcb4RYL-oCmH2a7TY8-oCqvnox70ndEbjkNkoN_f1Do28XA-_NCN-AK72oo8FTemzeJDE-nAcQfWSOEcCURKb9YVfXbMdOZ1ECO_y8uLlZcNX_VrpXy9sTD661w4IMXaFLUB2i12H3t1Gj5mvSOFLllh8FiryqtLdf_YqoGQiXGXrH3bg">
+<div class="absolute inset-0 bg-gradient-to-t from-[#101415] via-transparent to-black/30"></div>
+<div class="absolute top-3 left-3 flex items-center gap-1.5">
+<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-black/60 backdrop-blur-md border border-secondary/40 text-secondary">
+                Bureau Roulant VIP
+              </span>
+</div>
+<div class="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-surface-container-lowest/85 backdrop-blur-md border border-glass-stroke flex flex-col items-end">
+<span class="text-[10px] uppercase font-semibold text-on-surface-variant">Tarif Journalier</span>
+<span class="text-sm font-extrabold text-secondary">130.000 FCFA <span class="text-[10px] font-normal text-white">/j</span></span>
+</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-bold uppercase tracking-widest text-secondary">Diplomatic Van</span>
+<span class="flex items-center gap-1 text-[11px] text-amber-300 font-bold">
+<span class="material-symbols-outlined text-[13px]" style="font-variation-settings: 'FILL' 1;">grade</span>
+                  4.99 (64 missions)
+                </span>
+</div>
+<h3 class="font-headline-lg-mobile text-[18px] font-bold text-white leading-snug mt-0.5">
+                Toyota Alphard Executive Lounge
+              </h3>
+</div>
+<!-- Specs Grid Pills -->
+
+<!-- Actions Row -->
+<div class="grid grid-cols-12 gap-2 pt-1">
+<button class="col-span-5 h-11 rounded-xl bg-surface-container-high/80 border border-glass-stroke text-xs font-bold text-on-surface flex items-center justify-center gap-1 hover:bg-surface-bright transition-all" onclick="openSpecSheet('Toyota Alphard Executive Lounge', '130.000 FCFA / jour (210$ USD)', 'Espace de travail et de repos souverain. Deux fauteuils commandants avec massages, repose-mollets chauffants, double toit ouvrant et vitrage privatif sombre.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAg1B5KF_TcGW5czCfFV8FEgzZKZbUgfhg7vwIZ-cB30-WtsyamCWyR-axgx4HNqYCSb5xUZJcb4RYL-oCmH2a7TY8-oCqvnox70ndEbjkNkoN_f1Do28XA-_NCN-AK72oo8FTemzeJDE-nAcQfWSOEcCURKb9YVfXbMdOZ1ECO_y8uLlZcNX_VrpXy9sTD661w4IMXaFLUB2i12H3t1Gj5mvSOFLllh8FiryqtLdf_YqoGQiXGXrH3bg')">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span class="">Fiche VIP</span>
+</button>
+<a class="col-span-7 h-11 rounded-xl bg-secondary text-black text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-lg hover:bg-gold-hover transition-all" href="https://wa.me/?text=Bonjour%20ABRSON%20Trading,%20je%20souhaite%20r%C3%A9server%20le%20Toyota%20Alphard%20Executive%20Lounge" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="">Réserver en 1 clic</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- INCLUSIONS VIP & PROTOCOLE CONCIERGE -->
+<section class="px-margin-mobile mt-6">
+
+</section>
+<!-- QUICK FLEET SEARCH & EXPANDED ROSTER -->
+<section class="px-margin-mobile mt-6 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-lg-mobile text-[18px] font-bold text-white">Catalogue &amp; Disponibilités</h3>
+<span class="text-xs text-on-surface-variant">35 véhicules prêts</span>
+</div>
+<!-- Live Search Bar -->
+<div class="relative flex items-center w-full">
+<span class="material-symbols-outlined absolute left-3.5 text-on-surface-variant text-[18px] pointer-events-none">search</span>
+<input class="w-full h-11 pl-10 pr-4 rounded-xl bg-surface-container-high/80 border border-glass-stroke text-xs text-white placeholder:text-on-surface-variant/70 focus:outline-none focus:border-secondary transition-all" id="quickSearchInput" oninput="filterFleetGrid(this.value)" placeholder="Rechercher marque, blindé, chauffeur..." type="text">
+</div>
+<!-- Compact Fleet List -->
+<div class="flex flex-col gap-2.5" id="fleetGridContainer">
+<!-- Fleet Item 1 -->
+<div class="fleet-card p-3 rounded-2xl glass-card flex items-center justify-between gap-3 border border-glass-stroke hover:border-secondary/30 transition-all" data-name="Mercedes Classe E Executive Berline">
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container-highest overflow-hidden shrink-0 border border-glass-stroke">
+<img alt="Mercedes Classe E" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1URF2NE3xjp3AFwC0veHAVkDcFlzZljs5AgdZ6Ss4a_ZHkEDjvLRRZcWSIcAinZseMXUu0nkpeDLDw2mMxL-bTybOfG9g5sFLqUJAjJnqA-d5BIoQoG0yeygzoUsK6zeIULpTTjRtQmgFIzt5ukTkrYSdLfefNbB20H5o2BtNdO1VEgBzdJg6Gl5nSR6XtRhXJB6HNehZ5fcf0rQY9IwKFJDaLtEh5OdOKPW77GoWWSs4zmtlOQAvD7bCj2">
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-[10px] font-bold text-secondary uppercase">Berline Affaires</span>
+<span class="text-[9px] px-1.5 py-0.2 rounded bg-emerald-500/20 text-emerald-300 font-semibold">Disponible</span>
+</div>
+<h4 class="text-sm font-bold text-white">Mercedes Classe E Berline</h4>
+<span class="text-[11px] text-on-surface-variant">Chauffeur inclus • Intérieur cuir noir</span>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-1.5">
+<span class="text-xs font-extrabold text-secondary">95.000 F<span class="text-[9px] font-normal text-on-surface-variant">/j</span></span>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container-highest text-white text-[11px] font-bold border border-glass-stroke hover:bg-secondary hover:text-black transition-all" href="https://wa.me/?text=Bonjour%20ABRSON,%20je%20souhaite%20r%C3%A9server%20la%20Mercedes%20Classe%20E" target="_blank">voir</a>
+</div>
+</div>
+<!-- Fleet Item 2 -->
+<div class="fleet-card p-3 rounded-2xl glass-card flex items-center justify-between gap-3 border border-glass-stroke hover:border-secondary/30 transition-all" data-name="Toyota Land Cruiser V8 Prado Blindé SUV">
+<div class="flex items-center gap-3">
+<div class="w-16 h-16 rounded-xl bg-surface-container-highest overflow-hidden shrink-0 border border-glass-stroke">
+<img alt="Toyota Land Cruiser V8" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1UeJQwJ_MscLRuY12mSJUnXlq79DtRTgPF0J_zoK0qO7e9U0RRVxeCAsjcLVgz4gbSMQBYkOTzYVLRPH2nllzJ0OFPxbU51x63G961TGpDyepUuqJdFZpdqfgZ07akB5Yw-OF1yd5Oe9NGIOiq0EoK-8tTnvusVrixNdql39H3vHL83FHE3IcExVhejVAQlq9IJMurU1A2awWO5NCgjklBhSuHCsAH8fMYHzntVRnxAXVYZzJkS57co-mt_">
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-[10px] font-bold text-secondary uppercase">SUV Tout-Terrain</span>
+<span class="text-[9px] px-1.5 py-0.2 rounded bg-secondary/20 text-secondary font-semibold">Haute Sécurité</span>
+</div>
+<h4 class="text-sm font-bold text-white">Land Cruiser V8 Prado</h4>
+<span class="text-[11px] text-on-surface-variant">7 Places • Idéal missions provinciales</span>
+</div>
+</div>
+<div class="flex flex-col items-end shrink-0 gap-1.5">
+<span class="text-xs font-extrabold text-secondary">120.000 F<span class="text-[9px] font-normal text-on-surface-variant">/j</span></span>
+<a class="px-3 py-1.5 rounded-lg bg-surface-container-highest text-white text-[11px] font-bold border border-glass-stroke hover:bg-secondary hover:text-black transition-all" href="https://wa.me/?text=Bonjour%20ABRSON,%20je%20souhaite%20r%C3%A9server%20le%20Land%20Cruiser%20V8" target="_blank">voir</a>
+</div>
+</div>
+</div>
+</section>
+<!-- BESPOKE RESERVATION CALCULATOR CARD -->
+<section class="px-margin-mobile mt-7" id="instantBookingSection">
+<div class="p-5 rounded-3xl glass-card gold-border flex flex-col gap-4 relative overflow-hidden">
+<div class="absolute -right-8 -bottom-8 w-36 h-36 rounded-full bg-secondary/10 blur-2xl pointer-events-none"></div>
+<div class="flex items-center gap-3">
+<div class="w-11 h-11 rounded-2xl bg-secondary/15 border border-secondary/30 flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</div>
+<div class="flex flex-col">
+
+<h3 class="font-headline-lg-mobile text-[18px] font-bold text-white">Demande de Prise en Charge</h3>
+</div>
+</div>
+<form class="flex flex-col gap-3" onsubmit="event.preventDefault(); submitBespokeBooking();">
+<div class="grid grid-cols-2 gap-2.5">
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-medium text-on-surface-variant" for="pickDateInput">Début de location</label>
+<input class="h-11 px-3 rounded-xl bg-surface-container-lowest/90 border border-glass-stroke text-xs text-white focus:outline-none focus:border-secondary" id="pickDateInput" type="date">
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-medium text-on-surface-variant" for="dropDateInput">Restitution</label>
+<input class="h-11 px-3 rounded-xl bg-surface-container-lowest/90 border border-glass-stroke text-xs text-white focus:outline-none focus:border-secondary" id="dropDateInput" type="date">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[11px] font-medium text-on-surface-variant">Véhicule souhaité</label>
+<select class="h-11 px-3 rounded-xl bg-surface-container-lowest/90 border border-glass-stroke text-xs text-white focus:outline-none focus:border-secondary" id="vehicleChoice">
+<option value="Mercedes-Benz Classe S Maybach">Mercedes-Benz Classe S Maybach (180.000 FCFA/j)</option>
+<option value="Range Rover Defender Obsidian">Range Rover Defender Obsidian 4x4 (150.000 FCFA/j)</option>
+<option value="Toyota Alphard Executive Lounge">Toyota Alphard Executive Lounge (130.000 FCFA/j)</option>
+<option value="Land Cruiser V8 Prado">Toyota Land Cruiser V8 Prado (120.000 FCFA/j)</option>
+<option value="Mercedes Classe E">Mercedes-Benz Classe E Berline (95.000 FCFA/j)</option>
+</select>
+</div>
+<div class="flex items-center justify-between p-3 rounded-xl bg-surface-container-lowest/80 border border-glass-stroke mt-1">
+<div class="flex flex-col">
+<span class="text-xs font-bold text-white">Chauffeur Privé &amp; Accueil Aéroport</span>
+<span class="text-[10px] text-on-surface-variant">Pancarte personnalisée aux arrivées Maya-Maya</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" id="vipDriverToggle" type="checkbox">
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<div class="flex flex-col gap-3 mt-2"><div id="quoteSummaryBox" class="p-3.5 rounded-2xl bg-surface-container-lowest/90 border border-secondary/30 flex flex-col gap-2 transition-all"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-secondary text-[18px]">receipt_long</span><span class="text-xs font-bold text-white uppercase tracking-wider">Devis Global Estimé</span></div></div><div class="flex items-baseline justify-between border-t border-glass-stroke pt-2"><div class="flex flex-col"><span class="text-[10px] text-on-surface-variant font-medium" id="quoteDurationLabel">Durée calculée : 3 jours</span><span class="text-[10px] text-on-surface-variant">Service Chauffeur VIP &amp; Carburant inclus</span></div><div class="flex flex-col items-end"><span class="text-[17px] font-black text-secondary leading-tight" id="quoteTotalPrice">390.000 FCFA</span><span class="text-[9px] text-on-surface-variant">(≈ 600 USD HT)</span></div></div></div><div class="grid grid-cols-2 gap-2.5"><button type="button" id="btnViewQuoteDetails" class="h-12 px-3 rounded-xl bg-surface-container-high/80 border border-secondary/40 text-secondary hover:text-white hover:bg-secondary/20 hover:border-secondary transition-all text-xs font-bold flex items-center justify-center gap-1.5 shadow-md"><span class="material-symbols-outlined text-[18px]">request_quote</span><span class="">Voir devis</span></button><button type="submit" class="h-12 px-3 rounded-xl bg-secondary text-black font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-xl hover:bg-gold-hover transition-all"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Valider sur WhatsApp</span></button></div></div>
+</form>
+</div>
+</section>
+</main>
 
     <footer class="site-footer cinematic-footer" style="margin-top: 0;">
         <div class="container footer-content">
@@ -118,6 +513,94 @@
     </footer>
     <script src="js/main.js"></script>
     <script>lucide.createIcons();</script>
+
+    <script>
+
+    // Toggle Chauffeur vs Conduite Autonome
+    function toggleDriveMode(mode) {
+      const btnChauffeur = document.getElementById('modeChauffeur');
+      const btnSelf = document.getElementById('modeSelf');
+      const driverToggle = document.getElementById('vipDriverToggle');
+
+      if (mode === 'chauffeur') {
+        btnChauffeur.className = 'flex-1 py-2 px-3 rounded-full text-xs font-bold transition-all duration-300 flex items-center justify-center gap-1.5 bg-secondary text-on-secondary shadow-md';
+        btnSelf.className = 'flex-1 py-2 px-3 rounded-full text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300 flex items-center justify-center gap-1.5';
+        if (driverToggle) driverToggle.checked = true;
+      } else {
+        btnSelf.className = 'flex-1 py-2 px-3 rounded-full text-xs font-bold transition-all duration-300 flex items-center justify-center gap-1.5 bg-secondary text-on-secondary shadow-md';
+        btnChauffeur.className = 'flex-1 py-2 px-3 rounded-full text-xs font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300 flex items-center justify-center gap-1.5';
+        if (driverToggle) driverToggle.checked = false;
+      }
+    }
+
+    // Category Filter for Spotlight
+    function filterShowcase(category, el) {
+      const pills = document.querySelectorAll('.cat-pill');
+      pills.forEach(p => {
+        p.className = 'cat-pill flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-surface-container/70 text-on-surface-variant border border-glass-stroke hover:text-white transition-all shrink-0';
+      });
+      el.className = 'cat-pill active flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-secondary text-black shadow-md border border-secondary transition-all shrink-0';
+
+      const cards = document.querySelectorAll('#spotlightTrack > div');
+      cards.forEach(card => {
+        const tag = card.getAttribute('data-tag');
+        if (category === 'all' || tag === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Live search fleet cards
+    function filterFleetGrid(query) {
+      const q = query.toLowerCase();
+      const items = document.querySelectorAll('.fleet-card');
+      items.forEach(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        item.style.display = name.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    // Spec Sheet Drawer
+    function openSpecSheet(title, price, desc, imgUrl) {
+      const drawer = document.getElementById('specDrawer');
+      document.getElementById('specSheetTitle').innerText = title;
+      document.getElementById('specSheetPrice').innerText = price;
+      document.getElementById('specSheetDesc').innerText = desc;
+      const img = document.getElementById('specSheetImg');
+      if (img && imgUrl) img.src = imgUrl;
+      drawer.classList.remove('hidden');
+    }
+
+    function closeSpecSheet() {
+      document.getElementById('specDrawer').classList.add('hidden');
+    }
+
+    // Bespoke WhatsApp Booking
+    function submitBespokeBooking() {
+      const pick = document.getElementById('pickDateInput').value || 'Date à définir';
+      const drop = document.getElementById('dropDateInput').value || 'Date à définir';
+      const car = document.getElementById('vehicleChoice').value;
+      const withDriver = document.getElementById('vipDriverToggle').checked ? 'OUI (Chauffeur officiel & Accueil Maya-Maya)' : 'NON (Conduite autonome)';
+
+      const message = encodeURIComponent(
+        `Bonjour Conciergerie VIP ABRSON Trading,\n\nJe souhaite réserver un véhicule de prestige :\n• Véhicule : ${car}\n• Date de prise en charge : ${pick}\n• Date de restitution : ${drop}\n• Protocole Chauffeur : ${withDriver}\n\nMerci de me confirmer la mise à disposition et le devis personnalisé.`
+      );
+      window.open(`https://wa.me/?text=${message}`, '_blank');
+    }
+
+    // Auto set dates
+    const today = new Date();
+    const future = new Date(today);
+    future.setDate(future.getDate() + 3);
+
+    const pInp = document.getElementById('pickDateInput');
+    const dInp = document.getElementById('dropDateInput');
+    if (pInp) pInp.valueAsDate = today;
+    if (dInp) dInp.valueAsDate = future;
+  
+    </script>
 </body>
 
 </html>
